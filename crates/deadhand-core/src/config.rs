@@ -47,10 +47,7 @@ impl Default for LayerConfig {
         .into_iter()
         .map(|(k, v)| (k.to_string(), v.iter().map(|s| s.to_string()).collect()))
         .collect();
-        Self {
-            order: ["ui", "route", "service", "data", "infra"].map(String::from).to_vec(),
-            paths,
-        }
+        Self { order: ["ui", "route", "service", "data", "infra"].map(String::from).to_vec(), paths }
     }
 }
 

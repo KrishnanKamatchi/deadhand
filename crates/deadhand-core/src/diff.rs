@@ -70,7 +70,7 @@ pub fn compare(before: &RepoReport, after: &RepoReport, revision: &str) -> DiffR
 
 /// Scans `root` and the same directory at `revision` (via a temporary `git worktree`) and compares them.
 pub fn diff_against(root: &Path, revision: &str, cfg: &Config, git: &dyn GitSource) -> Result<DiffReport, Error> {
-    let root = root.canonicalize().map_err(|e| Error::Io(format!("{}: {e}", root.display())))?;
+    let root = crate::discover::canonical(root).map_err(|e| Error::Io(format!("{}: {e}", root.display())))?;
     let toplevel = PathBuf::from(git_out(&root, &["rev-parse", "--show-toplevel"])?);
     let prefix = git_out(&root, &["rev-parse", "--show-prefix"])?;
     git_out(&root, &["rev-parse", "--verify", "--quiet", &format!("{revision}^{{commit}}")])
@@ -112,7 +112,12 @@ impl Drop for Worktree {
 }
 
 fn git_out(dir: &Path, args: &[&str]) -> Result<String, Error> {
-    let out = Command::new("git").arg("-C").arg(dir).args(args).output().map_err(|e| Error::Git(format!("cannot run git: {e}")))?;
+    let out = Command::new("git")
+        .arg("-C")
+        .arg(dir)
+        .args(args)
+        .output()
+        .map_err(|e| Error::Git(format!("cannot run git: {e}")))?;
     if !out.status.success() {
         return Err(Error::Git(String::from_utf8_lossy(&out.stderr).trim().to_string()));
     }

@@ -65,9 +65,7 @@ pub fn discover(root: &Path, cfg: &Config) -> Result<Vec<SourceFile>, Error> {
 /// JS/TS source by extension, excluding declaration files and minified bundles.
 fn is_source_name(name: &str) -> bool {
     let Some((stem, ext)) = name.rsplit_once('.') else { return false };
-    EXTENSIONS.contains(&ext)
-        && !stem.ends_with(".d")
-        && !stem.ends_with(".min")
+    EXTENSIONS.contains(&ext) && !stem.ends_with(".d") && !stem.ends_with(".min")
 }
 
 /// Directories whose contents are test code, fixtures or mocks.
@@ -96,6 +94,20 @@ fn matcher(root: &Path, globs: &[String]) -> Result<Option<Override>, Error> {
         b.add(g).map_err(|e| Error::Config(format!("invalid glob {g:?}: {e}")))?;
     }
     b.build().map(Some).map_err(|e| Error::Config(e.to_string()))
+}
+
+/// Canonicalizes a path, dropping the Windows `\\?\` verbatim prefix so it compares equal to
+/// the paths the resolver returns.
+pub(crate) fn canonical(p: &Path) -> std::io::Result<PathBuf> {
+    p.canonicalize().map(|c| simplify(&c))
+}
+
+pub(crate) fn simplify(p: &Path) -> PathBuf {
+    let s = p.to_string_lossy();
+    match s.strip_prefix(r"\\?\") {
+        Some(rest) if !rest.starts_with("UNC\\") => PathBuf::from(rest),
+        _ => p.to_path_buf(),
+    }
 }
 
 pub(crate) fn to_slash(p: &Path) -> String {

@@ -2,6 +2,7 @@
 name = "deadhand-core"
 version = "0.1.0"
 edition = "2021"
+rust-version = "1.96"
 repository = "https://github.com/KrishnanKamatchi/deadhand"
 description = "Static analysis of JS/TS repositories for human maintainability"
 

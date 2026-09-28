@@ -5,7 +5,7 @@ use std::path::{Path, PathBuf};
 
 use oxc_resolver::{ResolveError, ResolveOptions, Resolver, TsconfigDiscovery};
 
-use crate::discover::to_slash;
+use crate::discover::{simplify, to_slash};
 use crate::model::ImportTarget;
 
 /// Resolves specifiers from scanned files. Safe to share across threads.
@@ -35,7 +35,12 @@ impl ModuleResolver {
             ..ResolveOptions::default()
         };
         let fallback = Resolver::new(ResolveOptions { tsconfig: None, ..options.clone() });
-        ModuleResolver { resolver: Resolver::new(options), fallback, root: root.to_path_buf(), files: files.into_iter().collect() }
+        ModuleResolver {
+            resolver: Resolver::new(options),
+            fallback,
+            root: root.to_path_buf(),
+            files: files.into_iter().collect(),
+        }
     }
 
     /// Resolves `specifier` as imported from the file at `from` (absolute).
@@ -55,6 +60,7 @@ impl ModuleResolver {
     }
 
     fn classify(&self, path: &Path, specifier: &str) -> ImportTarget {
+        let path = simplify(path);
         let Ok(rel) = path.strip_prefix(&self.root) else {
             return ImportTarget::External(package_name(specifier));
         };

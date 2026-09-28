@@ -100,7 +100,8 @@ impl RepoReport {
 impl ModuleReport {
     /// Metrics that pull this module down the most (score < 75), weakest first, at most `n`.
     pub fn weakest(&self, n: usize) -> Vec<MetricKind> {
-        let mut v: Vec<(MetricKind, f64)> = self.scores.iter().filter(|(_, s)| **s < 75.0).map(|(k, s)| (*k, *s)).collect();
+        let mut v: Vec<(MetricKind, f64)> =
+            self.scores.iter().filter(|(_, s)| **s < 75.0).map(|(k, s)| (*k, *s)).collect();
         v.sort_by(|a, b| a.1.total_cmp(&b.1).then_with(|| a.0.cmp(&b.0)));
         v.into_iter().take(n).map(|(k, _)| k).collect()
     }

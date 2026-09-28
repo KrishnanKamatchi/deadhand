@@ -1,5 +1,7 @@
 # Deadhand
 
+[![CI](https://github.com/KrishnanKamatchi/deadhand/actions/workflows/ci.yml/badge.svg)](https://github.com/KrishnanKamatchi/deadhand/actions/workflows/ci.yml)
+
 > Your AI wrote it. Deadhand checks if you can still own it.
 
 Deadhand statically analyzes a JavaScript/TypeScript repository and measures how hard it would be
@@ -11,8 +13,51 @@ It is not an AI-authorship detector and not a linter.
 
 ## Install
 
+No Rust toolchain needed. Prebuilt binaries are published for Linux (x86_64, arm64, static musl),
+macOS (Intel, Apple Silicon) and Windows (x86_64).
+
 ```sh
-cargo install --path crates/deadhand-cli
+# npm (any platform)
+npx deadhand scan
+npm install -g deadhand
+
+# macOS / Linux
+curl --proto '=https' --tlsv1.2 -LsSf https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-installer.sh | sh
+
+# Windows (PowerShell)
+powershell -ExecutionPolicy Bypass -c "irm https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-installer.ps1 | iex"
+```
+
+### Direct downloads
+
+Each link always points to the newest release. Older versions are on the
+[releases page](https://github.com/KrishnanKamatchi/deadhand/releases).
+
+| Platform | Download | Checksum |
+|---|---|---|
+| macOS, Apple Silicon | [deadhand-aarch64-apple-darwin.tar.xz](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-aarch64-apple-darwin.tar.xz) | [sha256](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-aarch64-apple-darwin.tar.xz.sha256) |
+| macOS, Intel | [deadhand-x86_64-apple-darwin.tar.xz](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-x86_64-apple-darwin.tar.xz) | [sha256](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-x86_64-apple-darwin.tar.xz.sha256) |
+| Linux, x86_64 | [deadhand-x86_64-unknown-linux-gnu.tar.xz](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-x86_64-unknown-linux-gnu.tar.xz) | [sha256](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-x86_64-unknown-linux-gnu.tar.xz.sha256) |
+| Linux, x86_64 (static, any distro) | [deadhand-x86_64-unknown-linux-musl.tar.xz](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-x86_64-unknown-linux-musl.tar.xz) | [sha256](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-x86_64-unknown-linux-musl.tar.xz.sha256) |
+| Linux, arm64 | [deadhand-aarch64-unknown-linux-gnu.tar.xz](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-aarch64-unknown-linux-gnu.tar.xz) | [sha256](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-aarch64-unknown-linux-gnu.tar.xz.sha256) |
+| Windows, x86_64 | [deadhand-x86_64-pc-windows-msvc.zip](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-x86_64-pc-windows-msvc.zip) | [sha256](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-x86_64-pc-windows-msvc.zip.sha256) |
+
+To install from an archive, extract it and put the `deadhand` binary (`deadhand.exe` on Windows)
+somewhere on your `PATH`:
+
+```sh
+tar -xJf deadhand-x86_64-unknown-linux-gnu.tar.xz
+sudo mv deadhand-x86_64-unknown-linux-gnu/deadhand /usr/local/bin/
+deadhand --version
+```
+
+On macOS, a binary downloaded through a browser may be blocked by Gatekeeper until you run
+`xattr -d com.apple.quarantine /usr/local/bin/deadhand`. The curl installer and npm are not affected.
+
+From source (Rust 1.96+):
+
+```sh
+cargo install --git https://github.com/KrishnanKamatchi/deadhand deadhand
 ```
 
 ## Usage
@@ -108,8 +153,31 @@ fixtures/              small repos that trigger specific findings (used by tests
 
 ## Development
 
+Requires Rust 1.96 or newer. CI runs the same checks as below on Linux, macOS and Windows:
+
 ```sh
-cargo test --workspace
+cargo fmt --all --check
 cargo clippy --workspace --all-targets -- -D warnings
-INSTA_UPDATE=always cargo test --workspace   # accept intended snapshot changes
+cargo test --workspace
+RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps
 ```
+
+Report output is covered by snapshot tests. After an intended change to the output, accept the
+new snapshots with:
+
+```sh
+INSTA_UPDATE=always cargo test --workspace
+```
+
+## Releasing
+
+Releases are built by [dist](https://github.com/axodotdev/cargo-dist) in
+`.github/workflows/release.yml`. Bump `version` in `crates/deadhand-cli/Cargo.toml`, then:
+
+```sh
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+The workflow builds every target, creates the GitHub release with installers, and publishes the
+npm package. It needs an `NPM_TOKEN` repository secret (an npm automation token).

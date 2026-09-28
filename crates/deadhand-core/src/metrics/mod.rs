@@ -68,7 +68,14 @@ pub struct MetricOutput {
 
 impl MetricOutput {
     fn new(kind: MetricKind, n: usize) -> MetricOutput {
-        MetricOutput { kind, available: true, notes: Vec::new(), modules: vec![ModuleValue::default(); n], evidence: Vec::new(), findings: Vec::new() }
+        MetricOutput {
+            kind,
+            available: true,
+            notes: Vec::new(),
+            modules: vec![ModuleValue::default(); n],
+            evidence: Vec::new(),
+            findings: Vec::new(),
+        }
     }
 
     fn unavailable(kind: MetricKind, n: usize, note: &str) -> MetricOutput {

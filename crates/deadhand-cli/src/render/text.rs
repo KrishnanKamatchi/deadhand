@@ -19,7 +19,11 @@ struct Paint(bool);
 
 impl Paint {
     fn style(&self, s: &str, style: Style) -> String {
-        if self.0 { s.style(style).to_string() } else { s.to_string() }
+        if self.0 {
+            s.style(style).to_string()
+        } else {
+            s.to_string()
+        }
     }
     fn score(&self, s: &str, score: f64) -> String {
         let style = if score < METRIC_WARN {
@@ -129,7 +133,8 @@ pub fn explain(r: &RepoReport, m: &ModuleReport, color: bool) -> String {
     let layer = m.layer.as_deref().unwrap_or("unknown");
     let test = if m.is_test { ", test" } else { "" };
     let _ = writeln!(o, "{}  {}", p.bold(&m.path), p.dim(&format!("(layer {layer}, {} LOC{test})", m.loc)));
-    let _ = writeln!(o, "Maintainability {} / 100\n", p.score(&round(m.maintainability).to_string(), m.maintainability));
+    let _ =
+        writeln!(o, "Maintainability {} / 100\n", p.score(&round(m.maintainability).to_string(), m.maintainability));
 
     let _ = writeln!(o, "Scores:");
     for summary in &r.metrics {
@@ -140,7 +145,13 @@ pub fn explain(r: &RepoReport, m: &ModuleReport, color: bool) -> String {
         let raw = m.raw.get(&summary.kind).map_or(String::new(), |vals| {
             vals.iter().map(|(k, v)| format!("{k}={}", fmt_raw(*v))).collect::<Vec<_>>().join(" ")
         });
-        let _ = writeln!(o, "  {:<16} {}  {}", summary.label, p.score(&format!("{:>3}", round(*score)), *score), p.dim(&raw));
+        let _ = writeln!(
+            o,
+            "  {:<16} {}  {}",
+            summary.label,
+            p.score(&format!("{:>3}", round(*score)), *score),
+            p.dim(&raw)
+        );
     }
 
     if !m.functions.is_empty() {
@@ -180,7 +191,11 @@ pub fn explain(r: &RepoReport, m: &ModuleReport, color: bool) -> String {
 }
 
 fn fmt_raw(v: f64) -> String {
-    if (v - v.round()).abs() < 1e-9 { format!("{}", v.round() as i64) } else { format!("{v:.2}") }
+    if (v - v.round()).abs() < 1e-9 {
+        format!("{}", v.round() as i64)
+    } else {
+        format!("{v:.2}")
+    }
 }
 
 /// Change between two scores as displayed (rounded first, so `59 → 60` reads `+1`).
@@ -189,7 +204,11 @@ fn change(before: f64, after: f64) -> i64 {
 }
 
 fn signed(r: i64) -> String {
-    if r > 0 { format!("+{r}") } else { r.to_string() }
+    if r > 0 {
+        format!("+{r}")
+    } else {
+        r.to_string()
+    }
 }
 
 /// `deadhand diff` output.
@@ -197,7 +216,15 @@ pub fn diff(d: &DiffReport, color: bool) -> String {
     let p = Paint(color);
     let mut o = String::new();
     let _ = writeln!(o, "{}  {} → working tree\n", p.bold("DEADHAND DIFF"), d.revision);
-    let delta_style = |r: i64| if r < 0 { Style::new().red() } else if r > 0 { Style::new().green() } else { Style::new().dimmed() };
+    let delta_style = |r: i64| {
+        if r < 0 {
+            Style::new().red()
+        } else if r > 0 {
+            Style::new().green()
+        } else {
+            Style::new().dimmed()
+        }
+    };
     let total = change(d.before, d.after);
     let _ = writeln!(
         o,
@@ -211,7 +238,14 @@ pub fn diff(d: &DiffReport, color: bool) -> String {
         match (m.before, m.after, m.delta) {
             (Some(b), Some(a), Some(_)) => {
                 let c = change(b, a);
-                let _ = writeln!(o, "  {:<16} {:>3} → {:>3}  {}", m.label, round(b), round(a), p.style(&format!("({})", signed(c)), delta_style(c)));
+                let _ = writeln!(
+                    o,
+                    "  {:<16} {:>3} → {:>3}  {}",
+                    m.label,
+                    round(b),
+                    round(a),
+                    p.style(&format!("({})", signed(c)), delta_style(c))
+                );
             }
             _ => {
                 let _ = writeln!(o, "  {:<16} {}", m.label, p.dim("n/a"));

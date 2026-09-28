@@ -51,7 +51,12 @@ fn aliases_resolve() {
 #[test]
 fn drift_flags_the_outlier_only() {
     let r = scan("drift");
-    let flagged: Vec<_> = r.evidence.iter().filter(|e| e.metric == MetricKind::PatternDrift && e.key == "peer-deviation").map(|e| e.path.as_str()).collect();
+    let flagged: Vec<_> = r
+        .evidence
+        .iter()
+        .filter(|e| e.metric == MetricKind::PatternDrift && e.key == "peer-deviation")
+        .map(|e| e.path.as_str())
+        .collect();
     assert_eq!(flagged, vec!["src/services/legacyReport.ts"]);
 }
 
@@ -88,7 +93,12 @@ fn deep_context_flags_long_chain() {
 fn clean_scores_clearly_higher_than_spaghetti() {
     let (clean, spaghetti) = (scan("clean"), scan("spaghetti"));
     assert!(clean.maintainability >= 90.0, "clean {}", clean.maintainability);
-    assert!(clean.maintainability - spaghetti.maintainability >= 25.0, "clean {} spaghetti {}", clean.maintainability, spaghetti.maintainability);
+    assert!(
+        clean.maintainability - spaghetti.maintainability >= 25.0,
+        "clean {} spaghetti {}",
+        clean.maintainability,
+        spaghetti.maintainability
+    );
 }
 
 #[test]

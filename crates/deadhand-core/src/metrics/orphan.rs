@@ -87,8 +87,16 @@ pub fn run(inp: &Inputs<'_>) -> MetricOutput {
         out.notes.push(format!("{untracked} modules have no git history yet (uncommitted)"));
     }
     out.finding(Severity::Info, untouched_n, format!("{untouched_n} modules were never edited after being added"));
-    out.finding(Severity::Warn, bulk_n, format!("{bulk_n} modules were added in bulk commits (>{} lines)", t.bulk_commit_lines));
-    out.finding(Severity::Warn, critical_n, format!("{critical_n} widely used modules had no commits in {} days", t.churn_days));
+    out.finding(
+        Severity::Warn,
+        bulk_n,
+        format!("{bulk_n} modules were added in bulk commits (>{} lines)", t.bulk_commit_lines),
+    );
+    out.finding(
+        Severity::Warn,
+        critical_n,
+        format!("{critical_n} widely used modules had no commits in {} days", t.churn_days),
+    );
     out
 }
 

@@ -17,7 +17,8 @@ use crate::model::{Casing, ImportTarget, ModuleFacts};
 const MIN_PEERS: usize = 5;
 const Z_FLAG: f64 = 2.0;
 const Z_CAP: f64 = 6.0;
-const NUMERIC: [&str; 7] = ["fan_out", "exports", "layers_crossed", "loc", "median_function_loc", "max_nesting", "external_packages"];
+const NUMERIC: [&str; 7] =
+    ["fan_out", "exports", "layers_crossed", "loc", "median_function_loc", "max_nesting", "external_packages"];
 /// Smallest meaningful difference per feature, so near-identical peers do not produce huge z-scores.
 const FLOOR: [f64; 7] = [2.0, 2.0, 1.0, 20.0, 5.0, 1.0, 2.0];
 /// Per-group robust statistics: medians, scales and the dominant naming convention.
@@ -42,14 +43,19 @@ fn dominant_casing(m: &ModuleFacts) -> Option<Casing> {
 }
 
 fn casing_name(c: Casing) -> &'static str {
-    if c == Casing::Snake { "snake_case" } else { "camelCase" }
+    if c == Casing::Snake {
+        "snake_case"
+    } else {
+        "camelCase"
+    }
 }
 
 fn features(inp: &Inputs<'_>, i: usize) -> [Option<f64>; 7] {
     let m = &inp.modules[i];
     let (vo, to) = inp.graph.fan_out(i);
     let own = inp.layer(i);
-    let crossed: BTreeSet<&str> = inp.graph.out[i].iter().filter_map(|e| inp.layer(e.to)).filter(|l| Some(*l) != own).collect();
+    let crossed: BTreeSet<&str> =
+        inp.graph.out[i].iter().filter_map(|e| inp.layer(e.to)).filter(|l| Some(*l) != own).collect();
     let fn_locs: Vec<f64> = m.functions.iter().map(|f| f.loc as f64).collect();
     let has_fns = !m.functions.is_empty();
     [
@@ -97,23 +103,21 @@ pub fn run(inp: &Inputs<'_>) -> MetricOutput {
                 _ => ("repo".to_string(), &pop),
             },
         };
-        let (medians, scales, group_casing) = *stats_cache
-            .entry(label.clone())
-            .or_insert_with(|| {
-                let mut med = [0.0; 7];
-                let mut scale = [1.0; 7];
-                for f in 0..NUMERIC.len() {
-                    let col: Vec<f64> = group.iter().filter_map(|j| feats[j][f]).collect();
-                    med[f] = median(&col);
-                    scale[f] = (1.4826 * mad(&col, med[f])).max(0.25 * med[f].abs()).max(FLOOR[f]);
-                }
-                let mut counts: BTreeMap<Casing, usize> = BTreeMap::new();
-                for c in group.iter().filter_map(|j| casing[j]) {
-                    *counts.entry(c).or_default() += 1;
-                }
-                let top = counts.iter().max_by_key(|(_, n)| **n).map(|(c, _)| *c);
-                (med, scale, top)
-            });
+        let (medians, scales, group_casing) = *stats_cache.entry(label.clone()).or_insert_with(|| {
+            let mut med = [0.0; 7];
+            let mut scale = [1.0; 7];
+            for f in 0..NUMERIC.len() {
+                let col: Vec<f64> = group.iter().filter_map(|j| feats[j][f]).collect();
+                med[f] = median(&col);
+                scale[f] = (1.4826 * mad(&col, med[f])).max(0.25 * med[f].abs()).max(FLOOR[f]);
+            }
+            let mut counts: BTreeMap<Casing, usize> = BTreeMap::new();
+            for c in group.iter().filter_map(|j| casing[j]) {
+                *counts.entry(c).or_default() += 1;
+            }
+            let top = counts.iter().max_by_key(|(_, n)| **n).map(|(c, _)| *c);
+            (med, scale, top)
+        });
 
         let x = feats[&i];
         let mut sum = 0.0;
@@ -124,7 +128,12 @@ pub fn run(inp: &Inputs<'_>) -> MetricOutput {
             let z = (xf - medians[f]) / scales[f];
             if z.abs() > Z_FLAG {
                 sum += z.abs().min(Z_CAP);
-                parts.push(format!("{} {} (peer median {})", NUMERIC[f].replace('_', " "), fmt_num(xf), fmt_num(medians[f])));
+                parts.push(format!(
+                    "{} {} (peer median {})",
+                    NUMERIC[f].replace('_', " "),
+                    fmt_num(xf),
+                    fmt_num(medians[f])
+                ));
                 vals.push((NUMERIC[f].to_string(), xf));
                 vals.push((format!("{}_peer_median", NUMERIC[f]), medians[f]));
             }
@@ -172,7 +181,12 @@ pub fn run(inp: &Inputs<'_>) -> MetricOutput {
                     metric: kind,
                     severity: Severity::Warn,
                     path: m.path.clone(),
-                    span: Some(crate::model::Span { start_line: imp.line, start_col: 1, end_line: imp.line, end_col: 1 }),
+                    span: Some(crate::model::Span {
+                        start_line: imp.line,
+                        start_col: 1,
+                        end_line: imp.line,
+                        end_col: 1,
+                    }),
                     key: format!("layer-violation:{p}"),
                     message: format!("Imports {p}: {why}"),
                     values: vec![],
@@ -182,7 +196,11 @@ pub fn run(inp: &Inputs<'_>) -> MetricOutput {
         violations_total += violations;
 
         let raw = drift + violations as f64;
-        let mut v = values([("drift", drift), ("layer_violations", violations as f64), ("peer_group_size", group.len() as f64)]);
+        let mut v = values([
+            ("drift", drift),
+            ("layer_violations", violations as f64),
+            ("peer_group_size", group.len() as f64),
+        ]);
         for f in 0..NUMERIC.len() {
             if let Some(xf) = x[f] {
                 v.insert(NUMERIC[f].to_string(), xf);

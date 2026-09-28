@@ -35,7 +35,7 @@ enum Command {
         /// Exit 1 if Maintainability is below N.
         #[arg(long, value_name = "N")]
         fail_under: Option<f64>,
-        /// Config file (default: <PATH>/deadhand.toml if present).
+        /// Config file (default: `PATH/deadhand.toml` if present).
         #[arg(long)]
         config: Option<PathBuf>,
         /// Skip git history (Orphaned Code becomes unavailable, churn is unknown).
@@ -84,7 +84,8 @@ fn main() -> ExitCode {
         Ok(false) => ExitCode::from(1),
         Err(err) => {
             eprintln!("deadhand: {err:#}");
-            let usage = err.downcast_ref::<Error>().is_some_and(|e| matches!(e, Error::Config(_))) || err.downcast_ref::<UsageError>().is_some();
+            let usage = err.downcast_ref::<Error>().is_some_and(|e| matches!(e, Error::Config(_)))
+                || err.downcast_ref::<UsageError>().is_some();
             ExitCode::from(if usage { 2 } else { 3 })
         }
     }
@@ -127,7 +128,8 @@ fn run(cli: Cli) -> Result<bool> {
             let cfg = load_config(&path, config.as_deref())?;
             let started = Instant::now();
             let git: &dyn GitSource = if no_git { &NoGit } else { &GitCli };
-            let report = deadhand_core::analyze_with(&path, &cfg, git).with_context(|| format!("scanning {}", path.display()))?;
+            let report = deadhand_core::analyze_with(&path, &cfg, git)
+                .with_context(|| format!("scanning {}", path.display()))?;
             let text = match format {
                 Format::Json => render::json(&report)?,
                 Format::Text => render::scan(&report, top, color(), Some(started.elapsed())),
@@ -144,11 +146,14 @@ fn run(cli: Cli) -> Result<bool> {
                 .map_err(|_| UsageError(format!("{} is not inside {}", file.display(), root.display())))?;
             let rel = rel.to_string_lossy().replace('\\', "/");
             let report = deadhand_core::analyze(&root, &cfg)?;
-            let module = report.module(&rel).ok_or_else(|| UsageError(format!("{rel} is not a scanned JS/TS module")))?;
+            let module =
+                report.module(&rel).ok_or_else(|| UsageError(format!("{rel} is not a scanned JS/TS module")))?;
             let text = match format {
                 Format::Json => {
                     let ev: Vec<_> = report.evidence_for(&rel).collect();
-                    let mut s = serde_json::to_string_pretty(&serde_json::json!({ "schema_version": report.schema_version, "module": module, "evidence": ev }))?;
+                    let mut s = serde_json::to_string_pretty(
+                        &serde_json::json!({ "schema_version": report.schema_version, "module": module, "evidence": ev }),
+                    )?;
                     s.push('\n');
                     s
                 }

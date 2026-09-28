@@ -54,7 +54,7 @@ pub struct ParsedRepo {
 
 /// Discovers and parses every source file under `root` in parallel.
 pub fn parse_repo(root: &Path, cfg: &Config) -> Result<ParsedRepo, Error> {
-    let root = root.canonicalize().map_err(|e| Error::Io(format!("{}: {e}", root.display())))?;
+    let root = discover::canonical(root).map_err(|e| Error::Io(format!("{}: {e}", root.display())))?;
     let files = discover::discover(&root, cfg)?;
     let resolver = ModuleResolver::new(&root, files.iter().map(|f| f.rel.clone()));
 
@@ -107,7 +107,8 @@ pub fn analyze_with(root: &Path, cfg: &Config, git: &dyn GitSource) -> Result<Re
     let coverage = match &cfg.coverage.lcov {
         Some(p) => {
             let path = parsed.root.join(p);
-            let text = std::fs::read_to_string(&path).map_err(|e| Error::Config(format!("coverage.lcov {}: {e}", path.display())))?;
+            let text = std::fs::read_to_string(&path)
+                .map_err(|e| Error::Config(format!("coverage.lcov {}: {e}", path.display())))?;
             Some(coverage::parse_lcov(&text, &parsed.root))
         }
         None => None,
@@ -143,7 +144,9 @@ fn build_report(
     sort_evidence(&mut evidence);
 
     let mut findings: Vec<_> = outputs.iter().flat_map(|o| o.findings.iter().cloned()).collect();
-    findings.sort_by(|a, b| b.severity.cmp(&a.severity).then_with(|| a.metric.cmp(&b.metric)).then_with(|| a.message.cmp(&b.message)));
+    findings.sort_by(|a, b| {
+        b.severity.cmp(&a.severity).then_with(|| a.metric.cmp(&b.metric)).then_with(|| a.message.cmp(&b.message))
+    });
     let parse_errors: Vec<ParseError> = modules
         .iter()
         .flat_map(|m| m.parse_errors.iter().map(|e| ParseError { path: m.path.clone(), message: e.clone() }))
@@ -184,7 +187,11 @@ fn build_report(
             loc: m.loc,
             maintainability: scores.module_maintainability[i],
             scores: scores.metrics.iter().filter(|s| s.available).map(|s| (s.kind, s.modules[i])).collect(),
-            raw: outputs.iter().filter(|o| o.available).map(|o| (o.kind, o.modules[i].values.clone())).collect::<BTreeMap<_, _>>(),
+            raw: outputs
+                .iter()
+                .filter(|o| o.available)
+                .map(|o| (o.kind, o.modules[i].values.clone()))
+                .collect::<BTreeMap<_, _>>(),
             functions: m.functions.clone(),
             imports: m.imports.clone(),
         })

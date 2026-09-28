@@ -5,3 +5,8 @@ members = ["crates/deadhand-core", "crates/deadhand-cli"]
 [profile.release]
 lto = "thin"
 codegen-units = 1
+
+# The profile that 'dist' will build with
+[profile.dist]
+inherits = "release"
+lto = "thin"

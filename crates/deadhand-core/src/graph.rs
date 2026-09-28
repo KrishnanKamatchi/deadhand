@@ -151,7 +151,12 @@ mod tests {
             loc: 10,
             imports: deps
                 .iter()
-                .map(|(d, k)| Import { specifier: d.to_string(), kind: *k, target: ImportTarget::Internal(d.to_string()), line: 1 })
+                .map(|(d, k)| Import {
+                    specifier: d.to_string(),
+                    kind: *k,
+                    target: ImportTarget::Internal(d.to_string()),
+                    line: 1,
+                })
                 .collect(),
             exports: 0,
             top_level_decls: 0,

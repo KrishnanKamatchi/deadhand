@@ -14,7 +14,8 @@ pub fn run(inp: &Inputs<'_>) -> MetricOutput {
     let threshold = t.cognitive_complexity as f64;
     let mut out = MetricOutput::new(kind, inp.modules.len());
 
-    let all: Vec<f64> = inp.population().flat_map(|i| inp.modules[i].functions.iter().map(|f| f.cognitive as f64)).collect();
+    let all: Vec<f64> =
+        inp.population().flat_map(|i| inp.modules[i].functions.iter().map(|f| f.cognitive as f64)).collect();
     let p90 = percentile(&all, 0.9);
     let baseline = if p90 >= threshold / 2.0 { p90.min(threshold) } else { threshold };
 
@@ -70,6 +71,10 @@ pub fn run(inp: &Inputs<'_>) -> MetricOutput {
             ]),
         };
     }
-    out.finding(Severity::Warn, flagged, format!("{flagged} functions exceed the repo cognitive complexity baseline ({})", fmt_num(baseline)));
+    out.finding(
+        Severity::Warn,
+        flagged,
+        format!("{flagged} functions exceed the repo cognitive complexity baseline ({})", fmt_num(baseline)),
+    );
     out
 }
