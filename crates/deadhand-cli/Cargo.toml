@@ -2,7 +2,11 @@
 name = "deadhand"
 version = "0.1.0"
 edition = "2021"
+rust-version = "1.96"
 description = "Measure how hard a JS/TS repository is for a person to maintain"
+readme = "../../README.md"
+keywords = ["typescript", "javascript", "maintainability", "static-analysis", "cli"]
+categories = ["command-line-utilities", "development-tools"]
 repository = "https://github.com/KrishnanKamatchi/deadhand"
 
 [dependencies]

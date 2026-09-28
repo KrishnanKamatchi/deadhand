@@ -1,5 +1,7 @@
 # Deadhand
 
+[![CI](https://github.com/KrishnanKamatchi/deadhand/actions/workflows/ci.yml/badge.svg)](https://github.com/KrishnanKamatchi/deadhand/actions/workflows/ci.yml)
+
 > Your AI wrote it. Deadhand checks if you can still own it.
 
 Deadhand statically analyzes a JavaScript/TypeScript repository and measures how hard it would be
@@ -11,8 +13,28 @@ It is not an AI-authorship detector and not a linter.
 
 ## Install
 
+No Rust toolchain needed. Prebuilt binaries are published for Linux (x86_64, arm64, static musl),
+macOS (Intel, Apple Silicon) and Windows (x86_64).
+
 ```sh
-cargo install --path crates/deadhand-cli
+# npm (any platform)
+npx deadhand scan
+npm install -g deadhand
+
+# macOS / Linux
+curl --proto '=https' --tlsv1.2 -LsSf https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-installer.sh | sh
+
+# Windows (PowerShell)
+powershell -ExecutionPolicy Bypass -c "irm https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-installer.ps1 | iex"
+```
+
+Archives for every platform are also attached to each
+[GitHub release](https://github.com/KrishnanKamatchi/deadhand/releases).
+
+From source (Rust 1.96+):
+
+```sh
+cargo install --git https://github.com/KrishnanKamatchi/deadhand deadhand
 ```
 
 ## Usage
@@ -113,3 +135,16 @@ cargo test --workspace
 cargo clippy --workspace --all-targets -- -D warnings
 INSTA_UPDATE=always cargo test --workspace   # accept intended snapshot changes
 ```
+
+## Releasing
+
+Releases are built by [dist](https://github.com/axodotdev/cargo-dist) in
+`.github/workflows/release.yml`. Bump `version` in `crates/deadhand-cli/Cargo.toml`, then:
+
+```sh
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+The workflow builds every target, creates the GitHub release with installers, and publishes the
+npm package. It needs an `NPM_TOKEN` repository secret (an npm automation token).
