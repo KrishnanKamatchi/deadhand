@@ -1,0 +1,1669 @@
+---
+source: crates/deadhand-core/tests/fixtures.rs
+expression: "serde_json::to_value(scan(name)).unwrap()"
+---
+{
+  "schema_version": 1,
+  "tool_version": "0.1.0",
+  "root_name": "drift",
+  "summary": {
+    "files": 8,
+    "test_files": 0,
+    "loc": 177,
+    "functions": 22,
+    "generated_skipped": 0,
+    "git_available": false
+  },
+  "maintainability": 65.16545292352608,
+  "metrics": [
+    {
+      "kind": "readability",
+      "label": "Readability",
+      "available": true,
+      "score": 25.98870056497175,
+      "weight": 0.15789473684210525,
+      "notes": []
+    },
+    {
+      "kind": "cognitive_load",
+      "label": "Cognitive Load",
+      "available": true,
+      "score": 25.98870056497175,
+      "weight": 0.21052631578947367,
+      "notes": []
+    },
+    {
+      "kind": "entanglement",
+      "label": "Entanglement",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.21052631578947367,
+      "notes": []
+    },
+    {
+      "kind": "context_depth",
+      "label": "Context Depth",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.15789473684210525,
+      "notes": []
+    },
+    {
+      "kind": "blast_radius",
+      "label": "Blast Radius",
+      "available": true,
+      "score": 99.04673857216231,
+      "weight": 0.15789473684210525,
+      "notes": [
+        "churn unknown (no git history); churn factor fixed at 1",
+        "coverage unknown; coverage factor fixed at 1"
+      ]
+    },
+    {
+      "kind": "pattern_drift",
+      "label": "Pattern Drift",
+      "available": true,
+      "score": 29.541242937853113,
+      "weight": 0.10526315789473684,
+      "notes": []
+    },
+    {
+      "kind": "orphaned_code",
+      "label": "Orphaned Code",
+      "available": false,
+      "score": null,
+      "weight": 0.0,
+      "notes": [
+        "no git history; Orphaned Code skipped"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "metric": "cognitive_load",
+      "severity": "warn",
+      "count": 8,
+      "message": "8 functions exceed the repo cognitive complexity baseline (15)"
+    },
+    {
+      "metric": "readability",
+      "severity": "warn",
+      "count": 8,
+      "message": "8 functions nest 4+ levels deep"
+    },
+    {
+      "metric": "pattern_drift",
+      "severity": "info",
+      "count": 1,
+      "message": "1 modules deviate from their peer group"
+    }
+  ],
+  "notes": [
+    "Orphaned Code unavailable; its weight was redistributed across the other metrics"
+  ],
+  "cycles": [],
+  "parse_errors": [],
+  "modules": [
+    {
+      "path": "src/repositories/repo.ts",
+      "layer": "data",
+      "is_test": false,
+      "loc": 4,
+      "maintainability": 93.33971291866028,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 57.81818181818181,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 4.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 7.0,
+          "fan_out": 0.0,
+          "fan_out_weighted": 0.0,
+          "instability": 0.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 0.0,
+          "closure_weighted": -0.0,
+          "layers_in_closure": 0.0,
+          "max_depth": 0.0,
+          "top_dirs_in_closure": 0.0
+        },
+        "blast_radius": {
+          "blast": 7.0,
+          "churn_factor": 1.0,
+          "dependents": 7.0,
+          "direct_dependents": 7.0,
+          "layers_affected": 1.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 0.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 4.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 8.0
+        }
+      },
+      "functions": [
+        {
+          "name": "find",
+          "span": {
+            "start_line": 2,
+            "start_col": 9,
+            "end_line": 2,
+            "end_col": 55
+          },
+          "loc": 1,
+          "params": 2,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        },
+        {
+          "name": "all",
+          "span": {
+            "start_line": 3,
+            "start_col": 8,
+            "end_line": 3,
+            "end_col": 34
+          },
+          "loc": 1,
+          "params": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": []
+    },
+    {
+      "path": "src/services/carts.ts",
+      "layer": "service",
+      "is_test": false,
+      "loc": 7,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 7.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 1.0,
+          "closure_weighted": 1.0,
+          "layers_in_closure": 1.0,
+          "max_depth": 1.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 1.0,
+          "churn_factor": 1.0,
+          "dependents": 1.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 1.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 2.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 1.0,
+          "loc": 7.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 3.0,
+          "peer_group_size": 7.0
+        }
+      },
+      "functions": [
+        {
+          "name": "getCarts",
+          "span": {
+            "start_line": 3,
+            "start_col": 8,
+            "end_line": 5,
+            "end_col": 2
+          },
+          "loc": 3,
+          "params": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": [
+            "id"
+          ]
+        },
+        {
+          "name": "listCarts",
+          "span": {
+            "start_line": 7,
+            "start_col": 8,
+            "end_line": 9,
+            "end_col": 2
+          },
+          "loc": 3,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "../repositories/repo",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/repositories/repo.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/services/invoices.ts",
+      "layer": "service",
+      "is_test": false,
+      "loc": 7,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 7.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 1.0,
+          "closure_weighted": 1.0,
+          "layers_in_closure": 1.0,
+          "max_depth": 1.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 1.0,
+          "churn_factor": 1.0,
+          "dependents": 1.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 1.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 2.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 1.0,
+          "loc": 7.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 3.0,
+          "peer_group_size": 7.0
+        }
+      },
+      "functions": [
+        {
+          "name": "getInvoices",
+          "span": {
+            "start_line": 3,
+            "start_col": 8,
+            "end_line": 5,
+            "end_col": 2
+          },
+          "loc": 3,
+          "params": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": [
+            "id"
+          ]
+        },
+        {
+          "name": "listInvoices",
+          "span": {
+            "start_line": 7,
+            "start_col": 8,
+            "end_line": 9,
+            "end_col": 2
+          },
+          "loc": 3,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "../repositories/repo",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/repositories/repo.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/services/legacyReport.ts",
+      "layer": "service",
+      "is_test": false,
+      "loc": 131,
+      "maintainability": 53.136842105263156,
+      "scores": {
+        "cognitive_load": 0.0,
+        "readability": 0.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 4.800000000000004
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 97.70992366412213,
+          "cognitive_total": 128.0,
+          "functions_over_baseline": 8.0,
+          "max_function_cognitive": 16.0
+        },
+        "readability": {
+          "deeply_nested_functions": 8.0,
+          "loc": 131.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 8.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 0.0,
+          "fan_out": 5.0,
+          "fan_out_weighted": 5.0,
+          "instability": 1.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 5.0,
+          "closure_weighted": 5.0,
+          "layers_in_closure": 2.0,
+          "max_depth": 1.0,
+          "top_dirs_in_closure": 2.0
+        },
+        "blast_radius": {
+          "blast": 0.0,
+          "churn_factor": 1.0,
+          "dependents": 0.0,
+          "direct_dependents": 0.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 2.8,
+          "exports": 9.0,
+          "external_packages": 5.0,
+          "fan_out": 5.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 1.0,
+          "loc": 131.0,
+          "max_nesting": 5.0,
+          "median_function_loc": 15.0,
+          "peer_group_size": 7.0
+        }
+      },
+      "functions": [
+        {
+          "name": "build_section_0",
+          "span": {
+            "start_line": 14,
+            "start_col": 8,
+            "end_line": 28,
+            "end_col": 2
+          },
+          "loc": 15,
+          "params": 2,
+          "cyclomatic": 7,
+          "cognitive": 16,
+          "max_nesting": 5,
+          "identifiers": [
+            "input_rows",
+            "report_opts",
+            "out_rows"
+          ]
+        },
+        {
+          "name": "build_section_1",
+          "span": {
+            "start_line": 30,
+            "start_col": 8,
+            "end_line": 44,
+            "end_col": 2
+          },
+          "loc": 15,
+          "params": 2,
+          "cyclomatic": 7,
+          "cognitive": 16,
+          "max_nesting": 5,
+          "identifiers": [
+            "input_rows",
+            "report_opts",
+            "out_rows"
+          ]
+        },
+        {
+          "name": "build_section_2",
+          "span": {
+            "start_line": 46,
+            "start_col": 8,
+            "end_line": 60,
+            "end_col": 2
+          },
+          "loc": 15,
+          "params": 2,
+          "cyclomatic": 7,
+          "cognitive": 16,
+          "max_nesting": 5,
+          "identifiers": [
+            "input_rows",
+            "report_opts",
+            "out_rows"
+          ]
+        },
+        {
+          "name": "build_section_3",
+          "span": {
+            "start_line": 62,
+            "start_col": 8,
+            "end_line": 76,
+            "end_col": 2
+          },
+          "loc": 15,
+          "params": 2,
+          "cyclomatic": 7,
+          "cognitive": 16,
+          "max_nesting": 5,
+          "identifiers": [
+            "input_rows",
+            "report_opts",
+            "out_rows"
+          ]
+        },
+        {
+          "name": "build_section_4",
+          "span": {
+            "start_line": 78,
+            "start_col": 8,
+            "end_line": 92,
+            "end_col": 2
+          },
+          "loc": 15,
+          "params": 2,
+          "cyclomatic": 7,
+          "cognitive": 16,
+          "max_nesting": 5,
+          "identifiers": [
+            "input_rows",
+            "report_opts",
+            "out_rows"
+          ]
+        },
+        {
+          "name": "build_section_5",
+          "span": {
+            "start_line": 94,
+            "start_col": 8,
+            "end_line": 108,
+            "end_col": 2
+          },
+          "loc": 15,
+          "params": 2,
+          "cyclomatic": 7,
+          "cognitive": 16,
+          "max_nesting": 5,
+          "identifiers": [
+            "input_rows",
+            "report_opts",
+            "out_rows"
+          ]
+        },
+        {
+          "name": "build_section_6",
+          "span": {
+            "start_line": 110,
+            "start_col": 8,
+            "end_line": 124,
+            "end_col": 2
+          },
+          "loc": 15,
+          "params": 2,
+          "cyclomatic": 7,
+          "cognitive": 16,
+          "max_nesting": 5,
+          "identifiers": [
+            "input_rows",
+            "report_opts",
+            "out_rows"
+          ]
+        },
+        {
+          "name": "build_section_7",
+          "span": {
+            "start_line": 126,
+            "start_col": 8,
+            "end_line": 140,
+            "end_col": 2
+          },
+          "loc": 15,
+          "params": 2,
+          "cyclomatic": 7,
+          "cognitive": 16,
+          "max_nesting": 5,
+          "identifiers": [
+            "input_rows",
+            "report_opts",
+            "out_rows"
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "moment",
+          "kind": "static",
+          "target": {
+            "kind": "external",
+            "target": "moment"
+          },
+          "line": 1
+        },
+        {
+          "specifier": "lodash",
+          "kind": "static",
+          "target": {
+            "kind": "external",
+            "target": "lodash"
+          },
+          "line": 2
+        },
+        {
+          "specifier": "axios",
+          "kind": "static",
+          "target": {
+            "kind": "external",
+            "target": "axios"
+          },
+          "line": 3
+        },
+        {
+          "specifier": "node:fs",
+          "kind": "static",
+          "target": {
+            "kind": "external",
+            "target": "node:fs"
+          },
+          "line": 4
+        },
+        {
+          "specifier": "chalk",
+          "kind": "static",
+          "target": {
+            "kind": "external",
+            "target": "chalk"
+          },
+          "line": 5
+        },
+        {
+          "specifier": "../repositories/repo",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/repositories/repo.ts"
+          },
+          "line": 6
+        },
+        {
+          "specifier": "./users",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/services/users.ts"
+          },
+          "line": 7
+        },
+        {
+          "specifier": "./orders",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/services/orders.ts"
+          },
+          "line": 8
+        },
+        {
+          "specifier": "./carts",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/services/carts.ts"
+          },
+          "line": 9
+        },
+        {
+          "specifier": "./invoices",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/services/invoices.ts"
+          },
+          "line": 10
+        }
+      ]
+    },
+    {
+      "path": "src/services/orders.ts",
+      "layer": "service",
+      "is_test": false,
+      "loc": 7,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 7.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 1.0,
+          "closure_weighted": 1.0,
+          "layers_in_closure": 1.0,
+          "max_depth": 1.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 1.0,
+          "churn_factor": 1.0,
+          "dependents": 1.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 1.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 2.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 1.0,
+          "loc": 7.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 3.0,
+          "peer_group_size": 7.0
+        }
+      },
+      "functions": [
+        {
+          "name": "getOrders",
+          "span": {
+            "start_line": 3,
+            "start_col": 8,
+            "end_line": 5,
+            "end_col": 2
+          },
+          "loc": 3,
+          "params": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": [
+            "id"
+          ]
+        },
+        {
+          "name": "listOrders",
+          "span": {
+            "start_line": 7,
+            "start_col": 8,
+            "end_line": 9,
+            "end_col": 2
+          },
+          "loc": 3,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "../repositories/repo",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/repositories/repo.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/services/payments.ts",
+      "layer": "service",
+      "is_test": false,
+      "loc": 7,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 7.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 0.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 1.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 1.0,
+          "closure_weighted": 1.0,
+          "layers_in_closure": 1.0,
+          "max_depth": 1.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 0.0,
+          "churn_factor": 1.0,
+          "dependents": 0.0,
+          "direct_dependents": 0.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 2.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 1.0,
+          "loc": 7.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 3.0,
+          "peer_group_size": 7.0
+        }
+      },
+      "functions": [
+        {
+          "name": "getPayments",
+          "span": {
+            "start_line": 3,
+            "start_col": 8,
+            "end_line": 5,
+            "end_col": 2
+          },
+          "loc": 3,
+          "params": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": [
+            "id"
+          ]
+        },
+        {
+          "name": "listPayments",
+          "span": {
+            "start_line": 7,
+            "start_col": 8,
+            "end_line": 9,
+            "end_col": 2
+          },
+          "loc": 3,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "../repositories/repo",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/repositories/repo.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/services/products.ts",
+      "layer": "service",
+      "is_test": false,
+      "loc": 7,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 7.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 0.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 1.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 1.0,
+          "closure_weighted": 1.0,
+          "layers_in_closure": 1.0,
+          "max_depth": 1.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 0.0,
+          "churn_factor": 1.0,
+          "dependents": 0.0,
+          "direct_dependents": 0.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 2.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 1.0,
+          "loc": 7.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 3.0,
+          "peer_group_size": 7.0
+        }
+      },
+      "functions": [
+        {
+          "name": "getProducts",
+          "span": {
+            "start_line": 3,
+            "start_col": 8,
+            "end_line": 5,
+            "end_col": 2
+          },
+          "loc": 3,
+          "params": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": [
+            "id"
+          ]
+        },
+        {
+          "name": "listProducts",
+          "span": {
+            "start_line": 7,
+            "start_col": 8,
+            "end_line": 9,
+            "end_col": 2
+          },
+          "loc": 3,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "../repositories/repo",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/repositories/repo.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/services/users.ts",
+      "layer": "service",
+      "is_test": false,
+      "loc": 7,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 7.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 1.0,
+          "closure_weighted": 1.0,
+          "layers_in_closure": 1.0,
+          "max_depth": 1.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 1.0,
+          "churn_factor": 1.0,
+          "dependents": 1.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 1.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 2.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 1.0,
+          "loc": 7.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 3.0,
+          "peer_group_size": 7.0
+        }
+      },
+      "functions": [
+        {
+          "name": "getUsers",
+          "span": {
+            "start_line": 3,
+            "start_col": 8,
+            "end_line": 5,
+            "end_col": 2
+          },
+          "loc": 3,
+          "params": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": [
+            "id"
+          ]
+        },
+        {
+          "name": "listUsers",
+          "span": {
+            "start_line": 7,
+            "start_col": 8,
+            "end_line": 9,
+            "end_col": 2
+          },
+          "loc": 3,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "../repositories/repo",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/repositories/repo.ts"
+          },
+          "line": 1
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "metric": "blast_radius",
+      "severity": "warn",
+      "path": "src/repositories/repo.ts",
+      "key": "dependents",
+      "message": "7 dependents (7 direct) across 1 layers; churn unknown; coverage unknown",
+      "values": [
+        [
+          "dependents",
+          7.0
+        ],
+        [
+          "direct",
+          7.0
+        ],
+        [
+          "churn",
+          -1.0
+        ],
+        [
+          "blast",
+          7.0
+        ]
+      ]
+    },
+    {
+      "metric": "pattern_drift",
+      "severity": "warn",
+      "path": "src/services/legacyReport.ts",
+      "key": "peer-deviation",
+      "message": "Unlike its peers (layer service, 7 modules): exports 9 (peer median 2); loc 131 (peer median 7); median function loc 15 (peer median 3); max nesting 5 (peer median 0); external packages 5 (peer median 0); naming snake_case (peers use camelCase)",
+      "values": [
+        [
+          "exports",
+          9.0
+        ],
+        [
+          "exports_peer_median",
+          2.0
+        ],
+        [
+          "loc",
+          131.0
+        ],
+        [
+          "loc_peer_median",
+          7.0
+        ],
+        [
+          "median_function_loc",
+          15.0
+        ],
+        [
+          "median_function_loc_peer_median",
+          3.0
+        ],
+        [
+          "max_nesting",
+          5.0
+        ],
+        [
+          "max_nesting_peer_median",
+          0.0
+        ],
+        [
+          "external_packages",
+          5.0
+        ],
+        [
+          "external_packages_peer_median",
+          0.0
+        ]
+      ]
+    },
+    {
+      "metric": "cognitive_load",
+      "severity": "warn",
+      "path": "src/services/legacyReport.ts",
+      "span": {
+        "start_line": 14,
+        "start_col": 8,
+        "end_line": 28,
+        "end_col": 2
+      },
+      "key": "function:build_section_0",
+      "message": "`build_section_0` has cognitive complexity 16 (threshold 15, repo p90 16)",
+      "values": [
+        [
+          "cognitive",
+          16.0
+        ],
+        [
+          "threshold",
+          15.0
+        ],
+        [
+          "repo_p90",
+          16.0
+        ]
+      ]
+    },
+    {
+      "metric": "readability",
+      "severity": "warn",
+      "path": "src/services/legacyReport.ts",
+      "span": {
+        "start_line": 14,
+        "start_col": 8,
+        "end_line": 28,
+        "end_col": 2
+      },
+      "key": "deep-nesting:build_section_0",
+      "message": "`build_section_0` nests 5 levels deep (threshold 4)",
+      "values": [
+        [
+          "max_nesting",
+          5.0
+        ],
+        [
+          "threshold",
+          4.0
+        ]
+      ]
+    },
+    {
+      "metric": "cognitive_load",
+      "severity": "warn",
+      "path": "src/services/legacyReport.ts",
+      "span": {
+        "start_line": 30,
+        "start_col": 8,
+        "end_line": 44,
+        "end_col": 2
+      },
+      "key": "function:build_section_1",
+      "message": "`build_section_1` has cognitive complexity 16 (threshold 15, repo p90 16)",
+      "values": [
+        [
+          "cognitive",
+          16.0
+        ],
+        [
+          "threshold",
+          15.0
+        ],
+        [
+          "repo_p90",
+          16.0
+        ]
+      ]
+    },
+    {
+      "metric": "readability",
+      "severity": "warn",
+      "path": "src/services/legacyReport.ts",
+      "span": {
+        "start_line": 30,
+        "start_col": 8,
+        "end_line": 44,
+        "end_col": 2
+      },
+      "key": "deep-nesting:build_section_1",
+      "message": "`build_section_1` nests 5 levels deep (threshold 4)",
+      "values": [
+        [
+          "max_nesting",
+          5.0
+        ],
+        [
+          "threshold",
+          4.0
+        ]
+      ]
+    },
+    {
+      "metric": "cognitive_load",
+      "severity": "warn",
+      "path": "src/services/legacyReport.ts",
+      "span": {
+        "start_line": 46,
+        "start_col": 8,
+        "end_line": 60,
+        "end_col": 2
+      },
+      "key": "function:build_section_2",
+      "message": "`build_section_2` has cognitive complexity 16 (threshold 15, repo p90 16)",
+      "values": [
+        [
+          "cognitive",
+          16.0
+        ],
+        [
+          "threshold",
+          15.0
+        ],
+        [
+          "repo_p90",
+          16.0
+        ]
+      ]
+    },
+    {
+      "metric": "readability",
+      "severity": "warn",
+      "path": "src/services/legacyReport.ts",
+      "span": {
+        "start_line": 46,
+        "start_col": 8,
+        "end_line": 60,
+        "end_col": 2
+      },
+      "key": "deep-nesting:build_section_2",
+      "message": "`build_section_2` nests 5 levels deep (threshold 4)",
+      "values": [
+        [
+          "max_nesting",
+          5.0
+        ],
+        [
+          "threshold",
+          4.0
+        ]
+      ]
+    },
+    {
+      "metric": "cognitive_load",
+      "severity": "warn",
+      "path": "src/services/legacyReport.ts",
+      "span": {
+        "start_line": 62,
+        "start_col": 8,
+        "end_line": 76,
+        "end_col": 2
+      },
+      "key": "function:build_section_3",
+      "message": "`build_section_3` has cognitive complexity 16 (threshold 15, repo p90 16)",
+      "values": [
+        [
+          "cognitive",
+          16.0
+        ],
+        [
+          "threshold",
+          15.0
+        ],
+        [
+          "repo_p90",
+          16.0
+        ]
+      ]
+    },
+    {
+      "metric": "readability",
+      "severity": "warn",
+      "path": "src/services/legacyReport.ts",
+      "span": {
+        "start_line": 62,
+        "start_col": 8,
+        "end_line": 76,
+        "end_col": 2
+      },
+      "key": "deep-nesting:build_section_3",
+      "message": "`build_section_3` nests 5 levels deep (threshold 4)",
+      "values": [
+        [
+          "max_nesting",
+          5.0
+        ],
+        [
+          "threshold",
+          4.0
+        ]
+      ]
+    },
+    {
+      "metric": "cognitive_load",
+      "severity": "warn",
+      "path": "src/services/legacyReport.ts",
+      "span": {
+        "start_line": 78,
+        "start_col": 8,
+        "end_line": 92,
+        "end_col": 2
+      },
+      "key": "function:build_section_4",
+      "message": "`build_section_4` has cognitive complexity 16 (threshold 15, repo p90 16)",
+      "values": [
+        [
+          "cognitive",
+          16.0
+        ],
+        [
+          "threshold",
+          15.0
+        ],
+        [
+          "repo_p90",
+          16.0
+        ]
+      ]
+    },
+    {
+      "metric": "readability",
+      "severity": "warn",
+      "path": "src/services/legacyReport.ts",
+      "span": {
+        "start_line": 78,
+        "start_col": 8,
+        "end_line": 92,
+        "end_col": 2
+      },
+      "key": "deep-nesting:build_section_4",
+      "message": "`build_section_4` nests 5 levels deep (threshold 4)",
+      "values": [
+        [
+          "max_nesting",
+          5.0
+        ],
+        [
+          "threshold",
+          4.0
+        ]
+      ]
+    },
+    {
+      "metric": "cognitive_load",
+      "severity": "warn",
+      "path": "src/services/legacyReport.ts",
+      "span": {
+        "start_line": 94,
+        "start_col": 8,
+        "end_line": 108,
+        "end_col": 2
+      },
+      "key": "function:build_section_5",
+      "message": "`build_section_5` has cognitive complexity 16 (threshold 15, repo p90 16)",
+      "values": [
+        [
+          "cognitive",
+          16.0
+        ],
+        [
+          "threshold",
+          15.0
+        ],
+        [
+          "repo_p90",
+          16.0
+        ]
+      ]
+    },
+    {
+      "metric": "readability",
+      "severity": "warn",
+      "path": "src/services/legacyReport.ts",
+      "span": {
+        "start_line": 94,
+        "start_col": 8,
+        "end_line": 108,
+        "end_col": 2
+      },
+      "key": "deep-nesting:build_section_5",
+      "message": "`build_section_5` nests 5 levels deep (threshold 4)",
+      "values": [
+        [
+          "max_nesting",
+          5.0
+        ],
+        [
+          "threshold",
+          4.0
+        ]
+      ]
+    },
+    {
+      "metric": "cognitive_load",
+      "severity": "warn",
+      "path": "src/services/legacyReport.ts",
+      "span": {
+        "start_line": 110,
+        "start_col": 8,
+        "end_line": 124,
+        "end_col": 2
+      },
+      "key": "function:build_section_6",
+      "message": "`build_section_6` has cognitive complexity 16 (threshold 15, repo p90 16)",
+      "values": [
+        [
+          "cognitive",
+          16.0
+        ],
+        [
+          "threshold",
+          15.0
+        ],
+        [
+          "repo_p90",
+          16.0
+        ]
+      ]
+    },
+    {
+      "metric": "readability",
+      "severity": "warn",
+      "path": "src/services/legacyReport.ts",
+      "span": {
+        "start_line": 110,
+        "start_col": 8,
+        "end_line": 124,
+        "end_col": 2
+      },
+      "key": "deep-nesting:build_section_6",
+      "message": "`build_section_6` nests 5 levels deep (threshold 4)",
+      "values": [
+        [
+          "max_nesting",
+          5.0
+        ],
+        [
+          "threshold",
+          4.0
+        ]
+      ]
+    },
+    {
+      "metric": "cognitive_load",
+      "severity": "warn",
+      "path": "src/services/legacyReport.ts",
+      "span": {
+        "start_line": 126,
+        "start_col": 8,
+        "end_line": 140,
+        "end_col": 2
+      },
+      "key": "function:build_section_7",
+      "message": "`build_section_7` has cognitive complexity 16 (threshold 15, repo p90 16)",
+      "values": [
+        [
+          "cognitive",
+          16.0
+        ],
+        [
+          "threshold",
+          15.0
+        ],
+        [
+          "repo_p90",
+          16.0
+        ]
+      ]
+    },
+    {
+      "metric": "readability",
+      "severity": "warn",
+      "path": "src/services/legacyReport.ts",
+      "span": {
+        "start_line": 126,
+        "start_col": 8,
+        "end_line": 140,
+        "end_col": 2
+      },
+      "key": "deep-nesting:build_section_7",
+      "message": "`build_section_7` nests 5 levels deep (threshold 4)",
+      "values": [
+        [
+          "max_nesting",
+          5.0
+        ],
+        [
+          "threshold",
+          4.0
+        ]
+      ]
+    }
+  ]
+}

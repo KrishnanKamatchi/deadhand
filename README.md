@@ -1,0 +1,115 @@
+# Deadhand
+
+> Your AI wrote it. Deadhand checks if you can still own it.
+
+Deadhand statically analyzes a JavaScript/TypeScript repository and measures how hard it would be
+for a person to understand and safely change it, without AI assistance. It is deterministic,
+offline, and makes no LLM calls. Every score traces back to concrete evidence: counts, paths and
+line numbers.
+
+It is not an AI-authorship detector and not a linter.
+
+## Install
+
+```sh
+cargo install --path crates/deadhand-cli
+```
+
+## Usage
+
+```sh
+deadhand scan [PATH]              # default PATH = .
+    --format text|json            # default text
+    --top N                       # worst modules to list (default 10)
+    --fail-under N                # exit 1 if Maintainability < N
+    --config PATH                 # default: PATH/deadhand.toml if present
+    --no-git                      # skip git history
+
+deadhand explain <FILE> [--root PATH]    # every metric and piece of evidence for one module
+deadhand diff <GIT_REV> [--root PATH]    # working tree vs a revision (temporary git worktree)
+    --fail-on-drop N              # exit 1 if Maintainability drops by more than N
+```
+
+Exit codes: `0` ok, `1` threshold failed, `2` usage/config error, `3` analysis error.
+
+## What it measures
+
+| Metric | Question | Built from |
+|---|---|---|
+| Cognitive Load | Can I follow the logic? | SonarSource cognitive complexity and cyclomatic complexity per function |
+| Readability | Can I scan it? | function/file length vs repo median, nesting, parameter count, vague names, mixed naming |
+| Entanglement | What is it tied to? | fan-in/out, instability, import cycles (Tarjan SCC), shared modules importing upper layers |
+| Context Depth | How much must I read first? | transitive value-import closure, weighted by 1/distance, and max chain depth |
+| Blast Radius | What breaks if I change it? | transitive dependents × churn × (1 − coverage) |
+| Pattern Drift | Does it look like its peers? | robust z-scores against same-layer peers, layer-order violations |
+| Orphaned Code | Has anyone come back to it? | single-commit files, bulk commits never edited, critical files untouched for 180 days |
+
+Each metric scores 0–100 per module (100 = easy for a person). The score blends 60% absolute
+thresholds with 40% repo-relative rank, so a repo that is bad everywhere cannot look fine. Repo
+scores are LOC-weighted means of non-test modules. **Maintainability** is the weighted mean of the
+seven. When a metric is unavailable (for example, no git history), its weight is redistributed and
+the report says so.
+
+## How it reads a repo
+
+- Files: `.ts .tsx .js .jsx .mjs .cjs .mts .cts`. Respects `.gitignore`. Skips `node_modules`,
+  `dist`, `build`, `.next`, `coverage`, `*.d.ts`, `*.min.js` and files with an `@generated` header.
+- Tests (`*.test.*`, `*.spec.*`, and `__tests__/`, `__mocks__/`, `fixtures/`, `test/`, `tests/`,
+  `e2e/` directories) are parsed and reported, but are left out of repo scores and of the import
+  graph's edges.
+- Imports: ESM, `export … from`, `import type`, `import()` and `require()` with string literals,
+  and `import x = require()`. Resolution uses `oxc_resolver` with your `tsconfig.json` paths,
+  index files and TS-style `.js` → `.ts` specifiers.
+- Named functions get their own scores: declarations, methods, arrows assigned to a name, and
+  components wrapped in `forwardRef`/`memo`. Anonymous callbacks count toward the enclosing
+  function, one nesting level deeper, as in the SonarSource spec.
+- Git: a single `git log --numstat` call. The 180-day churn window ends at the newest commit, not
+  at the current time, so results stay stable. Shallow clones are treated as having no history.
+- Not supported yet: `.vue`, `.svelte` and `.astro` files. Workspace packages imported by package
+  name count as external.
+
+## Configuration (`deadhand.toml`)
+
+Every key is optional. See [`crates/deadhand-core/src/config.rs`](crates/deadhand-core/src/config.rs)
+for all defaults and [`docs/calibration.md`](docs/calibration.md) for the reasoning behind them.
+
+```toml
+include = ["src/**"]
+exclude = ["src/generated/**"]
+
+[layers]
+order = ["ui", "route", "service", "data", "infra"]   # allowed direction: left → right
+[layers.paths]
+service = ["services", "usecases", "domain"]
+
+[weights]
+cognitive_load = 0.20
+entanglement = 0.20
+
+[thresholds]
+cognitive_complexity = 15
+max_nesting = 4
+bulk_commit_lines = 800
+
+[scoring]
+absolute_share = 0.6
+
+[coverage]
+lcov = "coverage/lcov.info"
+```
+
+## Layout
+
+```
+crates/deadhand-core   analysis library (discover, parse, graph, git, layers, metrics, scoring, diff)
+crates/deadhand-cli    thin binary: arguments and rendering only
+fixtures/              small repos that trigger specific findings (used by tests)
+```
+
+## Development
+
+```sh
+cargo test --workspace
+cargo clippy --workspace --all-targets -- -D warnings
+INSTA_UPDATE=always cargo test --workspace   # accept intended snapshot changes
+```

@@ -1,0 +1,543 @@
+---
+source: crates/deadhand-core/tests/fixtures.rs
+expression: "serde_json::to_value(scan(name)).unwrap()"
+---
+{
+  "schema_version": 1,
+  "tool_version": "0.1.0",
+  "root_name": "aliases",
+  "summary": {
+    "files": 5,
+    "test_files": 0,
+    "loc": 10,
+    "functions": 4,
+    "generated_skipped": 0,
+    "git_available": false
+  },
+  "maintainability": 99.99999999999999,
+  "metrics": [
+    {
+      "kind": "readability",
+      "label": "Readability",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.15789473684210525,
+      "notes": []
+    },
+    {
+      "kind": "cognitive_load",
+      "label": "Cognitive Load",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.21052631578947367,
+      "notes": []
+    },
+    {
+      "kind": "entanglement",
+      "label": "Entanglement",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.21052631578947367,
+      "notes": []
+    },
+    {
+      "kind": "context_depth",
+      "label": "Context Depth",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.15789473684210525,
+      "notes": []
+    },
+    {
+      "kind": "blast_radius",
+      "label": "Blast Radius",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.15789473684210525,
+      "notes": [
+        "churn unknown (no git history); churn factor fixed at 1",
+        "coverage unknown; coverage factor fixed at 1"
+      ]
+    },
+    {
+      "kind": "pattern_drift",
+      "label": "Pattern Drift",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.10526315789473684,
+      "notes": []
+    },
+    {
+      "kind": "orphaned_code",
+      "label": "Orphaned Code",
+      "available": false,
+      "score": null,
+      "weight": 0.0,
+      "notes": [
+        "no git history; Orphaned Code skipped"
+      ]
+    }
+  ],
+  "findings": [],
+  "notes": [
+    "Orphaned Code unavailable; its weight was redistributed across the other metrics"
+  ],
+  "cycles": [],
+  "parse_errors": [],
+  "modules": [
+    {
+      "path": "src/helpers/index.ts",
+      "layer": "shared",
+      "is_test": false,
+      "loc": 1,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 1.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 0.0,
+          "fan_out_weighted": 0.0,
+          "instability": 0.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 0.0,
+          "closure_weighted": -0.0,
+          "layers_in_closure": 0.0,
+          "max_depth": 0.0,
+          "top_dirs_in_closure": 0.0
+        },
+        "blast_radius": {
+          "blast": 1.0,
+          "churn_factor": 1.0,
+          "dependents": 1.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 0.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 1.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 5.0
+        }
+      },
+      "functions": [
+        {
+          "name": "helper",
+          "span": {
+            "start_line": 1,
+            "start_col": 23,
+            "end_line": 1,
+            "end_col": 30
+          },
+          "loc": 1,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": []
+    },
+    {
+      "path": "src/index.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 6,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 6.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 0.0,
+          "fan_out": 4.0,
+          "fan_out_weighted": 4.0,
+          "instability": 1.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 4.0,
+          "closure_weighted": 4.0,
+          "layers_in_closure": 2.0,
+          "max_depth": 1.0,
+          "top_dirs_in_closure": 4.0
+        },
+        "blast_radius": {
+          "blast": 0.0,
+          "churn_factor": 1.0,
+          "dependents": 0.0,
+          "direct_dependents": 0.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 1.0,
+          "fan_out": 4.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 2.0,
+          "loc": 6.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 5.0
+        }
+      },
+      "functions": [
+        {
+          "name": "main",
+          "span": {
+            "start_line": 7,
+            "start_col": 21,
+            "end_line": 7,
+            "end_col": 76
+          },
+          "loc": 1,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "@app/math/add",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/math/add.ts"
+          },
+          "line": 1
+        },
+        {
+          "specifier": "~lib/clamp",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/lib/clamp.ts"
+          },
+          "line": 2
+        },
+        {
+          "specifier": "./meta.js",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/meta.ts"
+          },
+          "line": 3
+        },
+        {
+          "specifier": "./helpers",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/helpers/index.ts"
+          },
+          "line": 4
+        },
+        {
+          "specifier": "react",
+          "kind": "static",
+          "target": {
+            "kind": "external",
+            "target": "react"
+          },
+          "line": 5
+        }
+      ]
+    },
+    {
+      "path": "src/lib/clamp.ts",
+      "layer": "infra",
+      "is_test": false,
+      "loc": 1,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 1.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 0.0,
+          "fan_out_weighted": 0.0,
+          "instability": 0.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 0.0,
+          "closure_weighted": -0.0,
+          "layers_in_closure": 0.0,
+          "max_depth": 0.0,
+          "top_dirs_in_closure": 0.0
+        },
+        "blast_radius": {
+          "blast": 1.0,
+          "churn_factor": 1.0,
+          "dependents": 1.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 0.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 1.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 5.0
+        }
+      },
+      "functions": [
+        {
+          "name": "clamp",
+          "span": {
+            "start_line": 1,
+            "start_col": 22,
+            "end_line": 1,
+            "end_col": 51
+          },
+          "loc": 1,
+          "params": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": []
+    },
+    {
+      "path": "src/math/add.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 1,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 1.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 0.0,
+          "fan_out_weighted": 0.0,
+          "instability": 0.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 0.0,
+          "closure_weighted": -0.0,
+          "layers_in_closure": 0.0,
+          "max_depth": 0.0,
+          "top_dirs_in_closure": 0.0
+        },
+        "blast_radius": {
+          "blast": 1.0,
+          "churn_factor": 1.0,
+          "dependents": 1.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 0.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 1.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 5.0
+        }
+      },
+      "functions": [
+        {
+          "name": "add",
+          "span": {
+            "start_line": 1,
+            "start_col": 20,
+            "end_line": 1,
+            "end_col": 51
+          },
+          "loc": 1,
+          "params": 2,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": []
+    },
+    {
+      "path": "src/meta.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 1,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 1.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 0.0,
+          "fan_out_weighted": 0.0,
+          "instability": 0.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 0.0,
+          "closure_weighted": -0.0,
+          "layers_in_closure": 0.0,
+          "max_depth": 0.0,
+          "top_dirs_in_closure": 0.0
+        },
+        "blast_radius": {
+          "blast": 1.0,
+          "churn_factor": 1.0,
+          "dependents": 1.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 0.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 1.0,
+          "peer_group_size": 5.0
+        }
+      },
+      "functions": [],
+      "imports": []
+    }
+  ],
+  "evidence": []
+}

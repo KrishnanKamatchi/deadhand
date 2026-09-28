@@ -1,0 +1,31 @@
+---
+source: crates/deadhand-cli/src/render/text.rs
+expression: "super::explain(&r, m, false)"
+---
+src/routes/orders.ts  (layer route, 28 LOC)
+Maintainability 43 / 100
+
+Scores:
+  Readability       55  deeply_nested_functions=1 loc=28 long_functions=0 many_param_functions=0 mixed_naming=0 penalty_points=1.25 vague_names=1
+  Cognitive Load     0  cognitive_per_100_loc=96.43 cognitive_total=27 functions_over_baseline=1 max_function_cognitive=27
+  Entanglement      40  cycle_size=4 fan_in=1 fan_out=3 fan_out_weighted=3 instability=0.75 shared_abuse=0
+  Context Depth     62  closure_size=9 closure_weighted=6 layers_in_closure=3 max_depth=2 top_dirs_in_closure=4
+  Blast Radius     100  blast=4 churn_factor=1 dependents=4 direct_dependents=1 layers_affected=4 uncovered=1
+  Pattern Drift      8  drift=1.68 exports=1 external_packages=0 fan_out=3 layer_violations=1 layers_crossed=3 loc=28 max_nesting=6 median_function_loc=25 peer_group_size=11
+  Orphaned Code    n/a
+
+Functions (1 total, most complex first):
+───────────────────────────────────────────────────────────────────
+ function   line   loc   params   cyclomatic   cognitive   nesting 
+═══════════════════════════════════════════════════════════════════
+ handle        5    25        2           11          27         6 
+───────────────────────────────────────────────────────────────────
+
+Evidence (7):
+  high In an import cycle of 4 modules with src/db/client.ts, src/services/billing.ts, src/utils/helpers.ts  Entanglement
+  info Depends on 9 modules (weighted 6), 3 layers (data, service, shared), max depth 2  Context Depth
+  warn Unlike its peers (repo, 11 modules): layers crossed 3 (peer median 0); median function loc 25 (peer median 3); max nesting 6 (peer median 0)  Pattern Drift
+  warn L1 Imports src/db/client.ts: route layer imports data directly, skipping service  Pattern Drift
+  warn L5 `handle` has cognitive complexity 27 (threshold 15, repo p90 13.5)  Cognitive Load
+  warn L5 `handle` nests 6 levels deep (threshold 4)  Readability
+  info L5 `handle` declares vague names: `data`  Readability

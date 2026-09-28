@@ -1,0 +1,1523 @@
+---
+source: crates/deadhand-core/tests/fixtures.rs
+expression: "serde_json::to_value(scan(name)).unwrap()"
+---
+{
+  "schema_version": 1,
+  "tool_version": "0.1.0",
+  "root_name": "spaghetti",
+  "summary": {
+    "files": 11,
+    "test_files": 0,
+    "loc": 62,
+    "functions": 6,
+    "generated_skipped": 0,
+    "git_available": false
+  },
+  "maintainability": 63.10466893039049,
+  "metrics": [
+    {
+      "kind": "readability",
+      "label": "Readability",
+      "available": true,
+      "score": 63.37903225806452,
+      "weight": 0.15789473684210525,
+      "notes": []
+    },
+    {
+      "kind": "cognitive_load",
+      "label": "Cognitive Load",
+      "available": true,
+      "score": 54.83870967741935,
+      "weight": 0.21052631578947367,
+      "notes": []
+    },
+    {
+      "kind": "entanglement",
+      "label": "Entanglement",
+      "available": true,
+      "score": 42.70967741935484,
+      "weight": 0.21052631578947367,
+      "notes": []
+    },
+    {
+      "kind": "context_depth",
+      "label": "Context Depth",
+      "available": true,
+      "score": 71.09677419354838,
+      "weight": 0.15789473684210525,
+      "notes": []
+    },
+    {
+      "kind": "blast_radius",
+      "label": "Blast Radius",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.15789473684210525,
+      "notes": [
+        "churn unknown (no git history); churn factor fixed at 1",
+        "coverage unknown; coverage factor fixed at 1"
+      ]
+    },
+    {
+      "kind": "pattern_drift",
+      "label": "Pattern Drift",
+      "available": true,
+      "score": 52.68387096774194,
+      "weight": 0.10526315789473684,
+      "notes": []
+    },
+    {
+      "kind": "orphaned_code",
+      "label": "Orphaned Code",
+      "available": false,
+      "score": null,
+      "weight": 0.0,
+      "notes": [
+        "no git history; Orphaned Code skipped"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "metric": "entanglement",
+      "severity": "high",
+      "count": 4,
+      "message": "4 modules participate in circular dependencies"
+    },
+    {
+      "metric": "cognitive_load",
+      "severity": "warn",
+      "count": 1,
+      "message": "1 functions exceed the repo cognitive complexity baseline (13.5)"
+    },
+    {
+      "metric": "readability",
+      "severity": "warn",
+      "count": 1,
+      "message": "1 functions nest 4+ levels deep"
+    },
+    {
+      "metric": "entanglement",
+      "severity": "warn",
+      "count": 1,
+      "message": "1 shared modules import from the service or data layer"
+    },
+    {
+      "metric": "context_depth",
+      "severity": "warn",
+      "count": 1,
+      "message": "1 modules depend transitively on 4+ architectural layers"
+    },
+    {
+      "metric": "pattern_drift",
+      "severity": "warn",
+      "count": 3,
+      "message": "3 imports break the layer order"
+    },
+    {
+      "metric": "readability",
+      "severity": "info",
+      "count": 1,
+      "message": "1 functions take 5+ parameters"
+    },
+    {
+      "metric": "pattern_drift",
+      "severity": "info",
+      "count": 3,
+      "message": "3 modules deviate from their peer group"
+    }
+  ],
+  "notes": [
+    "Orphaned Code unavailable; its weight was redistributed across the other metrics"
+  ],
+  "cycles": [
+    [
+      "src/db/client.ts",
+      "src/routes/orders.ts",
+      "src/services/billing.ts",
+      "src/utils/helpers.ts"
+    ]
+  ],
+  "parse_errors": [],
+  "modules": [
+    {
+      "path": "src/components/OrderList.tsx",
+      "layer": "ui",
+      "is_test": false,
+      "loc": 4,
+      "maintainability": 95.36842105263156,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 56.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 4.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 0.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 1.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 10.0,
+          "closure_weighted": 3.666666666666667,
+          "layers_in_closure": 4.0,
+          "max_depth": 4.0,
+          "top_dirs_in_closure": 5.0
+        },
+        "blast_radius": {
+          "blast": 0.0,
+          "churn_factor": 1.0,
+          "dependents": 0.0,
+          "direct_dependents": 0.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 1.0,
+          "layers_crossed": 1.0,
+          "loc": 4.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 3.0,
+          "peer_group_size": 11.0
+        }
+      },
+      "functions": [
+        {
+          "name": "OrderList",
+          "span": {
+            "start_line": 2,
+            "start_col": 8,
+            "end_line": 4,
+            "end_col": 2
+          },
+          "loc": 3,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "../db/client",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/db/client.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/db/client.ts",
+      "layer": "data",
+      "is_test": false,
+      "loc": 4,
+      "maintainability": 84.42105263157895,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 48.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 56.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 4.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 4.0,
+          "fan_in": 4.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.2,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 9.0,
+          "closure_weighted": 4.0,
+          "layers_in_closure": 3.0,
+          "max_depth": 3.0,
+          "top_dirs_in_closure": 4.0
+        },
+        "blast_radius": {
+          "blast": 4.0,
+          "churn_factor": 1.0,
+          "dependents": 4.0,
+          "direct_dependents": 4.0,
+          "layers_affected": 4.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 1.0,
+          "layers_crossed": 1.0,
+          "loc": 4.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 11.0
+        }
+      },
+      "functions": [
+        {
+          "name": "query",
+          "span": {
+            "start_line": 3,
+            "start_col": 10,
+            "end_line": 3,
+            "end_col": 78
+          },
+          "loc": 1,
+          "params": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "../routes/orders",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/routes/orders.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/misc/a.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 1,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 1.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 0.0,
+          "fan_out_weighted": 0.0,
+          "instability": 0.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 0.0,
+          "closure_weighted": -0.0,
+          "layers_in_closure": 0.0,
+          "max_depth": 0.0,
+          "top_dirs_in_closure": 0.0
+        },
+        "blast_radius": {
+          "blast": 5.0,
+          "churn_factor": 1.0,
+          "dependents": 5.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 5.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 0.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 1.0,
+          "peer_group_size": 6.0
+        }
+      },
+      "functions": [],
+      "imports": []
+    },
+    {
+      "path": "src/misc/b.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 1,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 1.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 0.0,
+          "fan_out_weighted": 0.0,
+          "instability": 0.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 0.0,
+          "closure_weighted": -0.0,
+          "layers_in_closure": 0.0,
+          "max_depth": 0.0,
+          "top_dirs_in_closure": 0.0
+        },
+        "blast_radius": {
+          "blast": 5.0,
+          "churn_factor": 1.0,
+          "dependents": 5.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 5.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 0.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 1.0,
+          "peer_group_size": 6.0
+        }
+      },
+      "functions": [],
+      "imports": []
+    },
+    {
+      "path": "src/misc/c.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 1,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 1.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 0.0,
+          "fan_out_weighted": 0.0,
+          "instability": 0.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 0.0,
+          "closure_weighted": -0.0,
+          "layers_in_closure": 0.0,
+          "max_depth": 0.0,
+          "top_dirs_in_closure": 0.0
+        },
+        "blast_radius": {
+          "blast": 5.0,
+          "churn_factor": 1.0,
+          "dependents": 5.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 5.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 0.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 1.0,
+          "peer_group_size": 6.0
+        }
+      },
+      "functions": [],
+      "imports": []
+    },
+    {
+      "path": "src/misc/d.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 1,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 1.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 0.0,
+          "fan_out_weighted": 0.0,
+          "instability": 0.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 0.0,
+          "closure_weighted": -0.0,
+          "layers_in_closure": 0.0,
+          "max_depth": 0.0,
+          "top_dirs_in_closure": 0.0
+        },
+        "blast_radius": {
+          "blast": 5.0,
+          "churn_factor": 1.0,
+          "dependents": 5.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 5.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 0.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 1.0,
+          "peer_group_size": 6.0
+        }
+      },
+      "functions": [],
+      "imports": []
+    },
+    {
+      "path": "src/misc/e.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 1,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 1.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 0.0,
+          "fan_out_weighted": 0.0,
+          "instability": 0.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 0.0,
+          "closure_weighted": -0.0,
+          "layers_in_closure": 0.0,
+          "max_depth": 0.0,
+          "top_dirs_in_closure": 0.0
+        },
+        "blast_radius": {
+          "blast": 5.0,
+          "churn_factor": 1.0,
+          "dependents": 5.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 5.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 0.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 1.0,
+          "peer_group_size": 6.0
+        }
+      },
+      "functions": [],
+      "imports": []
+    },
+    {
+      "path": "src/misc/f.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 1,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 1.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 0.0,
+          "fan_out_weighted": 0.0,
+          "instability": 0.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 0.0,
+          "closure_weighted": -0.0,
+          "layers_in_closure": 0.0,
+          "max_depth": 0.0,
+          "top_dirs_in_closure": 0.0
+        },
+        "blast_radius": {
+          "blast": 5.0,
+          "churn_factor": 1.0,
+          "dependents": 5.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 5.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 0.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 1.0,
+          "peer_group_size": 6.0
+        }
+      },
+      "functions": [],
+      "imports": []
+    },
+    {
+      "path": "src/routes/orders.ts",
+      "layer": "route",
+      "is_test": false,
+      "loc": 28,
+      "maintainability": 43.491165413533835,
+      "scores": {
+        "cognitive_load": 0.0,
+        "readability": 54.625,
+        "entanglement": 40.0,
+        "context_depth": 62.28571428571428,
+        "blast_radius": 100.0,
+        "pattern_drift": 7.8000000000000025
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 96.42857142857143,
+          "cognitive_total": 27.0,
+          "functions_over_baseline": 1.0,
+          "max_function_cognitive": 27.0
+        },
+        "readability": {
+          "deeply_nested_functions": 1.0,
+          "loc": 28.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 1.25,
+          "vague_names": 1.0
+        },
+        "entanglement": {
+          "cycle_size": 4.0,
+          "fan_in": 1.0,
+          "fan_out": 3.0,
+          "fan_out_weighted": 3.0,
+          "instability": 0.75,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 9.0,
+          "closure_weighted": 6.0,
+          "layers_in_closure": 3.0,
+          "max_depth": 2.0,
+          "top_dirs_in_closure": 4.0
+        },
+        "blast_radius": {
+          "blast": 4.0,
+          "churn_factor": 1.0,
+          "dependents": 4.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 4.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 1.675,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 3.0,
+          "layer_violations": 1.0,
+          "layers_crossed": 3.0,
+          "loc": 28.0,
+          "max_nesting": 6.0,
+          "median_function_loc": 25.0,
+          "peer_group_size": 11.0
+        }
+      },
+      "functions": [
+        {
+          "name": "handle",
+          "span": {
+            "start_line": 5,
+            "start_col": 8,
+            "end_line": 29,
+            "end_col": 2
+          },
+          "loc": 25,
+          "params": 2,
+          "cyclomatic": 11,
+          "cognitive": 27,
+          "max_nesting": 6,
+          "identifiers": [
+            "req",
+            "res",
+            "data"
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "../db/client",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/db/client.ts"
+          },
+          "line": 1
+        },
+        {
+          "specifier": "../services/billing",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/services/billing.ts"
+          },
+          "line": 2
+        },
+        {
+          "specifier": "../utils/helpers",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/utils/helpers.ts"
+          },
+          "line": 3
+        }
+      ]
+    },
+    {
+      "path": "src/services/billing.ts",
+      "layer": "service",
+      "is_test": false,
+      "loc": 4,
+      "maintainability": 89.05263157894737,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 48.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 4.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 4.0,
+          "fan_in": 2.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.3333333333333333,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 9.0,
+          "closure_weighted": 3.3333333333333335,
+          "layers_in_closure": 3.0,
+          "max_depth": 4.0,
+          "top_dirs_in_closure": 4.0
+        },
+        "blast_radius": {
+          "blast": 4.0,
+          "churn_factor": 1.0,
+          "dependents": 4.0,
+          "direct_dependents": 2.0,
+          "layers_affected": 4.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.375,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 1.0,
+          "loc": 4.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 3.0,
+          "peer_group_size": 11.0
+        }
+      },
+      "functions": [
+        {
+          "name": "chargeCard",
+          "span": {
+            "start_line": 2,
+            "start_col": 8,
+            "end_line": 4,
+            "end_col": 2
+          },
+          "loc": 3,
+          "params": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": [
+            "row"
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "../db/client",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/db/client.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/utils/helpers.ts",
+      "layer": "shared",
+      "is_test": false,
+      "loc": 16,
+      "maintainability": 63.71052631578947,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 37.5,
+        "entanglement": 9.0,
+        "context_depth": 54.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 16.0,
+          "long_functions": 0.0,
+          "many_param_functions": 1.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 3.0,
+          "vague_names": 8.0
+        },
+        "entanglement": {
+          "cycle_size": 4.0,
+          "fan_in": 1.0,
+          "fan_out": 8.0,
+          "fan_out_weighted": 8.0,
+          "instability": 0.8888888888888888,
+          "shared_abuse": 1.0
+        },
+        "context_depth": {
+          "closure_size": 9.0,
+          "closure_weighted": 8.5,
+          "layers_in_closure": 3.0,
+          "max_depth": 2.0,
+          "top_dirs_in_closure": 4.0
+        },
+        "blast_radius": {
+          "blast": 4.0,
+          "churn_factor": 1.0,
+          "dependents": 4.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 4.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.5,
+          "exports": 2.0,
+          "external_packages": 0.0,
+          "fan_out": 8.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 2.0,
+          "loc": 16.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 2.5,
+          "peer_group_size": 11.0
+        }
+      },
+      "functions": [
+        {
+          "name": "log",
+          "span": {
+            "start_line": 11,
+            "start_col": 6,
+            "end_line": 11,
+            "end_col": 38
+          },
+          "loc": 1,
+          "params": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": [
+            "x"
+          ]
+        },
+        {
+          "name": "process_items",
+          "span": {
+            "start_line": 15,
+            "start_col": 8,
+            "end_line": 18,
+            "end_col": 2
+          },
+          "loc": 4,
+          "params": 6,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": [
+            "tmp",
+            "obj",
+            "x",
+            "y",
+            "z",
+            "w",
+            "data"
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "../services/billing",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/services/billing.ts"
+          },
+          "line": 1
+        },
+        {
+          "specifier": "../db/client",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/db/client.ts"
+          },
+          "line": 2
+        },
+        {
+          "specifier": "../misc/a",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/misc/a.ts"
+          },
+          "line": 3
+        },
+        {
+          "specifier": "../misc/b",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/misc/b.ts"
+          },
+          "line": 4
+        },
+        {
+          "specifier": "../misc/c",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/misc/c.ts"
+          },
+          "line": 5
+        },
+        {
+          "specifier": "../misc/d",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/misc/d.ts"
+          },
+          "line": 6
+        },
+        {
+          "specifier": "../misc/e",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/misc/e.ts"
+          },
+          "line": 7
+        },
+        {
+          "specifier": "../misc/f",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/misc/f.ts"
+          },
+          "line": 8
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "metric": "context_depth",
+      "severity": "warn",
+      "path": "src/components/OrderList.tsx",
+      "key": "closure",
+      "message": "Depends on 10 modules (weighted 3.7), 4 layers (data, route, service, shared), max depth 4",
+      "values": [
+        [
+          "closure_size",
+          10.0
+        ],
+        [
+          "weighted",
+          3.666666666666667
+        ],
+        [
+          "layers",
+          4.0
+        ],
+        [
+          "max_depth",
+          4.0
+        ]
+      ]
+    },
+    {
+      "metric": "pattern_drift",
+      "severity": "warn",
+      "path": "src/components/OrderList.tsx",
+      "span": {
+        "start_line": 1,
+        "start_col": 1,
+        "end_line": 1,
+        "end_col": 1
+      },
+      "key": "layer-violation:src/db/client.ts",
+      "message": "Imports src/db/client.ts: ui layer imports data directly, skipping service",
+      "values": []
+    },
+    {
+      "metric": "entanglement",
+      "severity": "high",
+      "path": "src/db/client.ts",
+      "key": "cycle",
+      "message": "In an import cycle of 4 modules with src/routes/orders.ts, src/services/billing.ts, src/utils/helpers.ts",
+      "values": [
+        [
+          "cycle_size",
+          4.0
+        ]
+      ]
+    },
+    {
+      "metric": "pattern_drift",
+      "severity": "warn",
+      "path": "src/db/client.ts",
+      "span": {
+        "start_line": 1,
+        "start_col": 1,
+        "end_line": 1,
+        "end_col": 1
+      },
+      "key": "layer-violation:src/routes/orders.ts",
+      "message": "Imports src/routes/orders.ts: data layer imports route, which sits above it",
+      "values": []
+    },
+    {
+      "metric": "entanglement",
+      "severity": "high",
+      "path": "src/routes/orders.ts",
+      "key": "cycle",
+      "message": "In an import cycle of 4 modules with src/db/client.ts, src/services/billing.ts, src/utils/helpers.ts",
+      "values": [
+        [
+          "cycle_size",
+          4.0
+        ]
+      ]
+    },
+    {
+      "metric": "context_depth",
+      "severity": "info",
+      "path": "src/routes/orders.ts",
+      "key": "closure",
+      "message": "Depends on 9 modules (weighted 6), 3 layers (data, service, shared), max depth 2",
+      "values": [
+        [
+          "closure_size",
+          9.0
+        ],
+        [
+          "weighted",
+          6.0
+        ],
+        [
+          "layers",
+          3.0
+        ],
+        [
+          "max_depth",
+          2.0
+        ]
+      ]
+    },
+    {
+      "metric": "pattern_drift",
+      "severity": "warn",
+      "path": "src/routes/orders.ts",
+      "key": "peer-deviation",
+      "message": "Unlike its peers (repo, 11 modules): layers crossed 3 (peer median 0); median function loc 25 (peer median 3); max nesting 6 (peer median 0)",
+      "values": [
+        [
+          "layers_crossed",
+          3.0
+        ],
+        [
+          "layers_crossed_peer_median",
+          0.0
+        ],
+        [
+          "median_function_loc",
+          25.0
+        ],
+        [
+          "median_function_loc_peer_median",
+          3.0
+        ],
+        [
+          "max_nesting",
+          6.0
+        ],
+        [
+          "max_nesting_peer_median",
+          0.0
+        ]
+      ]
+    },
+    {
+      "metric": "pattern_drift",
+      "severity": "warn",
+      "path": "src/routes/orders.ts",
+      "span": {
+        "start_line": 1,
+        "start_col": 1,
+        "end_line": 1,
+        "end_col": 1
+      },
+      "key": "layer-violation:src/db/client.ts",
+      "message": "Imports src/db/client.ts: route layer imports data directly, skipping service",
+      "values": []
+    },
+    {
+      "metric": "cognitive_load",
+      "severity": "warn",
+      "path": "src/routes/orders.ts",
+      "span": {
+        "start_line": 5,
+        "start_col": 8,
+        "end_line": 29,
+        "end_col": 2
+      },
+      "key": "function:handle",
+      "message": "`handle` has cognitive complexity 27 (threshold 15, repo p90 13.5)",
+      "values": [
+        [
+          "cognitive",
+          27.0
+        ],
+        [
+          "threshold",
+          15.0
+        ],
+        [
+          "repo_p90",
+          13.5
+        ]
+      ]
+    },
+    {
+      "metric": "readability",
+      "severity": "warn",
+      "path": "src/routes/orders.ts",
+      "span": {
+        "start_line": 5,
+        "start_col": 8,
+        "end_line": 29,
+        "end_col": 2
+      },
+      "key": "deep-nesting:handle",
+      "message": "`handle` nests 6 levels deep (threshold 4)",
+      "values": [
+        [
+          "max_nesting",
+          6.0
+        ],
+        [
+          "threshold",
+          4.0
+        ]
+      ]
+    },
+    {
+      "metric": "readability",
+      "severity": "info",
+      "path": "src/routes/orders.ts",
+      "span": {
+        "start_line": 5,
+        "start_col": 8,
+        "end_line": 29,
+        "end_col": 2
+      },
+      "key": "vague-names:handle",
+      "message": "`handle` declares vague names: `data`",
+      "values": [
+        [
+          "vague_names",
+          1.0
+        ]
+      ]
+    },
+    {
+      "metric": "entanglement",
+      "severity": "high",
+      "path": "src/services/billing.ts",
+      "key": "cycle",
+      "message": "In an import cycle of 4 modules with src/db/client.ts, src/routes/orders.ts, src/utils/helpers.ts",
+      "values": [
+        [
+          "cycle_size",
+          4.0
+        ]
+      ]
+    },
+    {
+      "metric": "pattern_drift",
+      "severity": "info",
+      "path": "src/services/billing.ts",
+      "key": "peer-deviation",
+      "message": "Unlike its peers (repo, 11 modules): naming camelCase (peers use snake_case)",
+      "values": []
+    },
+    {
+      "metric": "entanglement",
+      "severity": "high",
+      "path": "src/utils/helpers.ts",
+      "key": "cycle",
+      "message": "In an import cycle of 4 modules with src/db/client.ts, src/routes/orders.ts, src/services/billing.ts",
+      "values": [
+        [
+          "cycle_size",
+          4.0
+        ]
+      ]
+    },
+    {
+      "metric": "entanglement",
+      "severity": "warn",
+      "path": "src/utils/helpers.ts",
+      "key": "fan-out",
+      "message": "Imports 8 internal modules (repo median 0)",
+      "values": [
+        [
+          "fan_out",
+          8.0
+        ],
+        [
+          "repo_median",
+          0.0
+        ]
+      ]
+    },
+    {
+      "metric": "entanglement",
+      "severity": "warn",
+      "path": "src/utils/helpers.ts",
+      "key": "shared-imports-upper-layer",
+      "message": "Shared module with 1 dependents imports src/db/client.ts (data), src/services/billing.ts (service)",
+      "values": [
+        [
+          "fan_in",
+          1.0
+        ]
+      ]
+    },
+    {
+      "metric": "context_depth",
+      "severity": "info",
+      "path": "src/utils/helpers.ts",
+      "key": "closure",
+      "message": "Depends on 9 modules (weighted 8.5), 3 layers (data, route, service), max depth 2",
+      "values": [
+        [
+          "closure_size",
+          9.0
+        ],
+        [
+          "weighted",
+          8.5
+        ],
+        [
+          "layers",
+          3.0
+        ],
+        [
+          "max_depth",
+          2.0
+        ]
+      ]
+    },
+    {
+      "metric": "pattern_drift",
+      "severity": "info",
+      "path": "src/utils/helpers.ts",
+      "key": "peer-deviation",
+      "message": "Unlike its peers (repo, 11 modules): fan out 8 (peer median 0)",
+      "values": [
+        [
+          "fan_out",
+          8.0
+        ],
+        [
+          "fan_out_peer_median",
+          0.0
+        ]
+      ]
+    },
+    {
+      "metric": "readability",
+      "severity": "info",
+      "path": "src/utils/helpers.ts",
+      "span": {
+        "start_line": 11,
+        "start_col": 6,
+        "end_line": 11,
+        "end_col": 38
+      },
+      "key": "vague-names:log",
+      "message": "`log` declares vague names: `x`",
+      "values": [
+        [
+          "vague_names",
+          1.0
+        ]
+      ]
+    },
+    {
+      "metric": "readability",
+      "severity": "info",
+      "path": "src/utils/helpers.ts",
+      "span": {
+        "start_line": 15,
+        "start_col": 8,
+        "end_line": 18,
+        "end_col": 2
+      },
+      "key": "many-params:process_items",
+      "message": "`process_items` takes 6 parameters (threshold 5)",
+      "values": [
+        [
+          "params",
+          6.0
+        ],
+        [
+          "threshold",
+          5.0
+        ]
+      ]
+    },
+    {
+      "metric": "readability",
+      "severity": "info",
+      "path": "src/utils/helpers.ts",
+      "span": {
+        "start_line": 15,
+        "start_col": 8,
+        "end_line": 18,
+        "end_col": 2
+      },
+      "key": "vague-names:process_items",
+      "message": "`process_items` declares vague names: `data`, `obj`, `tmp`, `w`, `x`, `y`, `z`",
+      "values": [
+        [
+          "vague_names",
+          7.0
+        ]
+      ]
+    }
+  ]
+}

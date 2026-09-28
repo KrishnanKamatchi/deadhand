@@ -1,0 +1,933 @@
+---
+source: crates/deadhand-core/tests/fixtures.rs
+expression: "serde_json::to_value(scan(name)).unwrap()"
+---
+{
+  "schema_version": 1,
+  "tool_version": "0.1.0",
+  "root_name": "cycles",
+  "summary": {
+    "files": 8,
+    "test_files": 0,
+    "loc": 16,
+    "functions": 8,
+    "generated_skipped": 0,
+    "git_available": false
+  },
+  "maintainability": 94.69924812030074,
+  "metrics": [
+    {
+      "kind": "readability",
+      "label": "Readability",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.15789473684210525,
+      "notes": []
+    },
+    {
+      "kind": "cognitive_load",
+      "label": "Cognitive Load",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.21052631578947367,
+      "notes": []
+    },
+    {
+      "kind": "entanglement",
+      "label": "Entanglement",
+      "available": true,
+      "score": 74.82142857142857,
+      "weight": 0.21052631578947367,
+      "notes": []
+    },
+    {
+      "kind": "context_depth",
+      "label": "Context Depth",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.15789473684210525,
+      "notes": []
+    },
+    {
+      "kind": "blast_radius",
+      "label": "Blast Radius",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.15789473684210525,
+      "notes": [
+        "churn unknown (no git history); churn factor fixed at 1",
+        "coverage unknown; coverage factor fixed at 1"
+      ]
+    },
+    {
+      "kind": "pattern_drift",
+      "label": "Pattern Drift",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.10526315789473684,
+      "notes": []
+    },
+    {
+      "kind": "orphaned_code",
+      "label": "Orphaned Code",
+      "available": false,
+      "score": null,
+      "weight": 0.0,
+      "notes": [
+        "no git history; Orphaned Code skipped"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "metric": "entanglement",
+      "severity": "high",
+      "count": 5,
+      "message": "5 modules participate in circular dependencies"
+    }
+  ],
+  "notes": [
+    "Orphaned Code unavailable; its weight was redistributed across the other metrics"
+  ],
+  "cycles": [
+    [
+      "src/a.ts",
+      "src/b.ts",
+      "src/c.ts"
+    ],
+    [
+      "src/d.ts",
+      "src/e.ts"
+    ]
+  ],
+  "parse_errors": [],
+  "modules": [
+    {
+      "path": "src/a.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 2,
+      "maintainability": 89.56390977443608,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 50.42857142857143,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 2.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 3.0,
+          "fan_in": 2.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.3333333333333333,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 2.0,
+          "closure_weighted": 1.5,
+          "layers_in_closure": 0.0,
+          "max_depth": 2.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 3.0,
+          "churn_factor": 1.0,
+          "dependents": 3.0,
+          "direct_dependents": 2.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 2.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 8.0
+        }
+      },
+      "functions": [
+        {
+          "name": "a",
+          "span": {
+            "start_line": 2,
+            "start_col": 18,
+            "end_line": 2,
+            "end_col": 31
+          },
+          "loc": 1,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "./b",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/b.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/b.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 2,
+      "maintainability": 89.56390977443608,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 50.42857142857143,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 2.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 3.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 2.0,
+          "closure_weighted": 1.5,
+          "layers_in_closure": 0.0,
+          "max_depth": 2.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 3.0,
+          "churn_factor": 1.0,
+          "dependents": 3.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 2.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 8.0
+        }
+      },
+      "functions": [
+        {
+          "name": "b",
+          "span": {
+            "start_line": 2,
+            "start_col": 18,
+            "end_line": 2,
+            "end_col": 31
+          },
+          "loc": 1,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "./c",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/c.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/c.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 2,
+      "maintainability": 89.56390977443608,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 50.42857142857143,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 5.0,
+          "cognitive_total": 1.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 1.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 2.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 3.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 2.0,
+          "closure_weighted": 1.5,
+          "layers_in_closure": 0.0,
+          "max_depth": 2.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 3.0,
+          "churn_factor": 1.0,
+          "dependents": 3.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 2.0,
+          "max_nesting": 1.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 8.0
+        }
+      },
+      "functions": [
+        {
+          "name": "c",
+          "span": {
+            "start_line": 2,
+            "start_col": 18,
+            "end_line": 2,
+            "end_col": 53
+          },
+          "loc": 1,
+          "params": 0,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "max_nesting": 1,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "./a",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/a.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/d.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 2,
+      "maintainability": 92.60150375939848,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 64.85714285714286,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 2.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 2.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 1.0,
+          "closure_weighted": 1.0,
+          "layers_in_closure": 0.0,
+          "max_depth": 1.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 1.0,
+          "churn_factor": 1.0,
+          "dependents": 1.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 2.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 8.0
+        }
+      },
+      "functions": [
+        {
+          "name": "d",
+          "span": {
+            "start_line": 2,
+            "start_col": 18,
+            "end_line": 2,
+            "end_col": 27
+          },
+          "loc": 1,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "./e",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/e.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/e.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 1,
+      "maintainability": 92.60150375939848,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 64.85714285714286,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 1.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 2.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 1.0,
+          "closure_weighted": 1.0,
+          "layers_in_closure": 0.0,
+          "max_depth": 1.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 1.0,
+          "churn_factor": 1.0,
+          "dependents": 1.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 1.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 8.0
+        }
+      },
+      "functions": [
+        {
+          "name": "e",
+          "span": {
+            "start_line": 1,
+            "start_col": 18,
+            "end_line": 1,
+            "end_col": 53
+          },
+          "loc": 1,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "./d",
+          "kind": "dynamic",
+          "target": {
+            "kind": "internal",
+            "target": "src/d.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/f.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 2,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 2.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 0.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 1.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 3.0,
+          "closure_weighted": 1.8333333333333333,
+          "layers_in_closure": 0.0,
+          "max_depth": 3.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 0.0,
+          "churn_factor": 1.0,
+          "dependents": 0.0,
+          "direct_dependents": 0.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 2.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 8.0
+        }
+      },
+      "functions": [
+        {
+          "name": "f",
+          "span": {
+            "start_line": 2,
+            "start_col": 18,
+            "end_line": 2,
+            "end_col": 27
+          },
+          "loc": 1,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "./a",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/a.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/g.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 3,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 3.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 1.0,
+          "closure_weighted": 1.0,
+          "layers_in_closure": 0.0,
+          "max_depth": 1.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 1.0,
+          "churn_factor": 1.0,
+          "dependents": 1.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 2.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 3.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 8.0
+        }
+      },
+      "functions": [
+        {
+          "name": "g",
+          "span": {
+            "start_line": 3,
+            "start_col": 18,
+            "end_line": 3,
+            "end_col": 27
+          },
+          "loc": 1,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "./h",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/h.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/h.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 2,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 2.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 0.5,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 0.0,
+          "closure_weighted": -0.0,
+          "layers_in_closure": 0.0,
+          "max_depth": 0.0,
+          "top_dirs_in_closure": 0.0
+        },
+        "blast_radius": {
+          "blast": 1.0,
+          "churn_factor": 1.0,
+          "dependents": 1.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 2.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 8.0
+        }
+      },
+      "functions": [
+        {
+          "name": "h",
+          "span": {
+            "start_line": 2,
+            "start_col": 18,
+            "end_line": 2,
+            "end_col": 34
+          },
+          "loc": 1,
+          "params": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "./g",
+          "kind": "type_only",
+          "target": {
+            "kind": "internal",
+            "target": "src/g.ts"
+          },
+          "line": 1
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "metric": "entanglement",
+      "severity": "high",
+      "path": "src/a.ts",
+      "key": "cycle",
+      "message": "In an import cycle of 3 modules with src/b.ts, src/c.ts",
+      "values": [
+        [
+          "cycle_size",
+          3.0
+        ]
+      ]
+    },
+    {
+      "metric": "entanglement",
+      "severity": "high",
+      "path": "src/b.ts",
+      "key": "cycle",
+      "message": "In an import cycle of 3 modules with src/a.ts, src/c.ts",
+      "values": [
+        [
+          "cycle_size",
+          3.0
+        ]
+      ]
+    },
+    {
+      "metric": "entanglement",
+      "severity": "high",
+      "path": "src/c.ts",
+      "key": "cycle",
+      "message": "In an import cycle of 3 modules with src/a.ts, src/b.ts",
+      "values": [
+        [
+          "cycle_size",
+          3.0
+        ]
+      ]
+    },
+    {
+      "metric": "entanglement",
+      "severity": "high",
+      "path": "src/d.ts",
+      "key": "cycle",
+      "message": "In an import cycle of 2 modules with src/e.ts",
+      "values": [
+        [
+          "cycle_size",
+          2.0
+        ]
+      ]
+    },
+    {
+      "metric": "entanglement",
+      "severity": "high",
+      "path": "src/e.ts",
+      "key": "cycle",
+      "message": "In an import cycle of 2 modules with src/d.ts",
+      "values": [
+        [
+          "cycle_size",
+          2.0
+        ]
+      ]
+    }
+  ]
+}

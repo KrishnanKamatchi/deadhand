@@ -1,0 +1,1691 @@
+---
+source: crates/deadhand-core/tests/fixtures.rs
+expression: "serde_json::to_value(scan(name)).unwrap()"
+---
+{
+  "schema_version": 1,
+  "tool_version": "0.1.0",
+  "root_name": "deep-context",
+  "summary": {
+    "files": 13,
+    "test_files": 0,
+    "loc": 25,
+    "functions": 13,
+    "generated_skipped": 0,
+    "git_available": false
+  },
+  "maintainability": 90.98870813397129,
+  "metrics": [
+    {
+      "kind": "readability",
+      "label": "Readability",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.15789473684210525,
+      "notes": []
+    },
+    {
+      "kind": "cognitive_load",
+      "label": "Cognitive Load",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.21052631578947367,
+      "notes": []
+    },
+    {
+      "kind": "entanglement",
+      "label": "Entanglement",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.21052631578947367,
+      "notes": []
+    },
+    {
+      "kind": "context_depth",
+      "label": "Context Depth",
+      "available": true,
+      "score": 60.26666666666666,
+      "weight": 0.15789473684210525,
+      "notes": []
+    },
+    {
+      "kind": "blast_radius",
+      "label": "Blast Radius",
+      "available": true,
+      "score": 82.66181818181818,
+      "weight": 0.15789473684210525,
+      "notes": [
+        "churn unknown (no git history); churn factor fixed at 1",
+        "coverage unknown; coverage factor fixed at 1"
+      ]
+    },
+    {
+      "kind": "pattern_drift",
+      "label": "Pattern Drift",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.10526315789473684,
+      "notes": []
+    },
+    {
+      "kind": "orphaned_code",
+      "label": "Orphaned Code",
+      "available": false,
+      "score": null,
+      "weight": 0.0,
+      "notes": [
+        "no git history; Orphaned Code skipped"
+      ]
+    }
+  ],
+  "findings": [],
+  "notes": [
+    "Orphaned Code unavailable; its weight was redistributed across the other metrics"
+  ],
+  "cycles": [],
+  "parse_errors": [],
+  "modules": [
+    {
+      "path": "src/entry.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 2,
+      "maintainability": 84.21052631578947,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 0.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 2.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 0.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 1.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 12.0,
+          "closure_weighted": 3.103210678210678,
+          "layers_in_closure": 0.0,
+          "max_depth": 12.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 0.0,
+          "churn_factor": 1.0,
+          "dependents": 0.0,
+          "direct_dependents": 0.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 2.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 13.0
+        }
+      },
+      "functions": [
+        {
+          "name": "entry",
+          "span": {
+            "start_line": 2,
+            "start_col": 22,
+            "end_line": 2,
+            "end_col": 36
+          },
+          "loc": 1,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "./step00",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/step00.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/step00.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 2,
+      "maintainability": 85.92105263157895,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 10.833333333333336,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 2.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 11.0,
+          "closure_weighted": 3.0198773448773446,
+          "layers_in_closure": 0.0,
+          "max_depth": 11.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 1.0,
+          "churn_factor": 1.0,
+          "dependents": 1.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 2.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 13.0
+        }
+      },
+      "functions": [
+        {
+          "name": "step00",
+          "span": {
+            "start_line": 2,
+            "start_col": 23,
+            "end_line": 2,
+            "end_col": 41
+          },
+          "loc": 1,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "./step01",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/step01.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/step01.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 2,
+      "maintainability": 87.63157894736841,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 21.666666666666664,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 2.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 10.0,
+          "closure_weighted": 2.9289682539682538,
+          "layers_in_closure": 0.0,
+          "max_depth": 10.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 2.0,
+          "churn_factor": 1.0,
+          "dependents": 2.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 2.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 13.0
+        }
+      },
+      "functions": [
+        {
+          "name": "step01",
+          "span": {
+            "start_line": 2,
+            "start_col": 23,
+            "end_line": 2,
+            "end_col": 41
+          },
+          "loc": 1,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "./step02",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/step02.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/step02.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 2,
+      "maintainability": 89.34210526315789,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 32.5,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 2.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 9.0,
+          "closure_weighted": 2.8289682539682537,
+          "layers_in_closure": 0.0,
+          "max_depth": 9.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 3.0,
+          "churn_factor": 1.0,
+          "dependents": 3.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 2.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 13.0
+        }
+      },
+      "functions": [
+        {
+          "name": "step02",
+          "span": {
+            "start_line": 2,
+            "start_col": 23,
+            "end_line": 2,
+            "end_col": 41
+          },
+          "loc": 1,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "./step03",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/step03.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/step03.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 2,
+      "maintainability": 91.05263157894736,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 43.333333333333336,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 2.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 8.0,
+          "closure_weighted": 2.7178571428571425,
+          "layers_in_closure": 0.0,
+          "max_depth": 8.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 4.0,
+          "churn_factor": 1.0,
+          "dependents": 4.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 2.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 13.0
+        }
+      },
+      "functions": [
+        {
+          "name": "step03",
+          "span": {
+            "start_line": 2,
+            "start_col": 23,
+            "end_line": 2,
+            "end_col": 41
+          },
+          "loc": 1,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "./step04",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/step04.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/step04.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 2,
+      "maintainability": 92.76315789473684,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 54.16666666666667,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 2.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 7.0,
+          "closure_weighted": 2.5928571428571425,
+          "layers_in_closure": 0.0,
+          "max_depth": 7.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 5.0,
+          "churn_factor": 1.0,
+          "dependents": 5.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 2.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 13.0
+        }
+      },
+      "functions": [
+        {
+          "name": "step04",
+          "span": {
+            "start_line": 2,
+            "start_col": 23,
+            "end_line": 2,
+            "end_col": 41
+          },
+          "loc": 1,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "./step05",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/step05.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/step05.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 2,
+      "maintainability": 91.14354066985645,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 65.0,
+        "blast_radius": 78.9090909090909,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 2.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 6.0,
+          "closure_weighted": 2.4499999999999997,
+          "layers_in_closure": 0.0,
+          "max_depth": 6.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 6.0,
+          "churn_factor": 1.0,
+          "dependents": 6.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 2.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 13.0
+        }
+      },
+      "functions": [
+        {
+          "name": "step05",
+          "span": {
+            "start_line": 2,
+            "start_col": 23,
+            "end_line": 2,
+            "end_col": 41
+          },
+          "loc": 1,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "./step06",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/step06.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/step06.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 2,
+      "maintainability": 92.15550239234449,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 75.83333333333333,
+        "blast_radius": 74.48484848484848,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 2.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 5.0,
+          "closure_weighted": 2.283333333333333,
+          "layers_in_closure": 0.0,
+          "max_depth": 5.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 7.0,
+          "churn_factor": 1.0,
+          "dependents": 7.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 2.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 13.0
+        }
+      },
+      "functions": [
+        {
+          "name": "step06",
+          "span": {
+            "start_line": 2,
+            "start_col": 23,
+            "end_line": 2,
+            "end_col": 41
+          },
+          "loc": 1,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "./step07",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/step07.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/step07.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 2,
+      "maintainability": 95.27272727272727,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 70.06060606060606,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 2.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 4.0,
+          "closure_weighted": 2.083333333333333,
+          "layers_in_closure": 0.0,
+          "max_depth": 4.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 8.0,
+          "churn_factor": 1.0,
+          "dependents": 8.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 2.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 13.0
+        }
+      },
+      "functions": [
+        {
+          "name": "step07",
+          "span": {
+            "start_line": 2,
+            "start_col": 23,
+            "end_line": 2,
+            "end_col": 41
+          },
+          "loc": 1,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "./step08",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/step08.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/step08.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 2,
+      "maintainability": 94.57416267942583,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 65.63636363636364,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 2.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 3.0,
+          "closure_weighted": 1.8333333333333333,
+          "layers_in_closure": 0.0,
+          "max_depth": 3.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 9.0,
+          "churn_factor": 1.0,
+          "dependents": 9.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 2.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 13.0
+        }
+      },
+      "functions": [
+        {
+          "name": "step08",
+          "span": {
+            "start_line": 2,
+            "start_col": 23,
+            "end_line": 2,
+            "end_col": 41
+          },
+          "loc": 1,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "./step09",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/step09.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/step09.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 2,
+      "maintainability": 93.87559808612438,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 61.212121212121204,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 2.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 2.0,
+          "closure_weighted": 1.5,
+          "layers_in_closure": 0.0,
+          "max_depth": 2.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 10.0,
+          "churn_factor": 1.0,
+          "dependents": 10.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 2.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 13.0
+        }
+      },
+      "functions": [
+        {
+          "name": "step09",
+          "span": {
+            "start_line": 2,
+            "start_col": 23,
+            "end_line": 2,
+            "end_col": 41
+          },
+          "loc": 1,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "./step10",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/step10.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/step10.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 2,
+      "maintainability": 93.17703349282296,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 56.78787878787879,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 2.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 1.0,
+          "closure_weighted": 1.0,
+          "layers_in_closure": 0.0,
+          "max_depth": 1.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 11.0,
+          "churn_factor": 1.0,
+          "dependents": 11.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 2.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 13.0
+        }
+      },
+      "functions": [
+        {
+          "name": "step10",
+          "span": {
+            "start_line": 2,
+            "start_col": 23,
+            "end_line": 2,
+            "end_col": 41
+          },
+          "loc": 1,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "./step11",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/step11.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/step11.ts",
+      "layer": null,
+      "is_test": false,
+      "loc": 1,
+      "maintainability": 92.47846889952152,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 52.36363636363636,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 1.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 0.0,
+          "fan_out_weighted": 0.0,
+          "instability": 0.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 0.0,
+          "closure_weighted": -0.0,
+          "layers_in_closure": 0.0,
+          "max_depth": 0.0,
+          "top_dirs_in_closure": 0.0
+        },
+        "blast_radius": {
+          "blast": 12.0,
+          "churn_factor": 1.0,
+          "dependents": 12.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 0.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 1.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 1.0,
+          "peer_group_size": 13.0
+        }
+      },
+      "functions": [
+        {
+          "name": "step11",
+          "span": {
+            "start_line": 1,
+            "start_col": 23,
+            "end_line": 1,
+            "end_col": 30
+          },
+          "loc": 1,
+          "params": 0,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": []
+        }
+      ],
+      "imports": []
+    }
+  ],
+  "evidence": [
+    {
+      "metric": "context_depth",
+      "severity": "warn",
+      "path": "src/entry.ts",
+      "key": "closure",
+      "message": "Depends on 12 modules (weighted 3.1), 0 layers (none), max depth 12",
+      "values": [
+        [
+          "closure_size",
+          12.0
+        ],
+        [
+          "weighted",
+          3.103210678210678
+        ],
+        [
+          "layers",
+          0.0
+        ],
+        [
+          "max_depth",
+          12.0
+        ]
+      ]
+    },
+    {
+      "metric": "context_depth",
+      "severity": "info",
+      "path": "src/step00.ts",
+      "key": "closure",
+      "message": "Depends on 11 modules (weighted 3.0), 0 layers (none), max depth 11",
+      "values": [
+        [
+          "closure_size",
+          11.0
+        ],
+        [
+          "weighted",
+          3.0198773448773446
+        ],
+        [
+          "layers",
+          0.0
+        ],
+        [
+          "max_depth",
+          11.0
+        ]
+      ]
+    },
+    {
+      "metric": "context_depth",
+      "severity": "info",
+      "path": "src/step01.ts",
+      "key": "closure",
+      "message": "Depends on 10 modules (weighted 2.9), 0 layers (none), max depth 10",
+      "values": [
+        [
+          "closure_size",
+          10.0
+        ],
+        [
+          "weighted",
+          2.9289682539682538
+        ],
+        [
+          "layers",
+          0.0
+        ],
+        [
+          "max_depth",
+          10.0
+        ]
+      ]
+    },
+    {
+      "metric": "context_depth",
+      "severity": "info",
+      "path": "src/step02.ts",
+      "key": "closure",
+      "message": "Depends on 9 modules (weighted 2.8), 0 layers (none), max depth 9",
+      "values": [
+        [
+          "closure_size",
+          9.0
+        ],
+        [
+          "weighted",
+          2.8289682539682537
+        ],
+        [
+          "layers",
+          0.0
+        ],
+        [
+          "max_depth",
+          9.0
+        ]
+      ]
+    },
+    {
+      "metric": "context_depth",
+      "severity": "info",
+      "path": "src/step03.ts",
+      "key": "closure",
+      "message": "Depends on 8 modules (weighted 2.7), 0 layers (none), max depth 8",
+      "values": [
+        [
+          "closure_size",
+          8.0
+        ],
+        [
+          "weighted",
+          2.7178571428571425
+        ],
+        [
+          "layers",
+          0.0
+        ],
+        [
+          "max_depth",
+          8.0
+        ]
+      ]
+    },
+    {
+      "metric": "context_depth",
+      "severity": "info",
+      "path": "src/step04.ts",
+      "key": "closure",
+      "message": "Depends on 7 modules (weighted 2.6), 0 layers (none), max depth 7",
+      "values": [
+        [
+          "closure_size",
+          7.0
+        ],
+        [
+          "weighted",
+          2.5928571428571425
+        ],
+        [
+          "layers",
+          0.0
+        ],
+        [
+          "max_depth",
+          7.0
+        ]
+      ]
+    },
+    {
+      "metric": "context_depth",
+      "severity": "info",
+      "path": "src/step05.ts",
+      "key": "closure",
+      "message": "Depends on 6 modules (weighted 2.4), 0 layers (none), max depth 6",
+      "values": [
+        [
+          "closure_size",
+          6.0
+        ],
+        [
+          "weighted",
+          2.4499999999999997
+        ],
+        [
+          "layers",
+          0.0
+        ],
+        [
+          "max_depth",
+          6.0
+        ]
+      ]
+    },
+    {
+      "metric": "blast_radius",
+      "severity": "warn",
+      "path": "src/step05.ts",
+      "key": "dependents",
+      "message": "6 dependents (1 direct) across 0 layers; churn unknown; coverage unknown",
+      "values": [
+        [
+          "dependents",
+          6.0
+        ],
+        [
+          "direct",
+          1.0
+        ],
+        [
+          "churn",
+          -1.0
+        ],
+        [
+          "blast",
+          6.0
+        ]
+      ]
+    },
+    {
+      "metric": "context_depth",
+      "severity": "info",
+      "path": "src/step06.ts",
+      "key": "closure",
+      "message": "Depends on 5 modules (weighted 2.3), 0 layers (none), max depth 5",
+      "values": [
+        [
+          "closure_size",
+          5.0
+        ],
+        [
+          "weighted",
+          2.283333333333333
+        ],
+        [
+          "layers",
+          0.0
+        ],
+        [
+          "max_depth",
+          5.0
+        ]
+      ]
+    },
+    {
+      "metric": "blast_radius",
+      "severity": "warn",
+      "path": "src/step06.ts",
+      "key": "dependents",
+      "message": "7 dependents (1 direct) across 0 layers; churn unknown; coverage unknown",
+      "values": [
+        [
+          "dependents",
+          7.0
+        ],
+        [
+          "direct",
+          1.0
+        ],
+        [
+          "churn",
+          -1.0
+        ],
+        [
+          "blast",
+          7.0
+        ]
+      ]
+    },
+    {
+      "metric": "blast_radius",
+      "severity": "warn",
+      "path": "src/step07.ts",
+      "key": "dependents",
+      "message": "8 dependents (1 direct) across 0 layers; churn unknown; coverage unknown",
+      "values": [
+        [
+          "dependents",
+          8.0
+        ],
+        [
+          "direct",
+          1.0
+        ],
+        [
+          "churn",
+          -1.0
+        ],
+        [
+          "blast",
+          8.0
+        ]
+      ]
+    },
+    {
+      "metric": "blast_radius",
+      "severity": "warn",
+      "path": "src/step08.ts",
+      "key": "dependents",
+      "message": "9 dependents (1 direct) across 0 layers; churn unknown; coverage unknown",
+      "values": [
+        [
+          "dependents",
+          9.0
+        ],
+        [
+          "direct",
+          1.0
+        ],
+        [
+          "churn",
+          -1.0
+        ],
+        [
+          "blast",
+          9.0
+        ]
+      ]
+    },
+    {
+      "metric": "blast_radius",
+      "severity": "warn",
+      "path": "src/step09.ts",
+      "key": "dependents",
+      "message": "10 dependents (1 direct) across 0 layers; churn unknown; coverage unknown",
+      "values": [
+        [
+          "dependents",
+          10.0
+        ],
+        [
+          "direct",
+          1.0
+        ],
+        [
+          "churn",
+          -1.0
+        ],
+        [
+          "blast",
+          10.0
+        ]
+      ]
+    },
+    {
+      "metric": "blast_radius",
+      "severity": "warn",
+      "path": "src/step10.ts",
+      "key": "dependents",
+      "message": "11 dependents (1 direct) across 0 layers; churn unknown; coverage unknown",
+      "values": [
+        [
+          "dependents",
+          11.0
+        ],
+        [
+          "direct",
+          1.0
+        ],
+        [
+          "churn",
+          -1.0
+        ],
+        [
+          "blast",
+          11.0
+        ]
+      ]
+    },
+    {
+      "metric": "blast_radius",
+      "severity": "warn",
+      "path": "src/step11.ts",
+      "key": "dependents",
+      "message": "12 dependents (1 direct) across 0 layers; churn unknown; coverage unknown",
+      "values": [
+        [
+          "dependents",
+          12.0
+        ],
+        [
+          "direct",
+          1.0
+        ],
+        [
+          "churn",
+          -1.0
+        ],
+        [
+          "blast",
+          12.0
+        ]
+      ]
+    }
+  ]
+}

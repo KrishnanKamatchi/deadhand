@@ -1,0 +1,848 @@
+---
+source: crates/deadhand-core/tests/fixtures.rs
+expression: "serde_json::to_value(scan(name)).unwrap()"
+---
+{
+  "schema_version": 1,
+  "tool_version": "0.1.0",
+  "root_name": "clean",
+  "summary": {
+    "files": 8,
+    "test_files": 1,
+    "loc": 49,
+    "functions": 8,
+    "generated_skipped": 0,
+    "git_available": false
+  },
+  "maintainability": 99.99999999999999,
+  "metrics": [
+    {
+      "kind": "readability",
+      "label": "Readability",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.15789473684210525,
+      "notes": []
+    },
+    {
+      "kind": "cognitive_load",
+      "label": "Cognitive Load",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.21052631578947367,
+      "notes": []
+    },
+    {
+      "kind": "entanglement",
+      "label": "Entanglement",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.21052631578947367,
+      "notes": []
+    },
+    {
+      "kind": "context_depth",
+      "label": "Context Depth",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.15789473684210525,
+      "notes": []
+    },
+    {
+      "kind": "blast_radius",
+      "label": "Blast Radius",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.15789473684210525,
+      "notes": [
+        "churn unknown (no git history); churn factor fixed at 1",
+        "coverage unknown; coverage factor fixed at 1"
+      ]
+    },
+    {
+      "kind": "pattern_drift",
+      "label": "Pattern Drift",
+      "available": true,
+      "score": 100.0,
+      "weight": 0.10526315789473684,
+      "notes": []
+    },
+    {
+      "kind": "orphaned_code",
+      "label": "Orphaned Code",
+      "available": false,
+      "score": null,
+      "weight": 0.0,
+      "notes": [
+        "no git history; Orphaned Code skipped"
+      ]
+    }
+  ],
+  "findings": [],
+  "notes": [
+    "Orphaned Code unavailable; its weight was redistributed across the other metrics"
+  ],
+  "cycles": [],
+  "parse_errors": [],
+  "modules": [
+    {
+      "path": "src/lib/config.ts",
+      "layer": "infra",
+      "is_test": false,
+      "loc": 3,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 3.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 0.0,
+          "fan_out_weighted": 0.0,
+          "instability": 0.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 0.0,
+          "closure_weighted": -0.0,
+          "layers_in_closure": 0.0,
+          "max_depth": 0.0,
+          "top_dirs_in_closure": 0.0
+        },
+        "blast_radius": {
+          "blast": 3.0,
+          "churn_factor": 1.0,
+          "dependents": 3.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 2.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 0.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 3.0,
+          "peer_group_size": 7.0
+        }
+      },
+      "functions": [],
+      "imports": []
+    },
+    {
+      "path": "src/models/order.ts",
+      "layer": "data",
+      "is_test": false,
+      "loc": 5,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 5.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 3.0,
+          "fan_out": 0.0,
+          "fan_out_weighted": 0.0,
+          "instability": 0.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 0.0,
+          "closure_weighted": -0.0,
+          "layers_in_closure": 0.0,
+          "max_depth": 0.0,
+          "top_dirs_in_closure": 0.0
+        },
+        "blast_radius": {
+          "blast": 3.0,
+          "churn_factor": 1.0,
+          "dependents": 3.0,
+          "direct_dependents": 3.0,
+          "layers_affected": 3.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 0.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 5.0,
+          "peer_group_size": 7.0
+        }
+      },
+      "functions": [],
+      "imports": []
+    },
+    {
+      "path": "src/repositories/orderRepository.ts",
+      "layer": "data",
+      "is_test": false,
+      "loc": 8,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 8.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 0.5,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 0.0,
+          "closure_weighted": -0.0,
+          "layers_in_closure": 0.0,
+          "max_depth": 0.0,
+          "top_dirs_in_closure": 0.0
+        },
+        "blast_radius": {
+          "blast": 2.0,
+          "churn_factor": 1.0,
+          "dependents": 2.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 2.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 2.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 8.0,
+          "max_nesting": 1.0,
+          "median_function_loc": 3.0,
+          "peer_group_size": 7.0
+        }
+      },
+      "functions": [
+        {
+          "name": "saveOrder",
+          "span": {
+            "start_line": 5,
+            "start_col": 8,
+            "end_line": 7,
+            "end_col": 2
+          },
+          "loc": 3,
+          "params": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": [
+            "order"
+          ]
+        },
+        {
+          "name": "findOrders",
+          "span": {
+            "start_line": 9,
+            "start_col": 8,
+            "end_line": 11,
+            "end_col": 2
+          },
+          "loc": 3,
+          "params": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 1,
+          "identifiers": [
+            "userId"
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "../models/order",
+          "kind": "type_only",
+          "target": {
+            "kind": "internal",
+            "target": "src/models/order.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/routes/orders.ts",
+      "layer": "route",
+      "is_test": false,
+      "loc": 8,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 8.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 0.0,
+          "fan_out": 2.0,
+          "fan_out_weighted": 1.5,
+          "instability": 1.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 4.0,
+          "closure_weighted": 2.333333333333333,
+          "layers_in_closure": 3.0,
+          "max_depth": 3.0,
+          "top_dirs_in_closure": 3.0
+        },
+        "blast_radius": {
+          "blast": 0.0,
+          "churn_factor": 1.0,
+          "dependents": 0.0,
+          "direct_dependents": 0.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 2.0,
+          "external_packages": 0.0,
+          "fan_out": 2.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 2.0,
+          "loc": 8.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 3.0,
+          "peer_group_size": 7.0
+        }
+      },
+      "functions": [
+        {
+          "name": "getOrders",
+          "span": {
+            "start_line": 4,
+            "start_col": 8,
+            "end_line": 6,
+            "end_col": 2
+          },
+          "loc": 3,
+          "params": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": [
+            "userId"
+          ]
+        },
+        {
+          "name": "postOrder",
+          "span": {
+            "start_line": 8,
+            "start_col": 8,
+            "end_line": 10,
+            "end_col": 2
+          },
+          "loc": 3,
+          "params": 2,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": [
+            "userId",
+            "total"
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "../services/orderService",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/services/orderService.ts"
+          },
+          "line": 1
+        },
+        {
+          "specifier": "../models/order",
+          "kind": "type_only",
+          "target": {
+            "kind": "internal",
+            "target": "src/models/order.ts"
+          },
+          "line": 2
+        }
+      ]
+    },
+    {
+      "path": "src/services/orderService.test.ts",
+      "layer": "service",
+      "is_test": true,
+      "loc": 4,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 4.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 0.0,
+          "fan_out": 0.0,
+          "fan_out_weighted": 0.0,
+          "instability": 0.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 0.0,
+          "closure_weighted": -0.0,
+          "layers_in_closure": 0.0,
+          "max_depth": 0.0,
+          "top_dirs_in_closure": 0.0
+        },
+        "blast_radius": {
+          "blast": 0.0,
+          "churn_factor": 1.0,
+          "dependents": 0.0,
+          "direct_dependents": 0.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {}
+      },
+      "functions": [],
+      "imports": [
+        {
+          "specifier": "./orderService",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/services/orderService.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/services/orderService.ts",
+      "layer": "service",
+      "is_test": false,
+      "loc": 11,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 11.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 3.0,
+          "fan_out_weighted": 2.5,
+          "instability": 0.75,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 3.0,
+          "closure_weighted": 2.5,
+          "layers_in_closure": 3.0,
+          "max_depth": 2.0,
+          "top_dirs_in_closure": 3.0
+        },
+        "blast_radius": {
+          "blast": 1.0,
+          "churn_factor": 1.0,
+          "dependents": 1.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 1.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 2.0,
+          "external_packages": 0.0,
+          "fan_out": 3.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 1.0,
+          "loc": 11.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 4.0,
+          "peer_group_size": 7.0
+        }
+      },
+      "functions": [
+        {
+          "name": "createOrder",
+          "span": {
+            "start_line": 5,
+            "start_col": 8,
+            "end_line": 9,
+            "end_col": 2
+          },
+          "loc": 5,
+          "params": 2,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": [
+            "userId",
+            "total",
+            "order"
+          ]
+        },
+        {
+          "name": "listOrders",
+          "span": {
+            "start_line": 11,
+            "start_col": 8,
+            "end_line": 13,
+            "end_col": 2
+          },
+          "loc": 3,
+          "params": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": [
+            "userId"
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "../repositories/orderRepository",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/repositories/orderRepository.ts"
+          },
+          "line": 1
+        },
+        {
+          "specifier": "./pricing",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/services/pricing.ts"
+          },
+          "line": 2
+        },
+        {
+          "specifier": "../models/order",
+          "kind": "type_only",
+          "target": {
+            "kind": "internal",
+            "target": "src/models/order.ts"
+          },
+          "line": 3
+        }
+      ]
+    },
+    {
+      "path": "src/services/pricing.ts",
+      "layer": "service",
+      "is_test": false,
+      "loc": 7,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 5.0,
+          "cognitive_total": 1.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 1.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 7.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 1.0,
+          "fan_out": 1.0,
+          "fan_out_weighted": 1.0,
+          "instability": 0.5,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 1.0,
+          "closure_weighted": 1.0,
+          "layers_in_closure": 1.0,
+          "max_depth": 1.0,
+          "top_dirs_in_closure": 1.0
+        },
+        "blast_radius": {
+          "blast": 2.0,
+          "churn_factor": 1.0,
+          "dependents": 2.0,
+          "direct_dependents": 1.0,
+          "layers_affected": 2.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 1.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 1.0,
+          "loc": 7.0,
+          "max_nesting": 1.0,
+          "median_function_loc": 6.0,
+          "peer_group_size": 7.0
+        }
+      },
+      "functions": [
+        {
+          "name": "applyTax",
+          "span": {
+            "start_line": 3,
+            "start_col": 8,
+            "end_line": 8,
+            "end_col": 2
+          },
+          "loc": 6,
+          "params": 1,
+          "cyclomatic": 2,
+          "cognitive": 1,
+          "max_nesting": 1,
+          "identifiers": [
+            "amount"
+          ]
+        }
+      ],
+      "imports": [
+        {
+          "specifier": "../lib/config",
+          "kind": "static",
+          "target": {
+            "kind": "internal",
+            "target": "src/lib/config.ts"
+          },
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "src/utils/format.ts",
+      "layer": "shared",
+      "is_test": false,
+      "loc": 3,
+      "maintainability": 99.99999999999999,
+      "scores": {
+        "cognitive_load": 100.0,
+        "readability": 100.0,
+        "entanglement": 100.0,
+        "context_depth": 100.0,
+        "blast_radius": 100.0,
+        "pattern_drift": 100.0
+      },
+      "raw": {
+        "cognitive_load": {
+          "cognitive_per_100_loc": 0.0,
+          "cognitive_total": 0.0,
+          "functions_over_baseline": 0.0,
+          "max_function_cognitive": 0.0
+        },
+        "readability": {
+          "deeply_nested_functions": 0.0,
+          "loc": 3.0,
+          "long_functions": 0.0,
+          "many_param_functions": 0.0,
+          "mixed_naming": 0.0,
+          "penalty_points": 0.0,
+          "vague_names": 0.0
+        },
+        "entanglement": {
+          "cycle_size": 0.0,
+          "fan_in": 0.0,
+          "fan_out": 0.0,
+          "fan_out_weighted": 0.0,
+          "instability": 0.0,
+          "shared_abuse": 0.0
+        },
+        "context_depth": {
+          "closure_size": 0.0,
+          "closure_weighted": -0.0,
+          "layers_in_closure": 0.0,
+          "max_depth": 0.0,
+          "top_dirs_in_closure": 0.0
+        },
+        "blast_radius": {
+          "blast": 0.0,
+          "churn_factor": 1.0,
+          "dependents": 0.0,
+          "direct_dependents": 0.0,
+          "layers_affected": 0.0,
+          "uncovered": 1.0
+        },
+        "pattern_drift": {
+          "drift": 0.0,
+          "exports": 1.0,
+          "external_packages": 0.0,
+          "fan_out": 0.0,
+          "layer_violations": 0.0,
+          "layers_crossed": 0.0,
+          "loc": 3.0,
+          "max_nesting": 0.0,
+          "median_function_loc": 3.0,
+          "peer_group_size": 7.0
+        }
+      },
+      "functions": [
+        {
+          "name": "formatMoney",
+          "span": {
+            "start_line": 1,
+            "start_col": 8,
+            "end_line": 3,
+            "end_col": 2
+          },
+          "loc": 3,
+          "params": 1,
+          "cyclomatic": 1,
+          "cognitive": 0,
+          "max_nesting": 0,
+          "identifiers": [
+            "amount"
+          ]
+        }
+      ],
+      "imports": []
+    }
+  ],
+  "evidence": []
+}

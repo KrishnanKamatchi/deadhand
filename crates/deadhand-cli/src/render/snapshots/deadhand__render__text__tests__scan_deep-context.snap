@@ -1,0 +1,31 @@
+---
+source: crates/deadhand-cli/src/render/text.rs
+expression: "super::scan(&scan_fixture(name), 5, false, None)"
+---
+╭──────────────────────────────────────────────╮
+│                DEADHAND AUDIT                │
+│                                              │
+│ Readability                     100 / 100    │
+│ Cognitive Load                  100 / 100    │
+│ Entanglement                    100 / 100    │
+│ Context Depth                    60 / 100    │
+│ Blast Radius                     83 / 100    │
+│ Pattern Drift                   100 / 100    │
+│ Orphaned Code                   n/a          │
+│                                              │
+│ MAINTAINABILITY                  91 / 100    │
+╰──────────────────────────────────────────────╯
+
+Worst modules:
+  src/entry.ts               84   Context Depth
+  src/step00.ts              86   Context Depth
+  src/step01.ts              88   Context Depth
+  src/step02.ts              89   Context Depth
+  src/step03.ts              91   Context Depth
+
+note: churn unknown (no git history); churn factor fixed at 1
+note: coverage unknown; coverage factor fixed at 1
+note: no git history; Orphaned Code skipped
+note: Orphaned Code unavailable; its weight was redistributed across the other metrics
+
+13 files (0 tests) · 25 LOC · 13 functions

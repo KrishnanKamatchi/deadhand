@@ -1,0 +1,40 @@
+---
+source: crates/deadhand-cli/src/render/text.rs
+expression: "super::scan(&scan_fixture(name), 5, false, None)"
+---
+╭──────────────────────────────────────────────╮
+│                DEADHAND AUDIT                │
+│                                              │
+│ Readability                      63 / 100    │
+│ Cognitive Load                   55 / 100    │
+│ Entanglement                     43 / 100 !  │
+│ Context Depth                    71 / 100    │
+│ Blast Radius                    100 / 100    │
+│ Pattern Drift                    53 / 100    │
+│ Orphaned Code                   n/a          │
+│                                              │
+│ MAINTAINABILITY                  63 / 100    │
+╰──────────────────────────────────────────────╯
+
+high 4 modules participate in circular dependencies
+warn 1 functions exceed the repo cognitive complexity baseline (13.5)
+warn 1 functions nest 4+ levels deep
+warn 1 shared modules import from the service or data layer
+warn 1 modules depend transitively on 4+ architectural layers
+warn 3 imports break the layer order
+info 1 functions take 5+ parameters
+info 3 modules deviate from their peer group
+
+Worst modules:
+  src/routes/orders.ts           43   Cognitive Load, Pattern Drift
+  src/utils/helpers.ts           64   Entanglement, Readability
+  src/db/client.ts               84   Entanglement, Pattern Drift
+  src/services/billing.ts        89   Entanglement
+  src/components/OrderList.tsx   95   Pattern Drift
+
+note: churn unknown (no git history); churn factor fixed at 1
+note: coverage unknown; coverage factor fixed at 1
+note: no git history; Orphaned Code skipped
+note: Orphaned Code unavailable; its weight was redistributed across the other metrics
+
+11 files (0 tests) · 62 LOC · 6 functions
