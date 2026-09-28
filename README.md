@@ -17,10 +17,6 @@ No Rust toolchain needed. Prebuilt binaries are published for Linux (x86_64, arm
 macOS (Intel, Apple Silicon) and Windows (x86_64).
 
 ```sh
-# npm (any platform)
-npx deadhand scan
-npm install -g deadhand
-
 # macOS / Linux
 curl --proto '=https' --tlsv1.2 -LsSf https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-installer.sh | sh
 
@@ -52,7 +48,7 @@ deadhand --version
 ```
 
 On macOS, a binary downloaded through a browser may be blocked by Gatekeeper until you run
-`xattr -d com.apple.quarantine /usr/local/bin/deadhand`. The curl installer and npm are not affected.
+`xattr -d com.apple.quarantine /usr/local/bin/deadhand`. The curl installer is not affected.
 
 From source (Rust 1.96+):
 
@@ -179,5 +175,9 @@ git tag v0.1.0
 git push origin v0.1.0
 ```
 
-The workflow builds every target, creates the GitHub release with installers, and publishes the
-npm package. It needs an `NPM_TOKEN` repository secret (an npm automation token).
+The workflow builds every target and creates the GitHub release with the archives, checksums and
+installers.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
