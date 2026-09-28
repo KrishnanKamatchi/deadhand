@@ -28,8 +28,31 @@ curl --proto '=https' --tlsv1.2 -LsSf https://github.com/KrishnanKamatchi/deadha
 powershell -ExecutionPolicy Bypass -c "irm https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-installer.ps1 | iex"
 ```
 
-Archives for every platform are also attached to each
-[GitHub release](https://github.com/KrishnanKamatchi/deadhand/releases).
+### Direct downloads
+
+Each link always points to the newest release. Older versions are on the
+[releases page](https://github.com/KrishnanKamatchi/deadhand/releases).
+
+| Platform | Download | Checksum |
+|---|---|---|
+| macOS, Apple Silicon | [deadhand-aarch64-apple-darwin.tar.xz](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-aarch64-apple-darwin.tar.xz) | [sha256](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-aarch64-apple-darwin.tar.xz.sha256) |
+| macOS, Intel | [deadhand-x86_64-apple-darwin.tar.xz](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-x86_64-apple-darwin.tar.xz) | [sha256](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-x86_64-apple-darwin.tar.xz.sha256) |
+| Linux, x86_64 | [deadhand-x86_64-unknown-linux-gnu.tar.xz](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-x86_64-unknown-linux-gnu.tar.xz) | [sha256](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-x86_64-unknown-linux-gnu.tar.xz.sha256) |
+| Linux, x86_64 (static, any distro) | [deadhand-x86_64-unknown-linux-musl.tar.xz](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-x86_64-unknown-linux-musl.tar.xz) | [sha256](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-x86_64-unknown-linux-musl.tar.xz.sha256) |
+| Linux, arm64 | [deadhand-aarch64-unknown-linux-gnu.tar.xz](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-aarch64-unknown-linux-gnu.tar.xz) | [sha256](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-aarch64-unknown-linux-gnu.tar.xz.sha256) |
+| Windows, x86_64 | [deadhand-x86_64-pc-windows-msvc.zip](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-x86_64-pc-windows-msvc.zip) | [sha256](https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-x86_64-pc-windows-msvc.zip.sha256) |
+
+To install from an archive, extract it and put the `deadhand` binary (`deadhand.exe` on Windows)
+somewhere on your `PATH`:
+
+```sh
+tar -xJf deadhand-x86_64-unknown-linux-gnu.tar.xz
+sudo mv deadhand-x86_64-unknown-linux-gnu/deadhand /usr/local/bin/
+deadhand --version
+```
+
+On macOS, a binary downloaded through a browser may be blocked by Gatekeeper until you run
+`xattr -d com.apple.quarantine /usr/local/bin/deadhand`. The curl installer and npm are not affected.
 
 From source (Rust 1.96+):
 
