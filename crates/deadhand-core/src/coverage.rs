@@ -13,7 +13,8 @@ pub fn parse_lcov(text: &str, root: &Path) -> HashMap<String, f64> {
         let line = line.trim();
         if let Some(sf) = line.strip_prefix("SF:") {
             let p = Path::new(sf);
-            let rel = p.strip_prefix(root).map(to_slash).unwrap_or_else(|_| sf.trim_start_matches("./").replace('\\', "/"));
+            let rel =
+                p.strip_prefix(root).map(to_slash).unwrap_or_else(|_| sf.trim_start_matches("./").replace('\\', "/"));
             file = Some(rel);
             (found, hit) = (0, 0);
         } else if let Some(v) = line.strip_prefix("LF:") {

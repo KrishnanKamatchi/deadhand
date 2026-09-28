@@ -45,9 +45,16 @@ pub fn score(outputs: &[MetricOutput], modules: &[ModuleFacts], cfg: &Config) ->
 
     let mut metrics = Vec::with_capacity(outputs.len());
     for o in outputs {
-        let effective_weight = if o.available && available_weight > 0.0 { o.kind.weight(&cfg.weights) / available_weight } else { 0.0 };
+        let effective_weight =
+            if o.available && available_weight > 0.0 { o.kind.weight(&cfg.weights) / available_weight } else { 0.0 };
         if !o.available {
-            metrics.push(MetricScores { kind: o.kind, available: false, modules: vec![100.0; modules.len()], repo: None, effective_weight });
+            metrics.push(MetricScores {
+                kind: o.kind,
+                available: false,
+                modules: vec![100.0; modules.len()],
+                repo: None,
+                effective_weight,
+            });
             continue;
         }
         let mut pop_raw: Vec<f64> = pop.iter().map(|&i| o.modules[i].raw).collect();

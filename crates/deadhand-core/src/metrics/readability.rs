@@ -15,7 +15,8 @@ use crate::evidence::{Evidence, MetricKind, Severity};
 use crate::model::{Casing, ModuleFacts, SymbolKind};
 
 const VAGUE: &[&str] = &[
-    "data", "obj", "tmp", "temp", "foo", "bar", "baz", "stuff", "thing", "things", "info", "val", "arr", "str", "num", "ret",
+    "data", "obj", "tmp", "temp", "foo", "bar", "baz", "stuff", "thing", "things", "info", "val", "arr", "str", "num",
+    "ret",
 ];
 
 /// Vague name: single letter, letter+digits (`x2`), or a generic placeholder word.
@@ -54,7 +55,8 @@ pub fn run(inp: &Inputs<'_>) -> MetricOutput {
     let t = &inp.cfg.thresholds;
     let mut out = MetricOutput::new(kind, inp.modules.len());
 
-    let fn_locs: Vec<f64> = inp.population().flat_map(|i| inp.modules[i].functions.iter().map(|f| f.loc as f64)).collect();
+    let fn_locs: Vec<f64> =
+        inp.population().flat_map(|i| inp.modules[i].functions.iter().map(|f| f.loc as f64)).collect();
     let file_locs: Vec<f64> = inp.population().map(|i| inp.modules[i].loc as f64).collect();
     let (fn_median, file_median) = (median(&fn_locs), median(&file_locs));
     let long_fn = (3.0 * fn_median).max(40.0);
@@ -65,7 +67,15 @@ pub fn run(inp: &Inputs<'_>) -> MetricOutput {
         let mut points = 0.0;
         let (mut long, mut deep, mut params, mut vague_count) = (0.0, 0.0, 0.0, 0.0);
         let mut push = |severity, span, key: String, message: String, vals: Vec<(String, f64)>| {
-            out.evidence.push(Evidence { metric: kind, severity, path: m.path.clone(), span, key, message, values: vals });
+            out.evidence.push(Evidence {
+                metric: kind,
+                severity,
+                path: m.path.clone(),
+                span,
+                key,
+                message,
+                values: vals,
+            });
         };
 
         for f in &m.functions {

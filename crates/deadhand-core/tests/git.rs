@@ -66,7 +66,10 @@ fn orphan_flags_and_churn() {
     }
     repo.commit("initial", 0);
     for day in 1..4 {
-        repo.write("src/user0.ts", &format!("import {{ core }} from \"./lib/core\";\nexport const u = core + {day};\n"));
+        repo.write(
+            "src/user0.ts",
+            &format!("import {{ core }} from \"./lib/core\";\nexport const u = core + {day};\n"),
+        );
         repo.commit("edit", 300 + day);
     }
 
@@ -76,7 +79,11 @@ fn orphan_flags_and_churn() {
     assert!(orphan.available);
 
     let keys = |path: &str| -> Vec<String> {
-        r.evidence.iter().filter(|e| e.metric == MetricKind::OrphanedCode && e.path == path).map(|e| e.key.clone()).collect()
+        r.evidence
+            .iter()
+            .filter(|e| e.metric == MetricKind::OrphanedCode && e.path == path)
+            .map(|e| e.key.clone())
+            .collect()
     };
     assert_eq!(keys("src/generated_like.ts"), vec!["untouched+bulk"]);
     // Five dependents, untouched for 300 days, added in the same bulk commit.

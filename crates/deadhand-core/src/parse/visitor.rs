@@ -49,7 +49,17 @@ struct Frame {
 
 impl Frame {
     fn new(name: Option<String>, start: u32, end: u32, params: u32) -> Frame {
-        Frame { name, start, end, params, cyclomatic: 1, cognitive: 0, nesting: 0, max_nesting: 0, identifiers: Vec::new() }
+        Frame {
+            name,
+            start,
+            end,
+            params,
+            cyclomatic: 1,
+            cognitive: 0,
+            nesting: 0,
+            max_nesting: 0,
+            identifiers: Vec::new(),
+        }
     }
 }
 
@@ -124,7 +134,11 @@ impl Collector {
             Expression::ArrowFunctionExpression(f) => self.pending.push((f.span.start, name)),
             // `const Button = forwardRef((props, ref) => ...)`, `memo(...)`, `useCallback(...)`
             Expression::CallExpression(call) => {
-                if let Some(arg) = call.arguments.iter().find_map(|a| a.as_expression().filter(|e| e.get_inner_expression().is_function())) {
+                if let Some(arg) = call
+                    .arguments
+                    .iter()
+                    .find_map(|a| a.as_expression().filter(|e| e.get_inner_expression().is_function()))
+                {
                     self.name_function_at(arg, name);
                 }
             }
@@ -139,7 +153,14 @@ impl Collector {
 
     /// Runs `walk` inside a new frame for a named function, or one nesting level
     /// deeper in the current frame for an anonymous one.
-    fn function_scope(&mut self, name: Option<String>, start: u32, end: u32, params: &FormalParameters<'_>, walk: impl FnOnce(&mut Self)) {
+    fn function_scope(
+        &mut self,
+        name: Option<String>,
+        start: u32,
+        end: u32,
+        params: &FormalParameters<'_>,
+        walk: impl FnOnce(&mut Self),
+    ) {
         let Some(name) = name else {
             self.exempt_params = false;
             self.nested(|v| v.exempt(|v| v.visit_formal_parameters(params)));
@@ -199,7 +220,11 @@ fn literal_source<'b>(e: &'b Expression<'_>) -> Option<&'b str> {
     }
 }
 
-fn collect_logical<'b, 'a>(e: &'b Expression<'a>, ops: &mut Vec<LogicalOperator>, leaves: &mut Vec<&'b Expression<'a>>) {
+fn collect_logical<'b, 'a>(
+    e: &'b Expression<'a>,
+    ops: &mut Vec<LogicalOperator>,
+    leaves: &mut Vec<&'b Expression<'a>>,
+) {
     match e.without_parentheses() {
         Expression::LogicalExpression(l) => {
             collect_logical(&l.left, ops, leaves);
@@ -213,9 +238,12 @@ fn collect_logical<'b, 'a>(e: &'b Expression<'a>, ops: &mut Vec<LogicalOperator>
 fn is_module_exports(target: &AssignmentTarget<'_>) -> bool {
     let Some(member) = target.as_member_expression() else { return false };
     match member.object() {
-        Expression::Identifier(id) => id.name == "exports" || (id.name == "module" && member.static_property_name() == Some("exports")),
+        Expression::Identifier(id) => {
+            id.name == "exports" || (id.name == "module" && member.static_property_name() == Some("exports"))
+        }
         Expression::StaticMemberExpression(inner) => {
-            matches!(&inner.object, Expression::Identifier(id) if id.name == "module") && inner.property.name == "exports"
+            matches!(&inner.object, Expression::Identifier(id) if id.name == "module")
+                && inner.property.name == "exports"
         }
         _ => false,
     }
@@ -225,7 +253,8 @@ impl<'a> Visit<'a> for Collector {
     fn visit_import_declaration(&mut self, it: &ImportDeclaration<'a>) {
         let all_type = it.specifiers.as_ref().is_some_and(|s| {
             !s.is_empty()
-                && s.iter().all(|sp| matches!(sp, ImportDeclarationSpecifier::ImportSpecifier(x) if x.import_kind.is_type()))
+                && s.iter()
+                    .all(|sp| matches!(sp, ImportDeclarationSpecifier::ImportSpecifier(x) if x.import_kind.is_type()))
         });
         let kind = if it.import_kind.is_type() || all_type { ImportKind::TypeOnly } else { ImportKind::Static };
         self.push_import(it.source.value.as_str(), kind, it.span.start);
@@ -290,7 +319,8 @@ impl<'a> Visit<'a> for Collector {
             }
         }
         if let Expression::Identifier(id) = &it.callee {
-            let recursive = self.frames.len() > 1 && self.frames.last().and_then(|f| f.name.as_deref()) == Some(id.name.as_str());
+            let recursive =
+                self.frames.len() > 1 && self.frames.last().and_then(|f| f.name.as_deref()) == Some(id.name.as_str());
             if recursive {
                 self.flat(1);
             }

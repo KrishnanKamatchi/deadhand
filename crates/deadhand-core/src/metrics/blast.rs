@@ -35,8 +35,10 @@ pub fn run(inp: &Inputs<'_>) -> MetricOutput {
         let raw = dependents.len() as f64 * churn_factor * uncovered;
 
         if raw > t.blast_good {
-            let churn_text = churn.map_or("churn unknown".to_string(), |c| format!("{c} commits in {} days", t.churn_days));
-            let cov_text = coverage.map_or("coverage unknown".to_string(), |c| format!("{}% line coverage", fmt_num(c * 100.0)));
+            let churn_text =
+                churn.map_or("churn unknown".to_string(), |c| format!("{c} commits in {} days", t.churn_days));
+            let cov_text =
+                coverage.map_or("coverage unknown".to_string(), |c| format!("{}% line coverage", fmt_num(c * 100.0)));
             out.evidence.push(Evidence {
                 metric: kind,
                 severity: if raw > t.blast_bad { Severity::High } else { Severity::Warn },

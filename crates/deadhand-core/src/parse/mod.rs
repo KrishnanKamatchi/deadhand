@@ -33,12 +33,26 @@ pub fn parse_module(rel: &str, is_test: bool, source: &str, resolve: impl Fn(&st
 fn source_type(rel: &str) -> SourceType {
     let st = SourceType::from_path(rel).unwrap_or_default();
     // .js files often contain JSX in React projects.
-    if st.is_javascript() { st.with_jsx(true) } else { st }
+    if st.is_javascript() {
+        st.with_jsx(true)
+    } else {
+        st
+    }
 }
 
-fn extract(allocator: &Allocator, rel: &str, is_test: bool, source: &str, resolve: impl Fn(&str) -> ImportTarget) -> ModuleFacts {
+fn extract(
+    allocator: &Allocator,
+    rel: &str,
+    is_test: bool,
+    source: &str,
+    resolve: impl Fn(&str) -> ImportTarget,
+) -> ModuleFacts {
     // CommonJS scripts may return at the top level.
-    let options = ParseOptions { allow_return_outside_function: true, parse_regular_expression: false, ..ParseOptions::default() };
+    let options = ParseOptions {
+        allow_return_outside_function: true,
+        parse_regular_expression: false,
+        ..ParseOptions::default()
+    };
     let ret = Parser::new(allocator, source, source_type(rel)).with_options(options).parse();
     let parse_errors: Vec<String> = ret.diagnostics.iter().map(|d| d.to_string()).collect();
     let program = &ret.program;
@@ -52,7 +66,12 @@ fn extract(allocator: &Allocator, rel: &str, is_test: bool, source: &str, resolv
     let imports = collector
         .imports
         .iter()
-        .map(|r| Import { target: resolve(&r.specifier), specifier: r.specifier.clone(), kind: r.kind, line: lines.line(r.offset) })
+        .map(|r| Import {
+            target: resolve(&r.specifier),
+            specifier: r.specifier.clone(),
+            kind: r.kind,
+            line: lines.line(r.offset),
+        })
         .collect();
 
     let mut functions: Vec<FunctionFacts> = collector
@@ -118,7 +137,8 @@ fn top_level_symbols(program: &Program<'_>) -> (Vec<Symbol>, u32) {
                 for d in &v.declarations {
                     count += 1;
                     if let BindingPattern::BindingIdentifier(id) = &d.id {
-                        let is_fn = d.init.as_ref().is_some_and(|e: &Expression<'_>| e.get_inner_expression().is_function());
+                        let is_fn =
+                            d.init.as_ref().is_some_and(|e: &Expression<'_>| e.get_inner_expression().is_function());
                         let kind = if is_fn { SymbolKind::Function } else { SymbolKind::Variable };
                         symbols.push(Symbol { name: id.name.to_string(), kind });
                     }
@@ -141,7 +161,11 @@ mod tests {
 
     fn cognitive(src: &str, name: &str) -> u32 {
         let f = facts(src);
-        f.functions.iter().find(|f| f.name == name).map(|f| f.cognitive).unwrap_or_else(|| panic!("no fn {name}: {:?}", f.functions.iter().map(|f| &f.name).collect::<Vec<_>>()))
+        f.functions
+            .iter()
+            .find(|f| f.name == name)
+            .map(|f| f.cognitive)
+            .unwrap_or_else(|| panic!("no fn {name}: {:?}", f.functions.iter().map(|f| &f.name).collect::<Vec<_>>()))
     }
 
     // Examples from the SonarSource Cognitive Complexity white paper, translated to TS.
@@ -275,7 +299,9 @@ import h = require("./h");
 
     #[test]
     fn exports_and_symbols() {
-        let f = facts("export const a = 1, b = 2; export function c() {} export default 3; module.exports.d = 4; interface I {}");
+        let f = facts(
+            "export const a = 1, b = 2; export function c() {} export default 3; module.exports.d = 4; interface I {}",
+        );
         assert_eq!(f.exports, 5);
         assert_eq!(f.top_level_decls, 5);
         assert_eq!(f.symbols.len(), 3);
@@ -283,7 +309,9 @@ import h = require("./h");
 
     #[test]
     fn commonjs_top_level_return_is_valid() {
-        let f = parse_module("scripts/x.js", false, "if (!process.argv[2]) { return; }\nmodule.exports = 1;", |s| ImportTarget::External(s.into()));
+        let f = parse_module("scripts/x.js", false, "if (!process.argv[2]) { return; }\nmodule.exports = 1;", |s| {
+            ImportTarget::External(s.into())
+        });
         assert!(f.parse_errors.is_empty(), "{:?}", f.parse_errors);
     }
 

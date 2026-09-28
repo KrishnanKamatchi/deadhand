@@ -19,7 +19,11 @@ fn common_dir(paths: &[&str]) -> usize {
             prefix = prefix.rsplit_once('/').map_or("", |(d, _)| d);
         }
     }
-    if prefix.is_empty() { 0 } else { prefix.len() + 1 }
+    if prefix.is_empty() {
+        0
+    } else {
+        prefix.len() + 1
+    }
 }
 
 pub fn run(inp: &Inputs<'_>) -> MetricOutput {
@@ -44,7 +48,10 @@ pub fn run(inp: &Inputs<'_>) -> MetricOutput {
 
         let deep = f64::from(depth) > t.context_depth_good;
         if weighted > t.context_good || deep || layers.len() >= t.context_layers {
-            let severity = if weighted > t.context_bad || f64::from(depth) >= t.context_depth_bad || layers.len() >= t.context_layers {
+            let severity = if weighted > t.context_bad
+                || f64::from(depth) >= t.context_depth_bad
+                || layers.len() >= t.context_layers
+            {
                 Severity::Warn
             } else {
                 Severity::Info
@@ -78,7 +85,11 @@ pub fn run(inp: &Inputs<'_>) -> MetricOutput {
 
         out.modules[i] = ModuleValue {
             raw: weighted,
-            abs: linear(weighted, t.context_good, t.context_bad).min(linear(f64::from(depth), t.context_depth_good, t.context_depth_bad)),
+            abs: linear(weighted, t.context_good, t.context_bad).min(linear(
+                f64::from(depth),
+                t.context_depth_good,
+                t.context_depth_bad,
+            )),
             values: values([
                 ("closure_size", closure.len() as f64),
                 ("closure_weighted", weighted),
@@ -88,7 +99,11 @@ pub fn run(inp: &Inputs<'_>) -> MetricOutput {
             ]),
         };
     }
-    out.finding(Severity::Warn, wide, format!("{wide} modules depend transitively on {}+ architectural layers", t.context_layers));
+    out.finding(
+        Severity::Warn,
+        wide,
+        format!("{wide} modules depend transitively on {}+ architectural layers", t.context_layers),
+    );
     out
 }
 

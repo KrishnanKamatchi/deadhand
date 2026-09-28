@@ -21,7 +21,11 @@ const FS: char = '\x1f';
 
 impl GitSource for GitCli {
     fn log(&self, root: &Path) -> Result<Option<String>, Error> {
-        let probe = Command::new("git").arg("-C").arg(root).args(["rev-parse", "--is-inside-work-tree", "--is-shallow-repository"]).output();
+        let probe = Command::new("git")
+            .arg("-C")
+            .arg(root)
+            .args(["rev-parse", "--is-inside-work-tree", "--is-shallow-repository"])
+            .output();
         match probe {
             // In a shallow clone every file looks like it has a single commit.
             Ok(o) if o.status.success() && !String::from_utf8_lossy(&o.stdout).contains("\ntrue") => {}
@@ -116,7 +120,9 @@ pub fn parse_log(log: &str, churn_days: u64) -> GitFacts {
     let mut authors: HashMap<&str, BTreeSet<&str>> = HashMap::new();
     for c in &commits {
         for &path in &c.files {
-            let h = files.entry(path.to_string()).or_insert_with(|| FileHistory { first_commit: i64::MAX, ..Default::default() });
+            let h = files
+                .entry(path.to_string())
+                .or_insert_with(|| FileHistory { first_commit: i64::MAX, ..Default::default() });
             h.commits += 1;
             if c.time >= window_start {
                 h.recent_commits += 1;

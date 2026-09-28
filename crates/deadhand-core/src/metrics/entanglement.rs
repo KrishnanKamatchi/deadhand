@@ -43,7 +43,8 @@ pub fn run(inp: &Inputs<'_>) -> MetricOutput {
         if let Some(c) = g.cycle_of[i] {
             abs -= (30.0 + 5.0 * (cycle_size as f64 - 2.0)).min(50.0);
             raw += 10.0 + cycle_size as f64;
-            let others: Vec<&str> = g.cycles[c].iter().filter(|&&j| j != i).map(|&j| inp.modules[j].path.as_str()).collect();
+            let others: Vec<&str> =
+                g.cycles[c].iter().filter(|&&j| j != i).map(|&j| inp.modules[j].path.as_str()).collect();
             let shown = others.iter().take(3).copied().collect::<Vec<_>>().join(", ");
             let more = if others.len() > 3 { format!(" and {} more", others.len() - 3) } else { String::new() };
             out.evidence.push(Evidence {
@@ -60,13 +61,18 @@ pub fn run(inp: &Inputs<'_>) -> MetricOutput {
             }
         }
 
-        let abuse = inp.layer(i) == Some("shared") && g.out[i].iter().any(|e| matches!(inp.layer(e.to), Some("service" | "data")));
+        let abuse = inp.layer(i) == Some("shared")
+            && g.out[i].iter().any(|e| matches!(inp.layer(e.to), Some("service" | "data")));
         if abuse {
             abs -= 25.0;
             raw += 8.0;
             let targets: Vec<String> = g.out[i]
                 .iter()
-                .filter_map(|e| inp.layer(e.to).filter(|l| matches!(*l, "service" | "data")).map(|l| format!("{} ({l})", inp.modules[e.to].path)))
+                .filter_map(|e| {
+                    inp.layer(e.to)
+                        .filter(|l| matches!(*l, "service" | "data"))
+                        .map(|l| format!("{} ({l})", inp.modules[e.to].path))
+                })
                 .collect();
             out.evidence.push(Evidence {
                 metric: kind,
