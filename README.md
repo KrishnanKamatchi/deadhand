@@ -130,10 +130,20 @@ fixtures/              small repos that trigger specific findings (used by tests
 
 ## Development
 
+Requires Rust 1.96 or newer. CI runs the same checks as below on Linux, macOS and Windows:
+
 ```sh
-cargo test --workspace
+cargo fmt --all --check
 cargo clippy --workspace --all-targets -- -D warnings
-INSTA_UPDATE=always cargo test --workspace   # accept intended snapshot changes
+cargo test --workspace
+RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps
+```
+
+Report output is covered by snapshot tests. After an intended change to the output, accept the
+new snapshots with:
+
+```sh
+INSTA_UPDATE=always cargo test --workspace
 ```
 
 ## Releasing
