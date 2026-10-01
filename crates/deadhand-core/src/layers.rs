@@ -1,5 +1,7 @@
 //! Architectural layer detection from path segments, and layer-order checks.
 
+use serde::Serialize;
+
 use crate::config::LayerConfig;
 
 /// Detects the layer of a repo-relative path. `None` = unknown.
@@ -18,7 +20,8 @@ pub fn detect(path: &str, cfg: &LayerConfig) -> Option<String> {
 }
 
 /// Why an import breaks the configured layer order.
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize)]
+#[serde(rename_all = "snake_case")]
 pub enum Violation {
     /// Imports a layer that sits above it (e.g. `data → route`).
     Inverted,
