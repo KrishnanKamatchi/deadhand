@@ -69,6 +69,11 @@ deadhand scan [PATH]              # default PATH = .
 deadhand explain <FILE> [--root PATH]    # every metric and piece of evidence for one module
 deadhand diff <GIT_REV> [--root PATH]    # working tree vs a revision (temporary git worktree)
     --fail-on-drop N              # exit 1 if Maintainability drops by more than N
+
+deadhand map [PATH]               # 2D map of layers, directories, files and functions
+    -o, --output FILE             # default: stdout
+    --format json                 # the map model; an HTML viewer is planned (docs/map-plan.md)
+    --config PATH, --no-git       # as for scan
 ```
 
 Exit codes: `0` ok, `1` threshold failed, `2` usage/config error, `3` analysis error.
@@ -142,7 +147,7 @@ lcov = "coverage/lcov.info"
 ## Layout
 
 ```
-crates/deadhand-core   analysis library (discover, parse, graph, git, layers, metrics, scoring, diff)
+crates/deadhand-core   analysis library (discover, parse, graph, git, layers, metrics, scoring, diff, map)
 crates/deadhand-cli    thin binary: arguments and rendering only
 fixtures/              small repos that trigger specific findings (used by tests)
 ```
