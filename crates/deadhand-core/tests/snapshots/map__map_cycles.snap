@@ -100,7 +100,7 @@ expression: "serde_json::to_value(build(name)).unwrap()"
     "x": 0.0,
     "y": 0.0,
     "w": 101.19,
-    "h": 63.25
+    "h": 65.78
   },
   "bands": [
     {
@@ -109,7 +109,7 @@ expression: "serde_json::to_value(build(name)).unwrap()"
         "x": 0.0,
         "y": 0.0,
         "w": 101.19,
-        "h": 63.25
+        "h": 65.78
       },
       "district": 0
     }
@@ -123,13 +123,13 @@ expression: "serde_json::to_value(build(name)).unwrap()"
       "depth": 0,
       "rect": {
         "x": 0.95,
-        "y": 0.95,
+        "y": 3.48,
         "w": 99.3,
         "h": 61.35
       },
       "inner": {
         "x": 2.18,
-        "y": 5.86,
+        "y": 8.39,
         "w": 96.84,
         "h": 55.21
       },
@@ -146,7 +146,7 @@ expression: "serde_json::to_value(build(name)).unwrap()"
       "layer": null,
       "rect": {
         "x": 3.14,
-        "y": 6.82,
+        "y": 9.35,
         "w": 22.27,
         "h": 25.67
       },
@@ -225,7 +225,7 @@ expression: "serde_json::to_value(build(name)).unwrap()"
       "layer": null,
       "rect": {
         "x": 27.35,
-        "y": 6.82,
+        "y": 9.35,
         "w": 22.27,
         "h": 25.67
       },
@@ -304,7 +304,7 @@ expression: "serde_json::to_value(build(name)).unwrap()"
       "layer": null,
       "rect": {
         "x": 3.14,
-        "y": 34.43,
+        "y": 36.96,
         "w": 22.27,
         "h": 25.67
       },
@@ -383,7 +383,7 @@ expression: "serde_json::to_value(build(name)).unwrap()"
       "layer": null,
       "rect": {
         "x": 27.35,
-        "y": 34.43,
+        "y": 36.96,
         "w": 22.27,
         "h": 25.67
       },
@@ -462,7 +462,7 @@ expression: "serde_json::to_value(build(name)).unwrap()"
       "layer": null,
       "rect": {
         "x": 51.56,
-        "y": 6.82,
+        "y": 9.35,
         "w": 22.27,
         "h": 25.67
       },
@@ -541,7 +541,7 @@ expression: "serde_json::to_value(build(name)).unwrap()"
       "layer": null,
       "rect": {
         "x": 75.78,
-        "y": 6.82,
+        "y": 9.35,
         "w": 22.27,
         "h": 25.67
       },
@@ -620,7 +620,7 @@ expression: "serde_json::to_value(build(name)).unwrap()"
       "layer": null,
       "rect": {
         "x": 51.56,
-        "y": 34.43,
+        "y": 36.96,
         "w": 22.27,
         "h": 25.67
       },
@@ -699,7 +699,7 @@ expression: "serde_json::to_value(build(name)).unwrap()"
       "layer": null,
       "rect": {
         "x": 75.78,
-        "y": 34.43,
+        "y": 36.96,
         "w": 22.27,
         "h": 25.67
       },
@@ -784,7 +784,7 @@ expression: "serde_json::to_value(build(name)).unwrap()"
       },
       "rect": {
         "x": 5.26,
-        "y": 11.61,
+        "y": 14.14,
         "w": 18.04,
         "h": 18.77
       },
@@ -805,7 +805,7 @@ expression: "serde_json::to_value(build(name)).unwrap()"
       },
       "rect": {
         "x": 29.47,
-        "y": 11.61,
+        "y": 14.14,
         "w": 18.04,
         "h": 18.77
       },
@@ -826,7 +826,7 @@ expression: "serde_json::to_value(build(name)).unwrap()"
       },
       "rect": {
         "x": 5.26,
-        "y": 39.22,
+        "y": 41.75,
         "w": 18.04,
         "h": 18.77
       },
@@ -847,7 +847,7 @@ expression: "serde_json::to_value(build(name)).unwrap()"
       },
       "rect": {
         "x": 29.47,
-        "y": 39.22,
+        "y": 41.75,
         "w": 18.04,
         "h": 18.77
       },
@@ -868,7 +868,7 @@ expression: "serde_json::to_value(build(name)).unwrap()"
       },
       "rect": {
         "x": 53.68,
-        "y": 11.61,
+        "y": 14.14,
         "w": 18.04,
         "h": 18.77
       },
@@ -889,7 +889,7 @@ expression: "serde_json::to_value(build(name)).unwrap()"
       },
       "rect": {
         "x": 77.89,
-        "y": 11.61,
+        "y": 14.14,
         "w": 18.04,
         "h": 18.77
       },
@@ -910,7 +910,7 @@ expression: "serde_json::to_value(build(name)).unwrap()"
       },
       "rect": {
         "x": 53.68,
-        "y": 39.22,
+        "y": 41.75,
         "w": 18.04,
         "h": 18.77
       },
@@ -931,7 +931,7 @@ expression: "serde_json::to_value(build(name)).unwrap()"
       },
       "rect": {
         "x": 77.89,
-        "y": 39.22,
+        "y": 41.75,
         "w": 18.04,
         "h": 18.77
       },
