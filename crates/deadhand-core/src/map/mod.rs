@@ -32,6 +32,8 @@ const MIN_FILE_WEIGHT: f64 = 8.0;
 const MIN_BAND_SHARE: f64 = 0.02;
 /// Vertical space between bands, as a share of the map width.
 const BAND_GAP_SHARE: f64 = 0.01;
+/// Strip at the top of each band kept free for its label, as a share of the map width.
+const BAND_LABEL_SHARE: f64 = 0.025;
 
 /// The whole map. Indices in other entries refer to positions in these vectors.
 #[derive(Debug, Clone, Serialize)]
@@ -310,12 +312,13 @@ impl Builder<'_> {
             // everywhere on the map.
             let area = tree.weight * AREA_PER_WEIGHT;
             let compact_width = (area * ASPECT).sqrt();
+            let label = width * BAND_LABEL_SHARE;
             let content = if compact_width >= width {
-                Rect::new(0.0, y, width, area / width)
+                Rect::new(0.0, y + label, width, area / width)
             } else {
-                Rect::new(0.0, y, compact_width, area / compact_width)
+                Rect::new(0.0, y + label, compact_width, area / compact_width)
             };
-            let height = content.h.max(width * MIN_BAND_SHARE);
+            let height = (content.h + label).max(width * MIN_BAND_SHARE);
             let rect = Rect::new(0.0, y, width, height);
             let (dir, path, label) = collapse(tree, String::new(), String::new());
             let district = self.layout_dir(dir, path, label, content, None, 0, b);
