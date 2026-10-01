@@ -1,6 +1,7 @@
 //! Deadhand core: measures how hard a JS/TS repository is for a human to understand and change.
 //!
-//! Pipeline: discover → parse (parallel) → import graph → git → layers → metrics → scoring → report.
+//! Pipeline: discover → parse (parallel) → import graph → git → layers → metrics → scoring → report
+//! (or map).
 
 pub mod config;
 pub mod coverage;
@@ -10,6 +11,7 @@ pub mod evidence;
 pub mod git;
 pub mod graph;
 pub mod layers;
+pub mod map;
 pub mod metrics;
 pub mod model;
 pub mod parse;
@@ -17,7 +19,7 @@ pub mod report;
 pub mod resolve;
 pub mod scoring;
 
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, HashMap};
 use std::path::{Path, PathBuf};
 
 use rayon::prelude::*;
@@ -99,6 +101,33 @@ pub fn analyze(root: &Path, cfg: &Config) -> Result<RepoReport, Error> {
 
 /// Scans `root` using `git` as the history source.
 pub fn analyze_with(root: &Path, cfg: &Config, git: &dyn GitSource) -> Result<RepoReport, Error> {
+    Ok(analyze_full(root, cfg, git)?.report())
+}
+
+/// Everything a scan computes, before it is rendered as a report or a map.
+#[derive(Debug, Clone)]
+pub struct Analysis {
+    pub parsed: ParsedRepo,
+    pub graph: ImportGraph,
+    /// Layer per module (`None` = unknown).
+    pub layers: Vec<Option<String>>,
+    pub git: Option<git::GitFacts>,
+    /// Line coverage per module path, when an lcov file is configured.
+    pub coverage: Option<HashMap<String, f64>>,
+    /// One per metric, in [`evidence::MetricKind::ALL`] order.
+    pub outputs: Vec<metrics::MetricOutput>,
+    pub scores: scoring::Scores,
+}
+
+impl Analysis {
+    /// The versioned report built from this analysis.
+    pub fn report(&self) -> RepoReport {
+        build_report(&self.parsed, &self.graph, &self.layers, self.git.is_some(), &self.outputs, &self.scores)
+    }
+}
+
+/// Runs the whole pipeline on `root` and keeps the intermediate results.
+pub fn analyze_full(root: &Path, cfg: &Config, git: &dyn GitSource) -> Result<Analysis, Error> {
     let parsed = parse_repo(root, cfg)?;
     let modules = &parsed.modules;
     let graph = ImportGraph::build(modules);
@@ -128,7 +157,7 @@ pub fn analyze_with(root: &Path, cfg: &Config, git: &dyn GitSource) -> Result<Re
     };
     let outputs = metrics::run_all(&inputs);
     let scores = scoring::score(&outputs, modules, cfg);
-    Ok(build_report(&parsed, &graph, &layers, git_facts.is_some(), &outputs, &scores))
+    Ok(Analysis { parsed, graph, layers, git: git_facts, coverage, outputs, scores })
 }
 
 fn build_report(

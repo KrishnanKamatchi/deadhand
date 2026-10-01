@@ -1,6 +1,6 @@
 ---
-source: crates/deadhand-core/tests/fixtures.rs
-expression: "serde_json::to_value(scan(name)).unwrap()"
+source: crates/deadhand-core/tests/map.rs
+expression: "serde_json::to_value(build(name)).unwrap()"
 ---
 {
   "schema_version": 1,
@@ -131,19 +131,227 @@ expression: "serde_json::to_value(scan(name)).unwrap()"
   "notes": [
     "Orphaned Code unavailable; its weight was redistributed across the other metrics"
   ],
-  "cycles": [
-    [
-      "src/db/client.ts",
-      "src/routes/orders.ts",
-      "src/services/billing.ts",
-      "src/utils/helpers.ts"
-    ]
+  "layer_order": [
+    "ui",
+    "route",
+    "service",
+    "data",
+    "infra"
   ],
-  "parse_errors": [],
-  "modules": [
+  "bounds": {
+    "x": 0.0,
+    "y": 0.0,
+    "w": 136.24,
+    "h": 202.12
+  },
+  "bands": [
+    {
+      "layer": "ui",
+      "rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "w": 136.24,
+        "h": 22.36
+      },
+      "district": 0
+    },
+    {
+      "layer": "route",
+      "rect": {
+        "x": 0.0,
+        "y": 23.72,
+        "w": 136.24,
+        "h": 41.83
+      },
+      "district": 1
+    },
+    {
+      "layer": "service",
+      "rect": {
+        "x": 0.0,
+        "y": 66.92,
+        "w": 136.24,
+        "h": 22.36
+      },
+      "district": 2
+    },
+    {
+      "layer": "data",
+      "rect": {
+        "x": 0.0,
+        "y": 90.64,
+        "w": 136.24,
+        "h": 22.36
+      },
+      "district": 3
+    },
+    {
+      "layer": "shared",
+      "rect": {
+        "x": 0.0,
+        "y": 114.36,
+        "w": 136.24,
+        "h": 31.62
+      },
+      "district": 4
+    },
+    {
+      "layer": null,
+      "rect": {
+        "x": 0.0,
+        "y": 147.35,
+        "w": 136.24,
+        "h": 54.77
+      },
+      "district": 5
+    }
+  ],
+  "districts": [
+    {
+      "path": "src/components",
+      "label": "src/components",
+      "band": 0,
+      "parent": null,
+      "depth": 0,
+      "rect": {
+        "x": 0.34,
+        "y": 0.34,
+        "w": 35.11,
+        "h": 21.69
+      },
+      "inner": {
+        "x": 0.77,
+        "y": 2.07,
+        "w": 34.24,
+        "h": 19.52
+      },
+      "loc": 4,
+      "files": 1,
+      "maintainability": 95.36842105263156
+    },
+    {
+      "path": "src/routes",
+      "label": "src/routes",
+      "band": 1,
+      "parent": null,
+      "depth": 0,
+      "rect": {
+        "x": 0.63,
+        "y": 24.35,
+        "w": 65.68,
+        "h": 40.58
+      },
+      "inner": {
+        "x": 1.44,
+        "y": 27.6,
+        "w": 64.05,
+        "h": 36.52
+      },
+      "loc": 28,
+      "files": 1,
+      "maintainability": 43.491165413533835
+    },
+    {
+      "path": "src/services",
+      "label": "src/services",
+      "band": 2,
+      "parent": null,
+      "depth": 0,
+      "rect": {
+        "x": 0.34,
+        "y": 67.25,
+        "w": 35.11,
+        "h": 21.69
+      },
+      "inner": {
+        "x": 0.77,
+        "y": 68.99,
+        "w": 34.24,
+        "h": 19.52
+      },
+      "loc": 4,
+      "files": 1,
+      "maintainability": 89.05263157894737
+    },
+    {
+      "path": "src/db",
+      "label": "src/db",
+      "band": 3,
+      "parent": null,
+      "depth": 0,
+      "rect": {
+        "x": 0.34,
+        "y": 90.98,
+        "w": 35.11,
+        "h": 21.69
+      },
+      "inner": {
+        "x": 0.77,
+        "y": 92.71,
+        "w": 34.24,
+        "h": 19.52
+      },
+      "loc": 4,
+      "files": 1,
+      "maintainability": 84.42105263157895
+    },
+    {
+      "path": "src/utils",
+      "label": "src/utils",
+      "band": 4,
+      "parent": null,
+      "depth": 0,
+      "rect": {
+        "x": 0.47,
+        "y": 114.84,
+        "w": 49.65,
+        "h": 30.67
+      },
+      "inner": {
+        "x": 1.09,
+        "y": 117.29,
+        "w": 48.42,
+        "h": 27.61
+      },
+      "loc": 16,
+      "files": 1,
+      "maintainability": 63.71052631578947
+    },
+    {
+      "path": "src/misc",
+      "label": "src/misc",
+      "band": 5,
+      "parent": null,
+      "depth": 0,
+      "rect": {
+        "x": 0.82,
+        "y": 148.17,
+        "w": 85.99,
+        "h": 53.13
+      },
+      "inner": {
+        "x": 1.88,
+        "y": 152.42,
+        "w": 83.87,
+        "h": 47.82
+      },
+      "loc": 6,
+      "files": 6,
+      "maintainability": 99.99999999999999
+    }
+  ],
+  "buildings": [
     {
       "path": "src/components/OrderList.tsx",
+      "label": "OrderList.tsx",
+      "district": 0,
       "layer": "ui",
+      "rect": {
+        "x": 1.55,
+        "y": 2.85,
+        "w": 32.68,
+        "h": 17.96
+      },
       "is_test": false,
       "loc": 4,
       "maintainability": 95.36842105263156,
@@ -207,38 +415,22 @@ expression: "serde_json::to_value(scan(name)).unwrap()"
           "peer_group_size": 11.0
         }
       },
-      "functions": [
-        {
-          "name": "OrderList",
-          "span": {
-            "start_line": 2,
-            "start_col": 8,
-            "end_line": 4,
-            "end_col": 2
-          },
-          "loc": 3,
-          "params": 0,
-          "cyclomatic": 1,
-          "cognitive": 0,
-          "max_nesting": 0,
-          "identifiers": []
-        }
-      ],
-      "imports": [
-        {
-          "specifier": "../db/client",
-          "kind": "static",
-          "target": {
-            "kind": "internal",
-            "target": "src/db/client.ts"
-          },
-          "line": 1
-        }
-      ]
+      "exports": 1,
+      "external_packages": [],
+      "first_room": 0,
+      "room_count": 1
     },
     {
       "path": "src/db/client.ts",
+      "label": "client.ts",
+      "district": 3,
       "layer": "data",
+      "rect": {
+        "x": 1.55,
+        "y": 93.49,
+        "w": 32.68,
+        "h": 17.96
+      },
       "is_test": false,
       "loc": 4,
       "maintainability": 84.42105263157895,
@@ -302,38 +494,22 @@ expression: "serde_json::to_value(scan(name)).unwrap()"
           "peer_group_size": 11.0
         }
       },
-      "functions": [
-        {
-          "name": "query",
-          "span": {
-            "start_line": 3,
-            "start_col": 10,
-            "end_line": 3,
-            "end_col": 78
-          },
-          "loc": 1,
-          "params": 1,
-          "cyclomatic": 1,
-          "cognitive": 0,
-          "max_nesting": 0,
-          "identifiers": []
-        }
-      ],
-      "imports": [
-        {
-          "specifier": "../routes/orders",
-          "kind": "static",
-          "target": {
-            "kind": "internal",
-            "target": "src/routes/orders.ts"
-          },
-          "line": 1
-        }
-      ]
+      "exports": 1,
+      "external_packages": [],
+      "first_room": 1,
+      "room_count": 1
     },
     {
       "path": "src/misc/a.ts",
+      "label": "a.ts",
+      "district": 5,
       "layer": null,
+      "rect": {
+        "x": 2.52,
+        "y": 153.06,
+        "w": 40.66,
+        "h": 14.66
+      },
       "is_test": false,
       "loc": 1,
       "maintainability": 99.99999999999999,
@@ -395,12 +571,22 @@ expression: "serde_json::to_value(scan(name)).unwrap()"
           "peer_group_size": 6.0
         }
       },
-      "functions": [],
-      "imports": []
+      "exports": 1,
+      "external_packages": [],
+      "first_room": 2,
+      "room_count": 0
     },
     {
       "path": "src/misc/b.ts",
+      "label": "b.ts",
+      "district": 5,
       "layer": null,
+      "rect": {
+        "x": 2.72,
+        "y": 169.2,
+        "w": 19.29,
+        "h": 30.2
+      },
       "is_test": false,
       "loc": 1,
       "maintainability": 99.99999999999999,
@@ -462,12 +648,22 @@ expression: "serde_json::to_value(scan(name)).unwrap()"
           "peer_group_size": 6.0
         }
       },
-      "functions": [],
-      "imports": []
+      "exports": 1,
+      "external_packages": [],
+      "first_room": 2,
+      "room_count": 0
     },
     {
       "path": "src/misc/c.ts",
+      "label": "c.ts",
+      "district": 5,
       "layer": null,
+      "rect": {
+        "x": 23.69,
+        "y": 169.2,
+        "w": 19.29,
+        "h": 30.2
+      },
       "is_test": false,
       "loc": 1,
       "maintainability": 99.99999999999999,
@@ -529,12 +725,22 @@ expression: "serde_json::to_value(scan(name)).unwrap()"
           "peer_group_size": 6.0
         }
       },
-      "functions": [],
-      "imports": []
+      "exports": 1,
+      "external_packages": [],
+      "first_room": 2,
+      "room_count": 0
     },
     {
       "path": "src/misc/d.ts",
+      "label": "d.ts",
+      "district": 5,
       "layer": null,
+      "rect": {
+        "x": 44.46,
+        "y": 153.06,
+        "w": 40.66,
+        "h": 14.66
+      },
       "is_test": false,
       "loc": 1,
       "maintainability": 99.99999999999999,
@@ -596,12 +802,22 @@ expression: "serde_json::to_value(scan(name)).unwrap()"
           "peer_group_size": 6.0
         }
       },
-      "functions": [],
-      "imports": []
+      "exports": 1,
+      "external_packages": [],
+      "first_room": 2,
+      "room_count": 0
     },
     {
       "path": "src/misc/e.ts",
+      "label": "e.ts",
+      "district": 5,
       "layer": null,
+      "rect": {
+        "x": 44.66,
+        "y": 169.2,
+        "w": 19.29,
+        "h": 30.2
+      },
       "is_test": false,
       "loc": 1,
       "maintainability": 99.99999999999999,
@@ -663,12 +879,22 @@ expression: "serde_json::to_value(scan(name)).unwrap()"
           "peer_group_size": 6.0
         }
       },
-      "functions": [],
-      "imports": []
+      "exports": 1,
+      "external_packages": [],
+      "first_room": 2,
+      "room_count": 0
     },
     {
       "path": "src/misc/f.ts",
+      "label": "f.ts",
+      "district": 5,
       "layer": null,
+      "rect": {
+        "x": 65.62,
+        "y": 169.2,
+        "w": 19.29,
+        "h": 30.2
+      },
       "is_test": false,
       "loc": 1,
       "maintainability": 99.99999999999999,
@@ -730,12 +956,22 @@ expression: "serde_json::to_value(scan(name)).unwrap()"
           "peer_group_size": 6.0
         }
       },
-      "functions": [],
-      "imports": []
+      "exports": 1,
+      "external_packages": [],
+      "first_room": 2,
+      "room_count": 0
     },
     {
       "path": "src/routes/orders.ts",
+      "label": "orders.ts",
+      "district": 1,
       "layer": "route",
+      "rect": {
+        "x": 2.9,
+        "y": 29.06,
+        "w": 61.13,
+        "h": 33.6
+      },
       "is_test": false,
       "loc": 28,
       "maintainability": 43.491165413533835,
@@ -799,60 +1035,22 @@ expression: "serde_json::to_value(scan(name)).unwrap()"
           "peer_group_size": 11.0
         }
       },
-      "functions": [
-        {
-          "name": "handle",
-          "span": {
-            "start_line": 5,
-            "start_col": 8,
-            "end_line": 29,
-            "end_col": 2
-          },
-          "loc": 25,
-          "params": 2,
-          "cyclomatic": 11,
-          "cognitive": 27,
-          "max_nesting": 6,
-          "identifiers": [
-            "req",
-            "res",
-            "data"
-          ]
-        }
-      ],
-      "imports": [
-        {
-          "specifier": "../db/client",
-          "kind": "static",
-          "target": {
-            "kind": "internal",
-            "target": "src/db/client.ts"
-          },
-          "line": 1
-        },
-        {
-          "specifier": "../services/billing",
-          "kind": "static",
-          "target": {
-            "kind": "internal",
-            "target": "src/services/billing.ts"
-          },
-          "line": 2
-        },
-        {
-          "specifier": "../utils/helpers",
-          "kind": "static",
-          "target": {
-            "kind": "internal",
-            "target": "src/utils/helpers.ts"
-          },
-          "line": 3
-        }
-      ]
+      "exports": 1,
+      "external_packages": [],
+      "first_room": 2,
+      "room_count": 1
     },
     {
       "path": "src/services/billing.ts",
+      "label": "billing.ts",
+      "district": 2,
       "layer": "service",
+      "rect": {
+        "x": 1.55,
+        "y": 69.77,
+        "w": 32.68,
+        "h": 17.96
+      },
       "is_test": false,
       "loc": 4,
       "maintainability": 89.05263157894737,
@@ -916,40 +1114,22 @@ expression: "serde_json::to_value(scan(name)).unwrap()"
           "peer_group_size": 11.0
         }
       },
-      "functions": [
-        {
-          "name": "chargeCard",
-          "span": {
-            "start_line": 2,
-            "start_col": 8,
-            "end_line": 4,
-            "end_col": 2
-          },
-          "loc": 3,
-          "params": 1,
-          "cyclomatic": 1,
-          "cognitive": 0,
-          "max_nesting": 0,
-          "identifiers": [
-            "row"
-          ]
-        }
-      ],
-      "imports": [
-        {
-          "specifier": "../db/client",
-          "kind": "static",
-          "target": {
-            "kind": "internal",
-            "target": "src/db/client.ts"
-          },
-          "line": 1
-        }
-      ]
+      "exports": 1,
+      "external_packages": [],
+      "first_room": 3,
+      "room_count": 1
     },
     {
       "path": "src/utils/helpers.ts",
+      "label": "helpers.ts",
+      "district": 4,
       "layer": "shared",
+      "rect": {
+        "x": 2.19,
+        "y": 118.4,
+        "w": 46.21,
+        "h": 25.4
+      },
       "is_test": false,
       "loc": 16,
       "maintainability": 63.71052631578947,
@@ -1013,511 +1193,444 @@ expression: "serde_json::to_value(scan(name)).unwrap()"
           "peer_group_size": 11.0
         }
       },
-      "functions": [
-        {
-          "name": "log",
-          "span": {
-            "start_line": 11,
-            "start_col": 6,
-            "end_line": 11,
-            "end_col": 38
-          },
-          "loc": 1,
-          "params": 1,
-          "cyclomatic": 1,
-          "cognitive": 0,
-          "max_nesting": 0,
-          "identifiers": [
-            "x"
-          ]
-        },
-        {
-          "name": "process_items",
-          "span": {
-            "start_line": 15,
-            "start_col": 8,
-            "end_line": 18,
-            "end_col": 2
-          },
-          "loc": 4,
-          "params": 6,
-          "cyclomatic": 1,
-          "cognitive": 0,
-          "max_nesting": 0,
-          "identifiers": [
-            "tmp",
-            "obj",
-            "x",
-            "y",
-            "z",
-            "w",
-            "data"
-          ]
-        }
-      ],
-      "imports": [
-        {
-          "specifier": "../services/billing",
-          "kind": "static",
-          "target": {
-            "kind": "internal",
-            "target": "src/services/billing.ts"
-          },
-          "line": 1
-        },
-        {
-          "specifier": "../db/client",
-          "kind": "static",
-          "target": {
-            "kind": "internal",
-            "target": "src/db/client.ts"
-          },
-          "line": 2
-        },
-        {
-          "specifier": "../misc/a",
-          "kind": "static",
-          "target": {
-            "kind": "internal",
-            "target": "src/misc/a.ts"
-          },
-          "line": 3
-        },
-        {
-          "specifier": "../misc/b",
-          "kind": "static",
-          "target": {
-            "kind": "internal",
-            "target": "src/misc/b.ts"
-          },
-          "line": 4
-        },
-        {
-          "specifier": "../misc/c",
-          "kind": "static",
-          "target": {
-            "kind": "internal",
-            "target": "src/misc/c.ts"
-          },
-          "line": 5
-        },
-        {
-          "specifier": "../misc/d",
-          "kind": "static",
-          "target": {
-            "kind": "internal",
-            "target": "src/misc/d.ts"
-          },
-          "line": 6
-        },
-        {
-          "specifier": "../misc/e",
-          "kind": "static",
-          "target": {
-            "kind": "internal",
-            "target": "src/misc/e.ts"
-          },
-          "line": 7
-        },
-        {
-          "specifier": "../misc/f",
-          "kind": "static",
-          "target": {
-            "kind": "internal",
-            "target": "src/misc/f.ts"
-          },
-          "line": 8
-        }
-      ]
+      "exports": 2,
+      "external_packages": [],
+      "first_room": 4,
+      "room_count": 2
     }
   ],
-  "evidence": [
+  "rooms": [
     {
-      "metric": "context_depth",
-      "severity": "warn",
-      "path": "src/components/OrderList.tsx",
-      "key": "closure",
-      "message": "Depends on 10 modules (weighted 3.7), 4 layers (data, route, service, shared), max depth 4",
-      "values": [
-        [
-          "closure_size",
-          10.0
-        ],
-        [
-          "weighted",
-          3.666666666666667
-        ],
-        [
-          "layers",
-          4.0
-        ],
-        [
-          "max_depth",
-          4.0
-        ]
-      ]
-    },
-    {
-      "metric": "pattern_drift",
-      "severity": "warn",
-      "path": "src/components/OrderList.tsx",
+      "building": 0,
+      "name": "OrderList",
       "span": {
-        "start_line": 1,
-        "start_col": 1,
-        "end_line": 1,
-        "end_col": 1
+        "start_line": 2,
+        "start_col": 8,
+        "end_line": 4,
+        "end_col": 2
       },
-      "key": "layer-violation:src/db/client.ts",
-      "message": "Imports src/db/client.ts: ui layer imports data directly, skipping service",
-      "values": []
+      "rect": {
+        "x": 3.15,
+        "y": 6.6,
+        "w": 29.48,
+        "h": 12.61
+      },
+      "loc": 3,
+      "params": 0,
+      "cyclomatic": 1,
+      "cognitive": 0,
+      "max_nesting": 0
     },
     {
-      "metric": "entanglement",
-      "severity": "high",
-      "path": "src/db/client.ts",
-      "key": "cycle",
-      "message": "In an import cycle of 4 modules with src/routes/orders.ts, src/services/billing.ts, src/utils/helpers.ts",
-      "values": [
-        [
-          "cycle_size",
-          4.0
-        ]
-      ]
-    },
-    {
-      "metric": "pattern_drift",
-      "severity": "warn",
-      "path": "src/db/client.ts",
+      "building": 1,
+      "name": "query",
       "span": {
-        "start_line": 1,
-        "start_col": 1,
-        "end_line": 1,
-        "end_col": 1
+        "start_line": 3,
+        "start_col": 10,
+        "end_line": 3,
+        "end_col": 78
       },
-      "key": "layer-violation:src/routes/orders.ts",
-      "message": "Imports src/routes/orders.ts: data layer imports route, which sits above it",
-      "values": []
-    },
-    {
-      "metric": "entanglement",
-      "severity": "high",
-      "path": "src/routes/orders.ts",
-      "key": "cycle",
-      "message": "In an import cycle of 4 modules with src/db/client.ts, src/services/billing.ts, src/utils/helpers.ts",
-      "values": [
-        [
-          "cycle_size",
-          4.0
-        ]
-      ]
-    },
-    {
-      "metric": "context_depth",
-      "severity": "info",
-      "path": "src/routes/orders.ts",
-      "key": "closure",
-      "message": "Depends on 9 modules (weighted 6), 3 layers (data, service, shared), max depth 2",
-      "values": [
-        [
-          "closure_size",
-          9.0
-        ],
-        [
-          "weighted",
-          6.0
-        ],
-        [
-          "layers",
-          3.0
-        ],
-        [
-          "max_depth",
-          2.0
-        ]
-      ]
-    },
-    {
-      "metric": "pattern_drift",
-      "severity": "warn",
-      "path": "src/routes/orders.ts",
-      "key": "peer-deviation",
-      "message": "Unlike its peers (repo, 11 modules): layers crossed 3 (peer median 0); median function loc 25 (peer median 3); max nesting 6 (peer median 0)",
-      "values": [
-        [
-          "layers_crossed",
-          3.0
-        ],
-        [
-          "layers_crossed_peer_median",
-          0.0
-        ],
-        [
-          "median_function_loc",
-          25.0
-        ],
-        [
-          "median_function_loc_peer_median",
-          3.0
-        ],
-        [
-          "max_nesting",
-          6.0
-        ],
-        [
-          "max_nesting_peer_median",
-          0.0
-        ]
-      ]
-    },
-    {
-      "metric": "pattern_drift",
-      "severity": "warn",
-      "path": "src/routes/orders.ts",
-      "span": {
-        "start_line": 1,
-        "start_col": 1,
-        "end_line": 1,
-        "end_col": 1
+      "rect": {
+        "x": 3.15,
+        "y": 97.25,
+        "w": 29.48,
+        "h": 12.61
       },
-      "key": "layer-violation:src/db/client.ts",
-      "message": "Imports src/db/client.ts: route layer imports data directly, skipping service",
-      "values": []
+      "loc": 1,
+      "params": 1,
+      "cyclomatic": 1,
+      "cognitive": 0,
+      "max_nesting": 0
     },
     {
-      "metric": "cognitive_load",
-      "severity": "warn",
-      "path": "src/routes/orders.ts",
+      "building": 8,
+      "name": "handle",
       "span": {
         "start_line": 5,
         "start_col": 8,
         "end_line": 29,
         "end_col": 2
       },
-      "key": "function:handle",
-      "message": "`handle` has cognitive complexity 27 (threshold 15, repo p90 13.5)",
-      "values": [
-        [
-          "cognitive",
-          27.0
-        ],
-        [
-          "threshold",
-          15.0
-        ],
-        [
-          "repo_p90",
-          13.5
-        ]
-      ]
+      "rect": {
+        "x": 5.89,
+        "y": 36.08,
+        "w": 55.15,
+        "h": 23.59
+      },
+      "loc": 25,
+      "params": 2,
+      "cyclomatic": 11,
+      "cognitive": 27,
+      "max_nesting": 6
     },
     {
-      "metric": "readability",
-      "severity": "warn",
-      "path": "src/routes/orders.ts",
+      "building": 9,
+      "name": "chargeCard",
       "span": {
-        "start_line": 5,
+        "start_line": 2,
         "start_col": 8,
-        "end_line": 29,
+        "end_line": 4,
         "end_col": 2
       },
-      "key": "deep-nesting:handle",
-      "message": "`handle` nests 6 levels deep (threshold 4)",
-      "values": [
-        [
-          "max_nesting",
-          6.0
-        ],
-        [
-          "threshold",
-          4.0
-        ]
-      ]
-    },
-    {
-      "metric": "readability",
-      "severity": "info",
-      "path": "src/routes/orders.ts",
-      "span": {
-        "start_line": 5,
-        "start_col": 8,
-        "end_line": 29,
-        "end_col": 2
+      "rect": {
+        "x": 3.15,
+        "y": 73.52,
+        "w": 29.48,
+        "h": 12.61
       },
-      "key": "vague-names:handle",
-      "message": "`handle` declares vague names: `data`",
-      "values": [
-        [
-          "vague_names",
-          1.0
-        ]
-      ]
+      "loc": 3,
+      "params": 1,
+      "cyclomatic": 1,
+      "cognitive": 0,
+      "max_nesting": 0
     },
     {
-      "metric": "entanglement",
-      "severity": "high",
-      "path": "src/services/billing.ts",
-      "key": "cycle",
-      "message": "In an import cycle of 4 modules with src/db/client.ts, src/routes/orders.ts, src/utils/helpers.ts",
-      "values": [
-        [
-          "cycle_size",
-          4.0
-        ]
-      ]
-    },
-    {
-      "metric": "pattern_drift",
-      "severity": "info",
-      "path": "src/services/billing.ts",
-      "key": "peer-deviation",
-      "message": "Unlike its peers (repo, 11 modules): naming camelCase (peers use snake_case)",
-      "values": []
-    },
-    {
-      "metric": "entanglement",
-      "severity": "high",
-      "path": "src/utils/helpers.ts",
-      "key": "cycle",
-      "message": "In an import cycle of 4 modules with src/db/client.ts, src/routes/orders.ts, src/services/billing.ts",
-      "values": [
-        [
-          "cycle_size",
-          4.0
-        ]
-      ]
-    },
-    {
-      "metric": "entanglement",
-      "severity": "warn",
-      "path": "src/utils/helpers.ts",
-      "key": "fan-out",
-      "message": "Imports 8 internal modules (repo median 0)",
-      "values": [
-        [
-          "fan_out",
-          8.0
-        ],
-        [
-          "repo_median",
-          0.0
-        ]
-      ]
-    },
-    {
-      "metric": "entanglement",
-      "severity": "warn",
-      "path": "src/utils/helpers.ts",
-      "key": "shared-imports-upper-layer",
-      "message": "Shared module with 1 dependents imports src/db/client.ts (data), src/services/billing.ts (service)",
-      "values": [
-        [
-          "fan_in",
-          1.0
-        ]
-      ]
-    },
-    {
-      "metric": "context_depth",
-      "severity": "info",
-      "path": "src/utils/helpers.ts",
-      "key": "closure",
-      "message": "Depends on 9 modules (weighted 8.5), 3 layers (data, route, service), max depth 2",
-      "values": [
-        [
-          "closure_size",
-          9.0
-        ],
-        [
-          "weighted",
-          8.5
-        ],
-        [
-          "layers",
-          3.0
-        ],
-        [
-          "max_depth",
-          2.0
-        ]
-      ]
-    },
-    {
-      "metric": "pattern_drift",
-      "severity": "info",
-      "path": "src/utils/helpers.ts",
-      "key": "peer-deviation",
-      "message": "Unlike its peers (repo, 11 modules): fan out 8 (peer median 0)",
-      "values": [
-        [
-          "fan_out",
-          8.0
-        ],
-        [
-          "fan_out_peer_median",
-          0.0
-        ]
-      ]
-    },
-    {
-      "metric": "readability",
-      "severity": "info",
-      "path": "src/utils/helpers.ts",
+      "building": 10,
+      "name": "log",
       "span": {
         "start_line": 11,
         "start_col": 6,
         "end_line": 11,
         "end_col": 38
       },
+      "rect": {
+        "x": 3.9,
+        "y": 123.15,
+        "w": 7.86,
+        "h": 18.94
+      },
+      "loc": 1,
+      "params": 1,
+      "cyclomatic": 1,
+      "cognitive": 0,
+      "max_nesting": 0
+    },
+    {
+      "building": 10,
+      "name": "process_items",
+      "span": {
+        "start_line": 15,
+        "start_col": 8,
+        "end_line": 18,
+        "end_col": 2
+      },
+      "rect": {
+        "x": 13.19,
+        "y": 123.71,
+        "w": 32.96,
+        "h": 17.83
+      },
+      "loc": 4,
+      "params": 6,
+      "cyclomatic": 1,
+      "cognitive": 0,
+      "max_nesting": 0
+    }
+  ],
+  "edges": [
+    {
+      "from": 0,
+      "to": 1,
+      "type_only": false,
+      "in_cycle": false,
+      "violation": "skips_service"
+    },
+    {
+      "from": 1,
+      "to": 8,
+      "type_only": false,
+      "in_cycle": true,
+      "violation": "inverted"
+    },
+    {
+      "from": 8,
+      "to": 1,
+      "type_only": false,
+      "in_cycle": true,
+      "violation": "skips_service"
+    },
+    {
+      "from": 8,
+      "to": 9,
+      "type_only": false,
+      "in_cycle": true
+    },
+    {
+      "from": 8,
+      "to": 10,
+      "type_only": false,
+      "in_cycle": true
+    },
+    {
+      "from": 9,
+      "to": 1,
+      "type_only": false,
+      "in_cycle": true
+    },
+    {
+      "from": 10,
+      "to": 1,
+      "type_only": false,
+      "in_cycle": true
+    },
+    {
+      "from": 10,
+      "to": 2,
+      "type_only": false,
+      "in_cycle": false
+    },
+    {
+      "from": 10,
+      "to": 3,
+      "type_only": false,
+      "in_cycle": false
+    },
+    {
+      "from": 10,
+      "to": 4,
+      "type_only": false,
+      "in_cycle": false
+    },
+    {
+      "from": 10,
+      "to": 5,
+      "type_only": false,
+      "in_cycle": false
+    },
+    {
+      "from": 10,
+      "to": 6,
+      "type_only": false,
+      "in_cycle": false
+    },
+    {
+      "from": 10,
+      "to": 7,
+      "type_only": false,
+      "in_cycle": false
+    },
+    {
+      "from": 10,
+      "to": 9,
+      "type_only": false,
+      "in_cycle": true
+    }
+  ],
+  "cycles": [
+    [
+      1,
+      8,
+      9,
+      10
+    ]
+  ],
+  "pins": [
+    {
+      "building": 0,
+      "metric": "context_depth",
+      "severity": "warn",
+      "key": "closure",
+      "message": "Depends on 10 modules (weighted 3.7), 4 layers (data, route, service, shared), max depth 4"
+    },
+    {
+      "building": 0,
+      "metric": "pattern_drift",
+      "severity": "warn",
+      "key": "layer-violation:src/db/client.ts",
+      "message": "Imports src/db/client.ts: ui layer imports data directly, skipping service",
+      "span": {
+        "start_line": 1,
+        "start_col": 1,
+        "end_line": 1,
+        "end_col": 1
+      }
+    },
+    {
+      "building": 1,
+      "metric": "entanglement",
+      "severity": "high",
+      "key": "cycle",
+      "message": "In an import cycle of 4 modules with src/routes/orders.ts, src/services/billing.ts, src/utils/helpers.ts"
+    },
+    {
+      "building": 1,
+      "metric": "pattern_drift",
+      "severity": "warn",
+      "key": "layer-violation:src/routes/orders.ts",
+      "message": "Imports src/routes/orders.ts: data layer imports route, which sits above it",
+      "span": {
+        "start_line": 1,
+        "start_col": 1,
+        "end_line": 1,
+        "end_col": 1
+      }
+    },
+    {
+      "building": 8,
+      "metric": "entanglement",
+      "severity": "high",
+      "key": "cycle",
+      "message": "In an import cycle of 4 modules with src/db/client.ts, src/services/billing.ts, src/utils/helpers.ts"
+    },
+    {
+      "building": 8,
+      "metric": "context_depth",
+      "severity": "info",
+      "key": "closure",
+      "message": "Depends on 9 modules (weighted 6), 3 layers (data, service, shared), max depth 2"
+    },
+    {
+      "building": 8,
+      "metric": "pattern_drift",
+      "severity": "warn",
+      "key": "peer-deviation",
+      "message": "Unlike its peers (repo, 11 modules): layers crossed 3 (peer median 0); median function loc 25 (peer median 3); max nesting 6 (peer median 0)"
+    },
+    {
+      "building": 8,
+      "metric": "pattern_drift",
+      "severity": "warn",
+      "key": "layer-violation:src/db/client.ts",
+      "message": "Imports src/db/client.ts: route layer imports data directly, skipping service",
+      "span": {
+        "start_line": 1,
+        "start_col": 1,
+        "end_line": 1,
+        "end_col": 1
+      }
+    },
+    {
+      "building": 8,
+      "room": 2,
+      "metric": "cognitive_load",
+      "severity": "warn",
+      "key": "function:handle",
+      "message": "`handle` has cognitive complexity 27 (threshold 15, repo p90 13.5)",
+      "span": {
+        "start_line": 5,
+        "start_col": 8,
+        "end_line": 29,
+        "end_col": 2
+      }
+    },
+    {
+      "building": 8,
+      "room": 2,
+      "metric": "readability",
+      "severity": "warn",
+      "key": "deep-nesting:handle",
+      "message": "`handle` nests 6 levels deep (threshold 4)",
+      "span": {
+        "start_line": 5,
+        "start_col": 8,
+        "end_line": 29,
+        "end_col": 2
+      }
+    },
+    {
+      "building": 8,
+      "room": 2,
+      "metric": "readability",
+      "severity": "info",
+      "key": "vague-names:handle",
+      "message": "`handle` declares vague names: `data`",
+      "span": {
+        "start_line": 5,
+        "start_col": 8,
+        "end_line": 29,
+        "end_col": 2
+      }
+    },
+    {
+      "building": 9,
+      "metric": "entanglement",
+      "severity": "high",
+      "key": "cycle",
+      "message": "In an import cycle of 4 modules with src/db/client.ts, src/routes/orders.ts, src/utils/helpers.ts"
+    },
+    {
+      "building": 9,
+      "metric": "pattern_drift",
+      "severity": "info",
+      "key": "peer-deviation",
+      "message": "Unlike its peers (repo, 11 modules): naming camelCase (peers use snake_case)"
+    },
+    {
+      "building": 10,
+      "metric": "entanglement",
+      "severity": "high",
+      "key": "cycle",
+      "message": "In an import cycle of 4 modules with src/db/client.ts, src/routes/orders.ts, src/services/billing.ts"
+    },
+    {
+      "building": 10,
+      "metric": "entanglement",
+      "severity": "warn",
+      "key": "fan-out",
+      "message": "Imports 8 internal modules (repo median 0)"
+    },
+    {
+      "building": 10,
+      "metric": "entanglement",
+      "severity": "warn",
+      "key": "shared-imports-upper-layer",
+      "message": "Shared module with 1 dependents imports src/db/client.ts (data), src/services/billing.ts (service)"
+    },
+    {
+      "building": 10,
+      "metric": "context_depth",
+      "severity": "info",
+      "key": "closure",
+      "message": "Depends on 9 modules (weighted 8.5), 3 layers (data, route, service), max depth 2"
+    },
+    {
+      "building": 10,
+      "metric": "pattern_drift",
+      "severity": "info",
+      "key": "peer-deviation",
+      "message": "Unlike its peers (repo, 11 modules): fan out 8 (peer median 0)"
+    },
+    {
+      "building": 10,
+      "room": 4,
+      "metric": "readability",
+      "severity": "info",
       "key": "vague-names:log",
       "message": "`log` declares vague names: `x`",
-      "values": [
-        [
-          "vague_names",
-          1.0
-        ]
-      ]
+      "span": {
+        "start_line": 11,
+        "start_col": 6,
+        "end_line": 11,
+        "end_col": 38
+      }
     },
     {
+      "building": 10,
+      "room": 5,
       "metric": "readability",
       "severity": "info",
-      "path": "src/utils/helpers.ts",
-      "span": {
-        "start_line": 15,
-        "start_col": 8,
-        "end_line": 18,
-        "end_col": 2
-      },
       "key": "many-params:process_items",
       "message": "`process_items` takes 6 parameters (threshold 5)",
-      "values": [
-        [
-          "params",
-          6.0
-        ],
-        [
-          "threshold",
-          5.0
-        ]
-      ]
-    },
-    {
-      "metric": "readability",
-      "severity": "info",
-      "path": "src/utils/helpers.ts",
       "span": {
         "start_line": 15,
         "start_col": 8,
         "end_line": 18,
         "end_col": 2
-      },
+      }
+    },
+    {
+      "building": 10,
+      "room": 5,
+      "metric": "readability",
+      "severity": "info",
       "key": "vague-names:process_items",
       "message": "`process_items` declares vague names: `data`, `obj`, `tmp`, `w`, `x`, `y`, `z`",
-      "values": [
-        [
-          "vague_names",
-          7.0
-        ]
-      ]
+      "span": {
+        "start_line": 15,
+        "start_col": 8,
+        "end_line": 18,
+        "end_col": 2
+      }
     }
   ]
 }

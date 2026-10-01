@@ -1,6 +1,7 @@
 # Plan: `deadhand map`, a code map you can explore
 
-Status: proposal, not built yet.
+Status: phase 1 (map model and layout, `deadhand map --format json`) is built. Phases 2–6 are
+not started.
 
 ## 1. Goal
 
@@ -99,7 +100,7 @@ edges (cycles, layer violations).
 3. **Layout algorithm**:
    - Vertical axis = **layer** (from `[layers]` config or detection; unknown is a band at the
      bottom). This makes wrong-way dependencies visible as arrows that point up.
-   - Inside a band, directories are nested rectangles from an **ordered squarified treemap**,
+   - Inside a band, directories are nested rectangles from an **ordered binary-split treemap**,
      sorted by path so that adding a file only nudges its neighbours. Area = LOC, with a minimum
      size so tiny files stay clickable.
    - A directory that spans several layers is split into one sub-district per band, and the parts
@@ -128,14 +129,16 @@ edges (cycles, layer violations).
        recent, authors, last_commit_days}, coverage, symbols, exports }`
      - `rooms`: `{ building, name, span, rect, loc, cognitive, cyclomatic, nesting, params }`
      - `edges`: `{ from, to, type_only, kinds, in_cycle, layer_violation }`
-     - `flows`: aggregated district-to-district edges
+     - district-to-district flows are not stored: districts carry `parent` and buildings carry
+       `district`, so the viewer aggregates edges at whatever zoom level it is showing
      - `pins`: evidence mapped to building/room ids with severity, metric, message, span
      - `cycles`, `findings`, `summary`, `metrics` (reused from `RepoReport`)
      - `closures`: not precomputed (too large); the viewer computes ripple and trail with BFS over
        `edges`, which is fast in JS.
-   - `map/layout.rs`: bands, ordered squarified treemap, minimum-size handling, room layout.
+   - `map/layout.rs`: rectangles, insets and the ordered treemap. Bands, districts and rooms are
+     laid out in `map/mod.rs`.
      Pure functions with unit tests (no overlaps, children inside parents, deterministic output).
-   - `map/bundle.rs`: aggregates edges into district flows, and maps evidence spans to rooms.
+   - Evidence is mapped to its building, and to the innermost function containing its line.
 3. **Small extra facts** (cheap, already almost collected):
    - `days since last commit` per file (from `FileHistory.last_commit` and `head_time`).
    - Optionally, phase 5: **call edges** inside a file (the visitor records calls to named local
@@ -163,7 +166,7 @@ deadhand map [PATH]
 
 | Phase | Delivers | Done when |
 |---|---|---|
-| **1. Model + layout** | `Analysis` refactor, `map/` module, `deadhand map --format json` | Fixture snapshots stable; layout invariant tests pass; `scan` output byte-identical |
+| **1. Model + layout** (done) | `Analysis` refactor, `map/` module, `deadhand map --format json` | Fixture snapshots stable; layout invariant tests pass; `scan` output byte-identical |
 | **2. Viewer MVP** | HTML output: bands, districts, buildings, pan/zoom, minimap, lens switch, side panel, search | `spaghetti` and `cycles` fixtures read clearly; zod scan smooth at 60 fps |
 | **3. Relationships** | District flows, selection edges, Ripple, Trail, cycle loops, upward violation arrows, filters | You can answer "what breaks if I edit X" from the map alone |
 | **4. Issues** | Evidence pins, issues panel, tours, URL deep links | Every finding in `scan` can be reached in one click |
@@ -189,7 +192,8 @@ deadhand map [PATH]
 | Risk | Mitigation |
 |---|---|
 | Huge repos make a huge HTML file | Compact JSON (short keys, string table for paths); rooms included only when below a size limit, or with `--rooms` |
-| Treemap slivers are unreadable | Minimum area, aspect-ratio-aware squarify, and directories with a single child are collapsed (`src/a/b` becomes one district) |
+| Treemap slivers are unreadable | Minimum area, splits across the longer side, small layers drawn as compact blocks instead of
+full-width strips, and directories with a single child are collapsed (`src/a/b` becomes one district) |
 | Layer config missing, so everything is in one band | Fall back to path-based detection (already present); one band still works as a plain directory map |
 | Edge clutter | Edges are aggregated by default and shown in detail only on selection; problem edges are always shown |
 

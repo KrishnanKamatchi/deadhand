@@ -1,6 +1,6 @@
 ---
-source: crates/deadhand-core/tests/fixtures.rs
-expression: "serde_json::to_value(scan(name)).unwrap()"
+source: crates/deadhand-core/tests/map.rs
+expression: "serde_json::to_value(build(name)).unwrap()"
 ---
 {
   "schema_version": 1,
@@ -89,22 +89,67 @@ expression: "serde_json::to_value(scan(name)).unwrap()"
   "notes": [
     "Orphaned Code unavailable; its weight was redistributed across the other metrics"
   ],
-  "cycles": [
-    [
-      "src/a.ts",
-      "src/b.ts",
-      "src/c.ts"
-    ],
-    [
-      "src/d.ts",
-      "src/e.ts"
-    ]
+  "layer_order": [
+    "ui",
+    "route",
+    "service",
+    "data",
+    "infra"
   ],
-  "parse_errors": [],
-  "modules": [
+  "bounds": {
+    "x": 0.0,
+    "y": 0.0,
+    "w": 101.19,
+    "h": 63.25
+  },
+  "bands": [
+    {
+      "layer": null,
+      "rect": {
+        "x": 0.0,
+        "y": 0.0,
+        "w": 101.19,
+        "h": 63.25
+      },
+      "district": 0
+    }
+  ],
+  "districts": [
+    {
+      "path": "src",
+      "label": "src",
+      "band": 0,
+      "parent": null,
+      "depth": 0,
+      "rect": {
+        "x": 0.95,
+        "y": 0.95,
+        "w": 99.3,
+        "h": 61.35
+      },
+      "inner": {
+        "x": 2.18,
+        "y": 5.86,
+        "w": 96.84,
+        "h": 55.21
+      },
+      "loc": 16,
+      "files": 8,
+      "maintainability": 94.69924812030075
+    }
+  ],
+  "buildings": [
     {
       "path": "src/a.ts",
+      "label": "a.ts",
+      "district": 0,
       "layer": null,
+      "rect": {
+        "x": 3.14,
+        "y": 6.82,
+        "w": 22.27,
+        "h": 25.67
+      },
       "is_test": false,
       "loc": 2,
       "maintainability": 89.56390977443608,
@@ -168,38 +213,22 @@ expression: "serde_json::to_value(scan(name)).unwrap()"
           "peer_group_size": 8.0
         }
       },
-      "functions": [
-        {
-          "name": "a",
-          "span": {
-            "start_line": 2,
-            "start_col": 18,
-            "end_line": 2,
-            "end_col": 31
-          },
-          "loc": 1,
-          "params": 0,
-          "cyclomatic": 1,
-          "cognitive": 0,
-          "max_nesting": 0,
-          "identifiers": []
-        }
-      ],
-      "imports": [
-        {
-          "specifier": "./b",
-          "kind": "static",
-          "target": {
-            "kind": "internal",
-            "target": "src/b.ts"
-          },
-          "line": 1
-        }
-      ]
+      "exports": 1,
+      "external_packages": [],
+      "first_room": 0,
+      "room_count": 1
     },
     {
       "path": "src/b.ts",
+      "label": "b.ts",
+      "district": 0,
       "layer": null,
+      "rect": {
+        "x": 27.35,
+        "y": 6.82,
+        "w": 22.27,
+        "h": 25.67
+      },
       "is_test": false,
       "loc": 2,
       "maintainability": 89.56390977443608,
@@ -263,38 +292,22 @@ expression: "serde_json::to_value(scan(name)).unwrap()"
           "peer_group_size": 8.0
         }
       },
-      "functions": [
-        {
-          "name": "b",
-          "span": {
-            "start_line": 2,
-            "start_col": 18,
-            "end_line": 2,
-            "end_col": 31
-          },
-          "loc": 1,
-          "params": 0,
-          "cyclomatic": 1,
-          "cognitive": 0,
-          "max_nesting": 0,
-          "identifiers": []
-        }
-      ],
-      "imports": [
-        {
-          "specifier": "./c",
-          "kind": "static",
-          "target": {
-            "kind": "internal",
-            "target": "src/c.ts"
-          },
-          "line": 1
-        }
-      ]
+      "exports": 1,
+      "external_packages": [],
+      "first_room": 1,
+      "room_count": 1
     },
     {
       "path": "src/c.ts",
+      "label": "c.ts",
+      "district": 0,
       "layer": null,
+      "rect": {
+        "x": 3.14,
+        "y": 34.43,
+        "w": 22.27,
+        "h": 25.67
+      },
       "is_test": false,
       "loc": 2,
       "maintainability": 89.56390977443608,
@@ -358,38 +371,22 @@ expression: "serde_json::to_value(scan(name)).unwrap()"
           "peer_group_size": 8.0
         }
       },
-      "functions": [
-        {
-          "name": "c",
-          "span": {
-            "start_line": 2,
-            "start_col": 18,
-            "end_line": 2,
-            "end_col": 53
-          },
-          "loc": 1,
-          "params": 0,
-          "cyclomatic": 2,
-          "cognitive": 1,
-          "max_nesting": 1,
-          "identifiers": []
-        }
-      ],
-      "imports": [
-        {
-          "specifier": "./a",
-          "kind": "static",
-          "target": {
-            "kind": "internal",
-            "target": "src/a.ts"
-          },
-          "line": 1
-        }
-      ]
+      "exports": 1,
+      "external_packages": [],
+      "first_room": 2,
+      "room_count": 1
     },
     {
       "path": "src/d.ts",
+      "label": "d.ts",
+      "district": 0,
       "layer": null,
+      "rect": {
+        "x": 27.35,
+        "y": 34.43,
+        "w": 22.27,
+        "h": 25.67
+      },
       "is_test": false,
       "loc": 2,
       "maintainability": 92.60150375939848,
@@ -453,38 +450,22 @@ expression: "serde_json::to_value(scan(name)).unwrap()"
           "peer_group_size": 8.0
         }
       },
-      "functions": [
-        {
-          "name": "d",
-          "span": {
-            "start_line": 2,
-            "start_col": 18,
-            "end_line": 2,
-            "end_col": 27
-          },
-          "loc": 1,
-          "params": 0,
-          "cyclomatic": 1,
-          "cognitive": 0,
-          "max_nesting": 0,
-          "identifiers": []
-        }
-      ],
-      "imports": [
-        {
-          "specifier": "./e",
-          "kind": "static",
-          "target": {
-            "kind": "internal",
-            "target": "src/e.ts"
-          },
-          "line": 1
-        }
-      ]
+      "exports": 1,
+      "external_packages": [],
+      "first_room": 3,
+      "room_count": 1
     },
     {
       "path": "src/e.ts",
+      "label": "e.ts",
+      "district": 0,
       "layer": null,
+      "rect": {
+        "x": 51.56,
+        "y": 6.82,
+        "w": 22.27,
+        "h": 25.67
+      },
       "is_test": false,
       "loc": 1,
       "maintainability": 92.60150375939848,
@@ -548,38 +529,22 @@ expression: "serde_json::to_value(scan(name)).unwrap()"
           "peer_group_size": 8.0
         }
       },
-      "functions": [
-        {
-          "name": "e",
-          "span": {
-            "start_line": 1,
-            "start_col": 18,
-            "end_line": 1,
-            "end_col": 53
-          },
-          "loc": 1,
-          "params": 0,
-          "cyclomatic": 1,
-          "cognitive": 0,
-          "max_nesting": 0,
-          "identifiers": []
-        }
-      ],
-      "imports": [
-        {
-          "specifier": "./d",
-          "kind": "dynamic",
-          "target": {
-            "kind": "internal",
-            "target": "src/d.ts"
-          },
-          "line": 1
-        }
-      ]
+      "exports": 1,
+      "external_packages": [],
+      "first_room": 4,
+      "room_count": 1
     },
     {
       "path": "src/f.ts",
+      "label": "f.ts",
+      "district": 0,
       "layer": null,
+      "rect": {
+        "x": 75.78,
+        "y": 6.82,
+        "w": 22.27,
+        "h": 25.67
+      },
       "is_test": false,
       "loc": 2,
       "maintainability": 99.99999999999999,
@@ -643,38 +608,22 @@ expression: "serde_json::to_value(scan(name)).unwrap()"
           "peer_group_size": 8.0
         }
       },
-      "functions": [
-        {
-          "name": "f",
-          "span": {
-            "start_line": 2,
-            "start_col": 18,
-            "end_line": 2,
-            "end_col": 27
-          },
-          "loc": 1,
-          "params": 0,
-          "cyclomatic": 1,
-          "cognitive": 0,
-          "max_nesting": 0,
-          "identifiers": []
-        }
-      ],
-      "imports": [
-        {
-          "specifier": "./a",
-          "kind": "static",
-          "target": {
-            "kind": "internal",
-            "target": "src/a.ts"
-          },
-          "line": 1
-        }
-      ]
+      "exports": 1,
+      "external_packages": [],
+      "first_room": 5,
+      "room_count": 1
     },
     {
       "path": "src/g.ts",
+      "label": "g.ts",
+      "district": 0,
       "layer": null,
+      "rect": {
+        "x": 51.56,
+        "y": 34.43,
+        "w": 22.27,
+        "h": 25.67
+      },
       "is_test": false,
       "loc": 3,
       "maintainability": 99.99999999999999,
@@ -738,38 +687,22 @@ expression: "serde_json::to_value(scan(name)).unwrap()"
           "peer_group_size": 8.0
         }
       },
-      "functions": [
-        {
-          "name": "g",
-          "span": {
-            "start_line": 3,
-            "start_col": 18,
-            "end_line": 3,
-            "end_col": 27
-          },
-          "loc": 1,
-          "params": 0,
-          "cyclomatic": 1,
-          "cognitive": 0,
-          "max_nesting": 0,
-          "identifiers": []
-        }
-      ],
-      "imports": [
-        {
-          "specifier": "./h",
-          "kind": "static",
-          "target": {
-            "kind": "internal",
-            "target": "src/h.ts"
-          },
-          "line": 1
-        }
-      ]
+      "exports": 2,
+      "external_packages": [],
+      "first_room": 6,
+      "room_count": 1
     },
     {
       "path": "src/h.ts",
+      "label": "h.ts",
+      "district": 0,
       "layer": null,
+      "rect": {
+        "x": 75.78,
+        "y": 34.43,
+        "w": 22.27,
+        "h": 25.67
+      },
       "is_test": false,
       "loc": 2,
       "maintainability": 99.99999999999999,
@@ -833,101 +766,278 @@ expression: "serde_json::to_value(scan(name)).unwrap()"
           "peer_group_size": 8.0
         }
       },
-      "functions": [
-        {
-          "name": "h",
-          "span": {
-            "start_line": 2,
-            "start_col": 18,
-            "end_line": 2,
-            "end_col": 34
-          },
-          "loc": 1,
-          "params": 1,
-          "cyclomatic": 1,
-          "cognitive": 0,
-          "max_nesting": 0,
-          "identifiers": []
-        }
-      ],
-      "imports": [
-        {
-          "specifier": "./g",
-          "kind": "type_only",
-          "target": {
-            "kind": "internal",
-            "target": "src/g.ts"
-          },
-          "line": 1
-        }
-      ]
+      "exports": 1,
+      "external_packages": [],
+      "first_room": 7,
+      "room_count": 1
     }
   ],
-  "evidence": [
+  "rooms": [
     {
-      "metric": "entanglement",
-      "severity": "high",
-      "path": "src/a.ts",
-      "key": "cycle",
-      "message": "In an import cycle of 3 modules with src/b.ts, src/c.ts",
-      "values": [
-        [
-          "cycle_size",
-          3.0
-        ]
-      ]
+      "building": 0,
+      "name": "a",
+      "span": {
+        "start_line": 2,
+        "start_col": 18,
+        "end_line": 2,
+        "end_col": 31
+      },
+      "rect": {
+        "x": 5.26,
+        "y": 11.61,
+        "w": 18.04,
+        "h": 18.77
+      },
+      "loc": 1,
+      "params": 0,
+      "cyclomatic": 1,
+      "cognitive": 0,
+      "max_nesting": 0
     },
     {
-      "metric": "entanglement",
-      "severity": "high",
-      "path": "src/b.ts",
-      "key": "cycle",
-      "message": "In an import cycle of 3 modules with src/a.ts, src/c.ts",
-      "values": [
-        [
-          "cycle_size",
-          3.0
-        ]
-      ]
+      "building": 1,
+      "name": "b",
+      "span": {
+        "start_line": 2,
+        "start_col": 18,
+        "end_line": 2,
+        "end_col": 31
+      },
+      "rect": {
+        "x": 29.47,
+        "y": 11.61,
+        "w": 18.04,
+        "h": 18.77
+      },
+      "loc": 1,
+      "params": 0,
+      "cyclomatic": 1,
+      "cognitive": 0,
+      "max_nesting": 0
     },
     {
-      "metric": "entanglement",
-      "severity": "high",
-      "path": "src/c.ts",
-      "key": "cycle",
-      "message": "In an import cycle of 3 modules with src/a.ts, src/b.ts",
-      "values": [
-        [
-          "cycle_size",
-          3.0
-        ]
-      ]
+      "building": 2,
+      "name": "c",
+      "span": {
+        "start_line": 2,
+        "start_col": 18,
+        "end_line": 2,
+        "end_col": 53
+      },
+      "rect": {
+        "x": 5.26,
+        "y": 39.22,
+        "w": 18.04,
+        "h": 18.77
+      },
+      "loc": 1,
+      "params": 0,
+      "cyclomatic": 2,
+      "cognitive": 1,
+      "max_nesting": 1
     },
     {
-      "metric": "entanglement",
-      "severity": "high",
-      "path": "src/d.ts",
-      "key": "cycle",
-      "message": "In an import cycle of 2 modules with src/e.ts",
-      "values": [
-        [
-          "cycle_size",
-          2.0
-        ]
-      ]
+      "building": 3,
+      "name": "d",
+      "span": {
+        "start_line": 2,
+        "start_col": 18,
+        "end_line": 2,
+        "end_col": 27
+      },
+      "rect": {
+        "x": 29.47,
+        "y": 39.22,
+        "w": 18.04,
+        "h": 18.77
+      },
+      "loc": 1,
+      "params": 0,
+      "cyclomatic": 1,
+      "cognitive": 0,
+      "max_nesting": 0
     },
     {
+      "building": 4,
+      "name": "e",
+      "span": {
+        "start_line": 1,
+        "start_col": 18,
+        "end_line": 1,
+        "end_col": 53
+      },
+      "rect": {
+        "x": 53.68,
+        "y": 11.61,
+        "w": 18.04,
+        "h": 18.77
+      },
+      "loc": 1,
+      "params": 0,
+      "cyclomatic": 1,
+      "cognitive": 0,
+      "max_nesting": 0
+    },
+    {
+      "building": 5,
+      "name": "f",
+      "span": {
+        "start_line": 2,
+        "start_col": 18,
+        "end_line": 2,
+        "end_col": 27
+      },
+      "rect": {
+        "x": 77.89,
+        "y": 11.61,
+        "w": 18.04,
+        "h": 18.77
+      },
+      "loc": 1,
+      "params": 0,
+      "cyclomatic": 1,
+      "cognitive": 0,
+      "max_nesting": 0
+    },
+    {
+      "building": 6,
+      "name": "g",
+      "span": {
+        "start_line": 3,
+        "start_col": 18,
+        "end_line": 3,
+        "end_col": 27
+      },
+      "rect": {
+        "x": 53.68,
+        "y": 39.22,
+        "w": 18.04,
+        "h": 18.77
+      },
+      "loc": 1,
+      "params": 0,
+      "cyclomatic": 1,
+      "cognitive": 0,
+      "max_nesting": 0
+    },
+    {
+      "building": 7,
+      "name": "h",
+      "span": {
+        "start_line": 2,
+        "start_col": 18,
+        "end_line": 2,
+        "end_col": 34
+      },
+      "rect": {
+        "x": 77.89,
+        "y": 39.22,
+        "w": 18.04,
+        "h": 18.77
+      },
+      "loc": 1,
+      "params": 1,
+      "cyclomatic": 1,
+      "cognitive": 0,
+      "max_nesting": 0
+    }
+  ],
+  "edges": [
+    {
+      "from": 0,
+      "to": 1,
+      "type_only": false,
+      "in_cycle": true
+    },
+    {
+      "from": 1,
+      "to": 2,
+      "type_only": false,
+      "in_cycle": true
+    },
+    {
+      "from": 2,
+      "to": 0,
+      "type_only": false,
+      "in_cycle": true
+    },
+    {
+      "from": 3,
+      "to": 4,
+      "type_only": false,
+      "in_cycle": true
+    },
+    {
+      "from": 4,
+      "to": 3,
+      "type_only": false,
+      "in_cycle": true
+    },
+    {
+      "from": 5,
+      "to": 0,
+      "type_only": false,
+      "in_cycle": false
+    },
+    {
+      "from": 6,
+      "to": 7,
+      "type_only": false,
+      "in_cycle": false
+    },
+    {
+      "from": 7,
+      "to": 6,
+      "type_only": true,
+      "in_cycle": false
+    }
+  ],
+  "cycles": [
+    [
+      0,
+      1,
+      2
+    ],
+    [
+      3,
+      4
+    ]
+  ],
+  "pins": [
+    {
+      "building": 0,
       "metric": "entanglement",
       "severity": "high",
-      "path": "src/e.ts",
       "key": "cycle",
-      "message": "In an import cycle of 2 modules with src/d.ts",
-      "values": [
-        [
-          "cycle_size",
-          2.0
-        ]
-      ]
+      "message": "In an import cycle of 3 modules with src/b.ts, src/c.ts"
+    },
+    {
+      "building": 1,
+      "metric": "entanglement",
+      "severity": "high",
+      "key": "cycle",
+      "message": "In an import cycle of 3 modules with src/a.ts, src/c.ts"
+    },
+    {
+      "building": 2,
+      "metric": "entanglement",
+      "severity": "high",
+      "key": "cycle",
+      "message": "In an import cycle of 3 modules with src/a.ts, src/b.ts"
+    },
+    {
+      "building": 3,
+      "metric": "entanglement",
+      "severity": "high",
+      "key": "cycle",
+      "message": "In an import cycle of 2 modules with src/e.ts"
+    },
+    {
+      "building": 4,
+      "metric": "entanglement",
+      "severity": "high",
+      "key": "cycle",
+      "message": "In an import cycle of 2 modules with src/d.ts"
     }
   ]
 }
