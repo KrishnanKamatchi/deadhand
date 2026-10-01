@@ -68,6 +68,28 @@ enum Command {
         #[arg(long)]
         config: Option<PathBuf>,
     },
+    /// Build a map of the repo: layers, directories, files and functions laid out in 2D.
+    Map {
+        /// Repository root.
+        #[arg(default_value = ".")]
+        path: PathBuf,
+        #[arg(long, value_enum, default_value_t = MapFormat::Json)]
+        format: MapFormat,
+        /// Write to FILE instead of stdout.
+        #[arg(short, long, value_name = "FILE")]
+        output: Option<PathBuf>,
+        #[arg(long)]
+        config: Option<PathBuf>,
+        /// Skip git history (no churn or age on the map).
+        #[arg(long)]
+        no_git: bool,
+    },
+}
+
+#[derive(Clone, Copy, ValueEnum)]
+enum MapFormat {
+    /// The raw map model (schema in `deadhand_core::map`).
+    Json,
 }
 
 #[derive(Clone, Copy, ValueEnum)]
@@ -175,6 +197,21 @@ fn run(cli: Cli) -> Result<bool> {
             };
             emit(&text)?;
             Ok(fail_on_drop.is_none_or(|n| -diff.delta <= n))
+        }
+        Command::Map { path, format, output, config, no_git } => {
+            let cfg = load_config(&path, config.as_deref())?;
+            let git: &dyn GitSource = if no_git { &NoGit } else { &GitCli };
+            let analysis = deadhand_core::analyze_full(&path, &cfg, git)
+                .with_context(|| format!("scanning {}", path.display()))?;
+            let map = deadhand_core::map::build(&analysis, &cfg);
+            let text = match format {
+                MapFormat::Json => render::map_json(&map)?,
+            };
+            match output {
+                Some(file) => std::fs::write(&file, text).with_context(|| format!("writing {}", file.display()))?,
+                None => emit(&text)?,
+            }
+            Ok(true)
         }
     }
 }
