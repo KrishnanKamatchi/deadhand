@@ -96,6 +96,14 @@ fn edges_mark_cycles_and_layer_violations() {
 }
 
 #[test]
+fn type_only_imports_are_not_violations() {
+    // clean/ has `import type { Order }` from a route into the data layer.
+    let m = build("clean");
+    assert!(m.edges.iter().any(|e| e.type_only), "fixture should contain a type-only edge");
+    assert!(m.edges.iter().all(|e| e.violation.is_none()));
+}
+
+#[test]
 fn pins_land_on_their_building_and_function() {
     for name in FIXTURES {
         let m = build(name);
