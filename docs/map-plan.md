@@ -1,7 +1,7 @@
 # Plan: `deadhand map`, a code map you can explore
 
-Status: phase 1 (map model and layout, `deadhand map --format json`) is built. Phases 2–6 are
-not started.
+Status: phase 1 (map model and layout, `deadhand map --format json`) and phase 2 (the HTML
+viewer, `deadhand map`) are built. Phases 3–6 are not started.
 
 ## 1. Goal
 
@@ -167,7 +167,7 @@ deadhand map [PATH]
 | Phase | Delivers | Done when |
 |---|---|---|
 | **1. Model + layout** (done) | `Analysis` refactor, `map/` module, `deadhand map --format json` | Fixture snapshots stable; layout invariant tests pass; `scan` output byte-identical |
-| **2. Viewer MVP** | HTML output: bands, districts, buildings, pan/zoom, minimap, lens switch, side panel, search | `spaghetti` and `cycles` fixtures read clearly; zod scan smooth at 60 fps |
+| **2. Viewer MVP** (done) | HTML output: bands, districts, buildings, pan/zoom, minimap, lens switch, side panel, search | `spaghetti` and `cycles` fixtures read clearly; zod scan smooth at 60 fps |
 | **3. Relationships** | District flows, selection edges, Ripple, Trail, cycle loops, upward violation arrows, filters | You can answer "what breaks if I edit X" from the map alone |
 | **4. Issues** | Evidence pins, issues panel, tours, URL deep links | Every finding in `scan` can be reached in one click |
 | **5. Inside files** | Rooms (Z2), function details (Z3), `--with-source`, optional intra-file call edges | Zooming into `excalidraw/App.tsx` shows its hot functions |

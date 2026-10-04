@@ -1,7 +1,9 @@
 //! Text and JSON renderers. Scores are rounded here and nowhere else.
 
+mod map;
 mod text;
 
+pub use map::map_html;
 pub use text::{diff, explain, scan};
 
 use anyhow::Result;

@@ -70,6 +70,17 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       - run: cargo doc --workspace --no-deps --locked
 
+  viewer:
+    name: Map viewer scripts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check syntax
+        run: for f in crates/deadhand-cli/src/viewer/*.js; do node --check "$f"; done
+
   smoke:
     name: Release build smoke test
     runs-on: ubuntu-latest
@@ -80,3 +91,4 @@ jobs:
       - run: cargo build --release --locked
       - run: ./target/release/deadhand scan fixtures/clean --no-git --fail-under 90
       - run: ./target/release/deadhand scan fixtures/spaghetti --no-git --format json > /dev/null
+      - run: ./target/release/deadhand map fixtures/spaghetti --no-git -o map.html && test -s map.html
