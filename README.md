@@ -70,13 +70,26 @@ deadhand explain <FILE> [--root PATH]    # every metric and piece of evidence fo
 deadhand diff <GIT_REV> [--root PATH]    # working tree vs a revision (temporary git worktree)
     --fail-on-drop N              # exit 1 if Maintainability drops by more than N
 
-deadhand map [PATH]               # 2D map of layers, directories, files and functions
-    -o, --output FILE             # default: stdout
-    --format json                 # the map model; an HTML viewer is planned (docs/map-plan.md)
+deadhand map [PATH]               # explorable 2D map of layers, folders and files
+    -o, --output FILE             # default: deadhand-map.html (html), stdout (json)
+    --format html|json            # html: one self-contained page; json: the raw map model
     --config PATH, --no-git       # as for scan
 ```
 
 Exit codes: `0` ok, `1` threshold failed, `2` usage/config error, `3` analysis error.
+
+## The map
+
+`deadhand map` writes `deadhand-map.html`: one file that opens offline in any browser, with no
+server and no network requests, so it can be attached to a PR or kept as a CI artifact.
+
+- Each horizontal band is an architectural layer, top to bottom in dependency order, with files
+  of unknown layer at the bottom. Boxes are folders; coloured blocks are files sized by lines of
+  code. Positions come from sorted paths, so a file stays in the same place between scans.
+- Colour by Maintainability or any of the metrics (keys `1` to `8`), from red (hard to own) to
+  blue (easy).
+- Drag to move, scroll to zoom, `F` to fit, `/` to search files, folders and functions. Click a
+  file for its scores, evidence, most complex functions, imports and importers.
 
 ## What it measures
 
