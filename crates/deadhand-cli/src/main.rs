@@ -73,9 +73,9 @@ enum Command {
         /// Repository root.
         #[arg(default_value = ".")]
         path: PathBuf,
-        #[arg(long, value_enum, default_value_t = MapFormat::Json)]
+        #[arg(long, value_enum, default_value_t = MapFormat::Html)]
         format: MapFormat,
-        /// Write to FILE instead of stdout.
+        /// Output file. Default: `deadhand-map.html` for html, stdout for json.
         #[arg(short, long, value_name = "FILE")]
         output: Option<PathBuf>,
         #[arg(long)]
@@ -88,6 +88,8 @@ enum Command {
 
 #[derive(Clone, Copy, ValueEnum)]
 enum MapFormat {
+    /// A self-contained page that opens offline in any browser.
+    Html,
     /// The raw map model (schema in `deadhand_core::map`).
     Json,
 }
@@ -204,11 +206,22 @@ fn run(cli: Cli) -> Result<bool> {
             let analysis = deadhand_core::analyze_full(&path, &cfg, git)
                 .with_context(|| format!("scanning {}", path.display()))?;
             let map = deadhand_core::map::build(&analysis, &cfg);
-            let text = match format {
-                MapFormat::Json => render::map_json(&map)?,
+            let (text, output) = match format {
+                MapFormat::Html => {
+                    (render::map_html(&map)?, Some(output.unwrap_or_else(|| "deadhand-map.html".into())))
+                }
+                MapFormat::Json => (render::map_json(&map)?, output),
             };
             match output {
-                Some(file) => std::fs::write(&file, text).with_context(|| format!("writing {}", file.display()))?,
+                Some(file) => {
+                    std::fs::write(&file, &text).with_context(|| format!("writing {}", file.display()))?;
+                    eprintln!(
+                        "wrote {} ({} files, {:.1} MB)",
+                        file.display(),
+                        map.buildings.len(),
+                        text.len() as f64 / 1_048_576.0
+                    );
+                }
                 None => emit(&text)?,
             }
             Ok(true)

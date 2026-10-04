@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>deadhand map</title>
+<link rel="icon" href="data:,">
+<style>
+{{deadhand:style}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="title">
+    <span class="brand">deadhand map</span>
+    <span id="repo" class="repo"></span>
+    <span id="headline" class="headline"></span>
+  </div>
+  <label class="lens">
+    <span>Colour by</span>
+    <select id="lens" aria-label="Colour by metric"></select>
+  </label>
+  <div class="search">
+    <input id="search" type="search" placeholder="Search files, folders, functions  ( / )" autocomplete="off" spellcheck="false" aria-label="Search">
+    <ol id="results" class="results" hidden></ol>
+  </div>
+</header>
+<main class="stage">
+  <canvas id="map" aria-label="Code map"></canvas>
+  <div id="tooltip" class="tooltip" hidden></div>
+  <div class="legend">
+    <div class="ramp"></div>
+    <div class="ramp-labels"><span>0</span><span>50</span><span>100</span></div>
+    <div class="legend-note">Area = lines of code. Faded = test file.</div>
+  </div>
+  <canvas id="mini" class="mini" aria-label="Minimap"></canvas>
+  <div class="hint">Drag to move. Scroll to zoom. F to fit. / to search.</div>
+  <div id="empty" class="empty" hidden>No JS or TS files were found in this repository.</div>
+</main>
+<aside id="panel" class="panel" aria-live="polite"></aside>
+<script type="application/json" id="map-data">{{deadhand:data}}</script>
+<script>
+{{deadhand:script}}
+</script>
+</body>
+</html>
