@@ -173,15 +173,17 @@ INSTA_UPDATE=always cargo test --workspace
 ## Releasing
 
 Releases are built by [dist](https://github.com/axodotdev/cargo-dist) in
-`.github/workflows/release.yml`. Bump `version` in `crates/deadhand-cli/Cargo.toml`, then:
+`.github/workflows/release.yml`. Bump `version` in `crates/deadhand-cli/Cargo.toml` and
+`crates/deadhand-core/Cargo.toml`, merge to `main`, then push a matching tag:
 
 ```sh
-git tag v0.1.0
-git push origin v0.1.0
+git tag v0.2.0
+git push origin v0.2.0
 ```
 
 The workflow builds every target and creates the GitHub release with the archives, checksums and
-installers.
+installers. Do not create the release in the GitHub UI first: the workflow creates it, and fails
+if a release for that tag already exists.
 
 ## License
 

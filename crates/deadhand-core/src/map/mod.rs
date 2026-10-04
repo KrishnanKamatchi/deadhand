@@ -225,8 +225,9 @@ pub fn build(analysis: &Analysis, cfg: &Config) -> MapModel {
                 to: e.to,
                 type_only: e.type_only,
                 in_cycle: !e.type_only && graph.cycle_of[i].is_some() && graph.cycle_of[i] == graph.cycle_of[e.to],
+                // Same rule as the report: type-only imports never break the layer order.
                 violation: match (&analysis.layers[i], &analysis.layers[e.to]) {
-                    (Some(f), Some(t)) => layers::violation(f, t, &cfg.layers.order),
+                    (Some(f), Some(t)) if !e.type_only => layers::violation(f, t, &cfg.layers.order),
                     _ => None,
                 },
             })
@@ -412,7 +413,7 @@ fn insert<'a>(root: &mut Dir<'a>, path: &'a str, module: usize, weight: f64) {
 /// Follows chains of directories that hold nothing but one subdirectory.
 fn collapse<'d, 'a>(mut dir: &'d Dir<'a>, mut path: String, mut label: String) -> (&'d Dir<'a>, String, String) {
     while dir.files.is_empty() && dir.dirs.len() == 1 {
-        let (name, child) = dir.dirs.iter().next().expect("one child");
+        let Some((name, child)) = dir.dirs.iter().next() else { break };
         path = join(&path, name);
         label = join(&label, name);
         dir = child;

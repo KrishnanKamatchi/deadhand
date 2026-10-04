@@ -30,25 +30,25 @@ traces back to evidence with paths and line numbers.
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────┐
-│ deadhand map · my-app · Maintainability 58    [Lens: Maintainability ▾] 🔍 │
+│ deadhand map · my-app · Maintainability 58    [Lens: Maintainability ▾] [/]│
 ├────────────────────────────────────────────────────────────────┬───────────┤
 │ UI ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │ App.tsx   │
 │  ┌ components ────────────┐ ┌ pages ───────────┐               │ ui · 412  │
-│  │ ▇App ⚑3  ▆Nav  ▂Btn   │ │ ▅Home  ▇Checkout │               │ M: 31 ▇▇▁ │
+│  │ ▇App !3  ▆Nav  ▂Btn   │ │ ▅Home  ▇Checkout │               │ M: 31 ▇▇▁ │
 │  └────────────────────────┘ └──────────┬───────┘               │           │
 │ ROUTE ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░░░░ │ Weakest:  │
 │  ┌ routes ───────┐                     │                       │ Cognitive │
-│  │ ▆orders ⚑1    │                     ▼                       │ Blast     │
+│  │ ▆orders !1    │                     ▼                       │ Blast     │
 │ SERVICE ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │           │
-│  ┌ services ─────────────┐   ↺ cycle: billing ⇄ orders         │ ⚑ render()│
-│  │ ▇billing ⚑2  ▅orders  │                                     │  cog 41   │
+│  ┌ services ─────────────┐   ↺ cycle: billing ⇄ orders         │ ! render()│
+│  │ ▇billing !2  ▅orders  │                                     │  cog 41   │
 │ DATA ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │  L88–240  │
 │  ┌ db ──┐ ⇡ db/client imports ui/format (layer violation)       │           │
 │  │ ▃client│                                                      │ [Ripple]  │
 │  └──────┘                                         ┌─minimap─┐   │ [Trail]   │
 │                                                   │ ▪▪ ▫ ▪  │   │           │
 └───────────────────────────────────────────────────┴─────────┴───┴───────────┘
-  ▇ = colour by lens · block area = LOC · ⚑ = evidence pins · ↺ cycle · ⇡ upward edge
+  ▇ = colour by lens · block area = LOC · ! = evidence pins · ↺ cycle · ⇡ upward edge
 ```
 
 ### Semantic zoom (detail appears as you zoom in)
@@ -56,7 +56,7 @@ traces back to evidence with paths and line numbers.
 | Zoom | You see | Labels |
 |---|---|---|
 | **Z0 Continent** | Layer bands, top-level districts as coloured masses, district-to-district flows (bundled, width = edge count), red cycle loops | Layer and district names, district score |
-| **Z1 District** | Nested sub-districts and file buildings. Area = LOC, colour = lens, ⚑ pins for High/Warn evidence | File names, score badge |
+| **Z1 District** | Nested sub-districts and file buildings. Area = LOC, colour = lens, ! pins for High/Warn evidence | File names, score badge |
 | **Z2 Building** | A file split into **rooms** (its named functions), each sized by LOC and coloured by cognitive complexity, plus import/export "doors" on its edges | Function names, cog/cyclomatic/nesting |
 | **Z3 Room** | One function: span, metrics, evidence messages, and (optional) the source with the hot lines marked | Full details in the side panel |
 
