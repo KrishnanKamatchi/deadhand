@@ -90,5 +90,5 @@ function districtLabel(i) {
 
 function bandName(band) {
   const layer = bands[band] && bands[band].layer;
-  return layer ? layer : "unknown layer";
+  return layer ? layer : "no layer";
 }

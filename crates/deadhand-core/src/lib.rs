@@ -182,13 +182,16 @@ fn build_report(
         .collect();
     let error_files = modules.iter().filter(|m| !m.is_test && !m.parse_errors.is_empty()).count();
     if error_files > 0 {
+        let non_test = modules.iter().filter(|m| !m.is_test).count();
+        // When a fifth or more of the code is unreadable, the scores describe only part of the repo.
+        let severity = if error_files * 5 >= non_test { evidence::Severity::High } else { evidence::Severity::Warn };
         findings.insert(
             0,
             evidence::Finding {
                 metric: evidence::MetricKind::Readability,
-                severity: evidence::Severity::Warn,
+                severity,
                 count: error_files,
-                message: format!("{error_files} files have parse errors; their facts may be incomplete"),
+                message: format!("{error_files} of {non_test} files have parse errors and are left out of the scores"),
             },
         );
     }

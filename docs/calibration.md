@@ -71,4 +71,5 @@ Release build on an 18-core Linux laptop, run on 2026-09-28.
   (`const { data } = useQuery()`). Arrow-function parameters are exempt.
 - Cycles are computed over value imports only. Type-only cycles are not runtime cycles.
 - Layer detection is path based. Repos that organise by feature (`orders/`, `users/`) mostly land
-  in `unknown`, so layer metrics are quiet there.
+  in `unknown` (shown as "no layer" in the map), so layer metrics are quiet there. Map such
+  folders to layers in `deadhand.toml`.

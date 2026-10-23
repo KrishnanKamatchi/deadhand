@@ -139,7 +139,7 @@ function draw() {
     const size = clamp(strip * 0.6, 10, 15);
     ctx.font = `700 ${size}px ${FONT}`;
     ctx.fillStyle = theme.ink;
-    const label = (band.layer || "unknown layer").toUpperCase();
+    const label = (band.layer || "no layer").toUpperCase();
     ctx.fillText(label, Math.max(sx, 0) + 8, sy + Math.max(strip, size + 4) / 2);
   });
 

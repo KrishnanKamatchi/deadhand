@@ -78,9 +78,11 @@ impl RepoReport {
         self.metrics.iter().find(|m| m.kind == kind)
     }
 
-    /// The `n` lowest-scoring non-test modules, worst first (ties broken by path).
+    /// The `n` lowest-scoring scored modules (non-test, parsed cleanly), worst first (ties broken
+    /// by path).
     pub fn worst(&self, n: usize) -> Vec<&ModuleReport> {
-        let mut v: Vec<&ModuleReport> = self.modules.iter().filter(|m| !m.is_test).collect();
+        let mut v: Vec<&ModuleReport> =
+            self.modules.iter().filter(|m| !m.is_test && self.parse_errors_for(&m.path).next().is_none()).collect();
         v.sort_by(|a, b| a.maintainability.total_cmp(&b.maintainability).then_with(|| a.path.cmp(&b.path)));
         v.truncate(n);
         v
@@ -89,6 +91,11 @@ impl RepoReport {
     /// Finds a module by repo-relative path.
     pub fn module(&self, path: &str) -> Option<&ModuleReport> {
         self.modules.iter().find(|m| m.path == path)
+    }
+
+    /// Parse errors for one module.
+    pub fn parse_errors_for<'a>(&'a self, path: &'a str) -> impl Iterator<Item = &'a ParseError> + 'a {
+        self.parse_errors.iter().filter(move |e| e.path == path)
     }
 
     /// Evidence for one module.
