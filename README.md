@@ -11,10 +11,9 @@ line numbers.
 
 It is not an AI-authorship detector and not a linter.
 
-## Install
+![deadhand map of the zod repository: layer bands, folders as boxes, files coloured from red (hard to own) to blue (easy)](docs/images/map.gif)
 
-No Rust toolchain needed. Prebuilt binaries are published for Linux (x86_64, arm64, static musl),
-macOS (Intel, Apple Silicon) and Windows (x86_64).
+## Quick start
 
 ```sh
 # macOS / Linux
@@ -22,7 +21,67 @@ curl --proto '=https' --tlsv1.2 -LsSf https://github.com/KrishnanKamatchi/deadha
 
 # Windows (PowerShell)
 powershell -ExecutionPolicy Bypass -c "irm https://github.com/KrishnanKamatchi/deadhand/releases/latest/download/deadhand-installer.ps1 | iex"
+
+cd your-repo
+deadhand scan      # text report
+deadhand map       # writes deadhand-map.html, open it in a browser
 ```
+
+## What you get
+
+`deadhand scan` on [zod](https://github.com/colinhacks/zod) (83,600 lines):
+
+```text
+╭──────────────────────────────────────────────╮
+│                DEADHAND AUDIT                │
+│                                              │
+│ Readability                      42 / 100 !  │
+│ Cognitive Load                   41 / 100 !  │
+│ Entanglement                     82 / 100    │
+│ Context Depth                    74 / 100    │
+│ Blast Radius                     45 / 100 !  │
+│ Pattern Drift                    65 / 100    │
+│ Orphaned Code                   n/a          │
+│                                              │
+│ MAINTAINABILITY                  58 / 100 !  │
+╰──────────────────────────────────────────────╯
+
+high 2 modules participate in circular dependencies
+warn 134 functions exceed the repo cognitive complexity baseline (15)
+warn 46 functions nest 4+ levels deep
+warn 98 modules are depended on by 20+ modules
+
+Worst modules:
+  packages/zod/src/v4/classic/from-json-schema.ts      25   Readability, Cognitive Load
+  packages/zod/src/v4/core/schemas.ts                  28   Readability, Blast Radius
+  packages/zod/src/v4/core/compile.ts                  37   Readability, Blast Radius
+
+520 files (210 tests) · 83600 LOC · 4192 functions · 0.05s
+```
+
+Run from a tarball, so there is no git history and Orphaned Code is skipped. `deadhand explain
+<FILE>` shows the evidence behind any of these numbers, down to the line.
+
+## How it differs
+
+Tools like SonarQube and CodeScene also score code health. Deadhand is built for a narrower job:
+
+- **One binary, fully offline.** No server, no account, no upload. Your code never leaves the
+  machine.
+- **Deterministic.** Same input, same score. No LLM in the loop, so it is safe to gate CI on.
+- **A question, not a rule list.** Every metric asks how hard the code is for a person to own,
+  not whether it breaks a style rule.
+- **Built for change review.** `deadhand diff main --fail-on-drop 5` fails a PR that makes the
+  code harder to own, and `deadhand map` gives reviewers one HTML file to attach to it.
+
+## Install
+
+No Rust toolchain needed. Prebuilt binaries are published for Linux (x86_64, arm64, static musl),
+macOS (Intel, Apple Silicon) and Windows (x86_64). The [quick start](#quick-start) installers
+are the easiest route.
+
+<details>
+<summary>Direct downloads, manual install and building from source</summary>
 
 ### Direct downloads
 
@@ -56,6 +115,8 @@ From source (Rust 1.96+):
 cargo install --git https://github.com/KrishnanKamatchi/deadhand deadhand
 ```
 
+</details>
+
 ## Usage
 
 ```sh
@@ -83,13 +144,29 @@ Exit codes: `0` ok, `1` threshold failed, `2` usage/config error, `3` analysis e
 `deadhand map` writes `deadhand-map.html`: one file that opens offline in any browser, with no
 server and no network requests, so it can be attached to a PR or kept as a CI artifact.
 
-- Each horizontal band is an architectural layer, top to bottom in dependency order, with files
-  of unknown layer at the bottom. Boxes are folders; coloured blocks are files sized by lines of
-  code. Positions come from sorted paths, so a file stays in the same place between scans.
+- Each horizontal band is an architectural layer, top to bottom in dependency order. Files that
+  match no layer go in the **no layer** band at the bottom. Boxes are folders; coloured blocks
+  are files sized by lines of code. Positions come from sorted paths, so a file stays in the same
+  place between scans.
 - Colour by Maintainability or any of the metrics (keys `1` to `8`), from red (hard to own) to
   blue (easy).
 - Drag to move, scroll to zoom, `F` to fit, `/` to search files, folders and functions. Click a
   file for its scores, evidence, most complex functions, imports and importers.
+
+Layers are detected from folder names (`components`, `routes`, `services`, `models`, `lib`,
+`utils` and similar). A repo organised by feature or by package mostly lands in **no layer**.
+Map your own folders in `deadhand.toml` to get real bands. The map above uses:
+
+```toml
+include = ["packages/zod/src/**"]
+
+[layers]
+order = ["ui", "service"]
+
+[layers.paths]
+ui = ["classic", "mini", "v4-mini", "locales"]   # zod's public API
+service = ["core"]
+```
 
 ## What it measures
 
@@ -190,8 +267,8 @@ Releases are built by [dist](https://github.com/axodotdev/cargo-dist) in
 `crates/deadhand-core/Cargo.toml`, merge to `main`, then push a matching tag:
 
 ```sh
-git tag v0.2.0
-git push origin v0.2.0
+git tag vX.Y.Z
+git push origin vX.Y.Z
 ```
 
 The workflow builds every target and creates the GitHub release with the archives, checksums and
