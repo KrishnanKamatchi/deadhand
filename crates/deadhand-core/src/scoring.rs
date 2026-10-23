@@ -1,9 +1,10 @@
 //! Raw metric values → 0..100 scores (100 = easy for humans).
 //!
 //! Module score = `absolute_share` × absolute + (1 − `absolute_share`) × relative, where
-//! relative = 100 × (1 − better / (n − 1)) over non-test modules, and a module with a perfect
-//! absolute score also gets a perfect relative one (so a uniformly clean repo is not penalised).
-//! Repo score per metric = LOC-weighted mean of non-test module scores.
+//! relative = 100 × (1 − better / (n − 1)) over scored modules (non-test, parsed cleanly), and a
+//! module with a perfect absolute score also gets a perfect relative one (so a uniformly clean
+//! repo is not penalised).
+//! Repo score per metric = LOC-weighted mean of scored module scores.
 //! Maintainability = weighted mean of available metrics; weights of unavailable ones are
 //! redistributed proportionally.
 
@@ -38,7 +39,7 @@ pub struct Scores {
 /// Scores every metric output.
 pub fn score(outputs: &[MetricOutput], modules: &[ModuleFacts], cfg: &Config) -> Scores {
     let share = cfg.scoring.absolute_share;
-    let pop: Vec<usize> = modules.iter().enumerate().filter(|(_, m)| !m.is_test).map(|(i, _)| i).collect();
+    let pop: Vec<usize> = modules.iter().enumerate().filter(|(_, m)| m.is_scored()).map(|(i, _)| i).collect();
 
     let total_weight: f64 = outputs.iter().map(|o| o.kind.weight(&cfg.weights)).sum();
     let available_weight: f64 = outputs.iter().filter(|o| o.available).map(|o| o.kind.weight(&cfg.weights)).sum();

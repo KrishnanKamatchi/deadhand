@@ -33,9 +33,9 @@ pub struct Inputs<'a> {
 }
 
 impl Inputs<'_> {
-    /// Indices of non-test modules, the population for repo baselines.
+    /// Indices of scored modules (non-test, parsed cleanly), the population for repo baselines.
     fn population(&self) -> impl Iterator<Item = usize> + '_ {
-        self.modules.iter().enumerate().filter(|(_, m)| !m.is_test).map(|(i, _)| i)
+        self.modules.iter().enumerate().filter(|(_, m)| m.is_scored()).map(|(i, _)| i)
     }
 
     fn layer(&self, i: usize) -> Option<&str> {

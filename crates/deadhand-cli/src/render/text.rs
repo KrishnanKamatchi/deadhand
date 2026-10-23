@@ -136,6 +136,22 @@ pub fn explain(r: &RepoReport, m: &ModuleReport, color: bool) -> String {
     let _ =
         writeln!(o, "Maintainability {} / 100\n", p.score(&round(m.maintainability).to_string(), m.maintainability));
 
+    let errors: Vec<_> = r.parse_errors_for(&m.path).collect();
+    if !errors.is_empty() {
+        let _ = writeln!(
+            o,
+            "{} this file did not parse cleanly, so the scores below are unreliable and it is left out of repo scores:",
+            p.mark(Severity::High)
+        );
+        for e in errors.iter().take(3) {
+            let _ = writeln!(o, "  {}", p.dim(e.message.lines().next().unwrap_or("")));
+        }
+        if errors.len() > 3 {
+            let _ = writeln!(o, "  {}", p.dim(&format!("… and {} more", errors.len() - 3)));
+        }
+        let _ = writeln!(o);
+    }
+
     let _ = writeln!(o, "Scores:");
     for summary in &r.metrics {
         let Some(score) = m.scores.get(&summary.kind) else {

@@ -156,4 +156,11 @@ impl ModuleFacts {
     pub fn total_cognitive(&self) -> u32 {
         self.top_level_cognitive + self.functions.iter().map(|f| f.cognitive).sum::<u32>()
     }
+
+    /// Whether this module counts toward repo baselines and scores: not a test, and parsed
+    /// cleanly. A file that fails to parse yields almost no facts, so it would score as trivially
+    /// easy and pull the repo up.
+    pub fn is_scored(&self) -> bool {
+        !self.is_test && self.parse_errors.is_empty()
+    }
 }

@@ -201,8 +201,11 @@ the report says so.
   function, one nesting level deeper, as in the SonarSource spec.
 - Git: a single `git log --numstat` call. The 180-day churn window ends at the newest commit, not
   at the current time, so results stay stable. Shallow clones are treated as having no history.
-- Not supported yet: `.vue`, `.svelte` and `.astro` files. Workspace packages imported by package
-  name count as external.
+- Not supported yet: `.vue`, `.svelte` and `.astro` files, and Flow type annotations (`// @flow`
+  codebases such as React itself). Workspace packages imported by package name count as external.
+- Files that fail to parse are reported, shown in `explain` with their errors, and left out of
+  repo scores, baselines and the worst-modules list. When a fifth or more of the code fails to
+  parse, the report says so as a high finding, because the scores then cover only part of the repo.
 
 ## Configuration (`deadhand.toml`)
 
