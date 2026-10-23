@@ -109,7 +109,7 @@ function evidenceList(pins) {
 
 function buildingPanel(i) {
   const b = buildings[i];
-  const tags = [b.layer ? `${b.layer} layer` : "unknown layer", `${b.loc} lines`, `${b.room_count} functions`];
+  const tags = [b.layer ? `${b.layer} layer` : "no layer", `${b.loc} lines`, `${b.room_count} functions`];
   if (b.is_test) tags.push("test file");
   if (b.external_packages.length) tags.push(`${b.external_packages.length} packages`);
   const metrics = MAP.metrics.filter((m) => b.scores[m.kind] !== undefined).map((m) => [m.label, b.scores[m.kind]]);
